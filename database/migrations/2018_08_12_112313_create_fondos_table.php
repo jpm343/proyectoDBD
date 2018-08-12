@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAerolineasTable extends Migration
+class CreateFondosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAerolineasTable extends Migration
      */
     public function up()
     {
-        Schema::create('aerolineas', function (Blueprint $table) {
-            $table->string('nombre_aerolinea');
-            $table->float('puntuacion_aerolinea', 1, 2);
-            $table->string('tipo_aerolinea');
+        Schema::create('fondos', function (Blueprint $table) {
+            $table->string('cuenta_origen')->unique();
+            $table->integer('monto_actual');
+            $table->string('banco_origen');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAerolineasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aerolineas');
+        Schema::dropIfExists('fondos');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAerolineasTable extends Migration
+class CreateHotelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateAerolineasTable extends Migration
      */
     public function up()
     {
-        Schema::create('aerolineas', function (Blueprint $table) {
-            $table->string('nombre_aerolinea');
-            $table->float('puntuacion_aerolinea', 1, 2);
-            $table->string('tipo_aerolinea');
+        Schema::create('hotels', function (Blueprint $table) {
+            $table->increments('id_hotel');
+            $table->float('puntuacion_hotel', 1, 2);
+            $table->text('descripcion_hotel');
+            $table->string('direccion_hotel');
+            $table->string('ciudad_hotel');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateAerolineasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aerolineas');
+        Schema::dropIfExists('hotels');
     }
 }
