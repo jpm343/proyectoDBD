@@ -4,6 +4,5 @@ CREATE TABLE habitaciones (
     capacidad_habitacion        INTEGER,
     precio_noche_habitacion     INTEGER,
     tipo_habitacion             VARCHAR(255),
-    id_hotel                    INTEGER REFERENCES hoteles,
-    id_reserva                  INTEGER REFERENCES reservas NULL
+    id_hotel                    INTEGER REFERENCES hoteles
 );

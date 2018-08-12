@@ -76,8 +76,7 @@ CREATE TABLE habitaciones (
     capacidad_habitacion        INTEGER,
     precio_noche_habitacion     INTEGER,
     tipo_habitacion             VARCHAR(255),
-    id_hotel                    INTEGER REFERENCES hoteles,
-    id_reserva                  INTEGER REFERENCES reservas NULL
+    id_hotel                    INTEGER REFERENCES hoteles
 );
 
 CREATE TABLE asientos (
@@ -97,8 +96,7 @@ CREATE TABLE autos (
     precio_diario       INTEGER,
     descripcion_auto    TEXT,
     transmision_auto    VARCHAR(255),
-    nombre_compania     VARCHAR(255) REFERENCES companias_autos,
-    id_reserva          INTEGER REFERENCES reservas NULL
+    nombre_compania     VARCHAR(255) REFERENCES companias_autos
 );
 
 CREATE TABLE roles (
@@ -129,4 +127,14 @@ CREATE TABLE registro_consultas (
     ciudad_destino_consultada       VARCHAR(255),
     fecha_regreso_consultada        TIMESTAMP,
     id_usuario                      INTEGER REFERENCES usuarios
+);
+
+CREATE TABLE reservas_autos (
+    id_reserva      INTEGER REFERENCES reservas,
+    patente_auto    VARCHAR(255) REFERENCES autos
+);
+
+CREATE TABLE reservas_habitaciones (
+    id_reserva      INTEGER REFERENCES reservas,
+    id_habitacion   INTEGER REFERENCES habitaciones
 );
