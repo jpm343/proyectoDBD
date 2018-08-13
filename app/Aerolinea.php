@@ -8,9 +8,9 @@ class Aerolinea extends Model
 {
     protected $primaryKey = 'nombre_aerolinea';
 
-    public function vuelos()
+    //una aerolinea imparte muchos vuelos
+    public function vuelo()
     {
-
     	return $this->hasMany('App\Vuelo');
 
     }
