@@ -15,8 +15,8 @@ class CreateCompaniaAutoTable extends Migration
     {
         Schema::create('compania_auto', function (Blueprint $table) {
             $table->string('nombre_compania');
-			$table->string('paises_de_atencion');
-			$table->string('ciudades_de_atencion');
+            $table->string('paises_de_atencion');
+            $table->string('ciudades_de_atencion');
             $table->timestamps();
         });
     }
