@@ -6,6 +6,11 @@ use Illuminate\Database\Migrations\Migration;
 
 class AddNonSerialPrimaryKeys extends Migration
 {
+    /*
+    seba: aerilineas, vuelos y asientos.
+    gabo: hotel, habitaciones y traslados. 
+    */
+    
     public function up()
     {
         Schema::table('aerolineas', function (Blueprint $table) {
