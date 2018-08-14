@@ -15,7 +15,7 @@ class Vuelo extends Model
     }
 
     //un vuelo tiene muchos asientos
-    public function asiento()
+    public function asientos()
     {
     	return $this->hasMany('App\Asiento');
     }

@@ -21,7 +21,7 @@ class Reserva extends Model
     }
 
     //una reserva corresponde a una o muchas habitacionesS
-    public function habitacion()
+    public function habitacions()
     {
     	return $this->hasMany('App\Habitacion');
     }
@@ -33,13 +33,13 @@ class Reserva extends Model
     }
 
     //muchas reservas tienen muchos autos
-    public function auto()
+    public function autos()
     {
     	return $this->belongsToMany('App\Auto');
     }
 
     //una reserva tiene uno o muchos asientos
-    public function asiento()
+    public function asientos()
     {
     	return $this->hasMany('App\Asiento');
     }

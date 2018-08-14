@@ -9,7 +9,7 @@ class Auto extends Model
     protected $primaryKey = 'patente_auto';
 
     //muchos autos corresponden a muchas reservas
-    public function reserva()
+    public function reservas()
     {
     	return $this->belongsToMany('App\Reserva');
     }

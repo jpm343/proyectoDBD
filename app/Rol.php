@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rol extends Model
 {
     //muchos roles pertenecen a muchos usuarios
-    public function usuario()
+    public function usuarios()
     {
     	return $this->belongsToMany('App\Usuarios');
     }

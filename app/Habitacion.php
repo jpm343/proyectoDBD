@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Habitacion extends Model
 {
     //muchas habitaciones corresponden a muchas reservas
-    public function reserva()
+    public function reservas()
     {
     	return $this->belongsToMany('App\Reserva');
     }
