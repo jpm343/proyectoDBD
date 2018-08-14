@@ -4,14 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-<<<<<<< HEAD
-class Reserva extends Model{
-	
-=======
 class Reserva extends Model
 {
-    //protected $primaryKey = 'id_reserva';
-
+    //SE DEJA COMENTADO
+    /*
+    
     //muchas reservas son realizadas por un usuario
     public function usuario()
     {
@@ -47,5 +44,5 @@ class Reserva extends Model
     {
     	return $this->hasMany('App\Asiento');
     }
->>>>>>> ea670d12f5d397d9e57402920a7de44b2561876e
+    */
 }
