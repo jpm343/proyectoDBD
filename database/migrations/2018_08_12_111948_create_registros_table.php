@@ -14,7 +14,7 @@ class CreateRegistrosTable extends Migration
     public function up()
     {
         Schema::create('registros', function (Blueprint $table) {
-            $table->increments('id_registro');
+            $table->increments('registro_id');
             $table->datetime('fecha_registro');
             $table->string('tipo_transaccion');
             $table->integer('subtotal_registro');

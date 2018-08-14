@@ -14,7 +14,7 @@ class CreateFondosTable extends Migration
     public function up()
     {
         Schema::create('fondos', function (Blueprint $table) {
-            $table->string('cuenta_origen')->unique();
+            $table->string('cuenta_origen')->primary()->unique();
             $table->integer('monto_actual');
             $table->string('banco_origen');
             $table->timestamps();

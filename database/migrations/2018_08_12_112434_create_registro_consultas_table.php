@@ -14,7 +14,7 @@ class CreateRegistroConsultasTable extends Migration
     public function up()
     {
         Schema::create('registro_consultas', function (Blueprint $table) {
-            $table->increments('id_auditoria');
+            $table->increments('auditoria_id');
             $table->integer('cantidad_personas_consultada');
             $table->string('tipo_consulta');
             $table->datetime('fecha_partida_consultada');

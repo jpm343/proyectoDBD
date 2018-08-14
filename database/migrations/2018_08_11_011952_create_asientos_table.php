@@ -14,12 +14,17 @@ class CreateAsientosTable extends Migration
     public function up()
     {
         Schema::create('asientos', function (Blueprint $table) {
-            $table->increments('id_asiento');
+            $table->increments('asiento_id');
             $table->integer('rut_pasajero');
             $table->string('clase_asiento');
             $table->integer('numero_asiento');
             $table->string('nombre_pasajero');
             $table->timestamps();
+
+            //Llave Foránea con Vuelo
+            $table->integer('vuelo_id');
+            $table->foreign('vuelo_id')->references('vuelo_id')->on('vuelos')->onDelete('cascade');
+            //Llave Foránea con Reserva
         });
     }
 

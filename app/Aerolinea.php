@@ -11,7 +11,7 @@ class Aerolinea extends Model
     public function vuelos()
     {
 
-    	return $this->hasMany('App\Vuelo');
+    	return $this->hasMany(Vuelo::class, 'nombre_aerolinea');
 
     }
 }
