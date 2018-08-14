@@ -24,7 +24,6 @@ class CreateAsientosTable extends Migration
             //Llave Foránea con Vuelo
             $table->integer('vuelo_id');
             $table->foreign('vuelo_id')->references('vuelo_id')->on('vuelos')->onDelete('cascade');
-            //Llave Foránea con Reserva
         });
     }
 
