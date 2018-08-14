@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Vuelo extends Model
 {
     protected $primaryKey = 'vuelo_id';
-
-    public function aerolinea(){
-		return $this->belongsTo(Aerolinea::class, 'nombre_aerolinea');
+    //muchos vuelos son impartidos por una aerolinea
+    public function aerolinea()
+    {
+    	return $this->belongsTo('App\Aerolinea');
     }
 
-    public function asientos(){
-    	return $this->hasMany(Asiento::class, 'vuelo_id');
+    //un vuelo tiene muchos asientos
+    public function asientos()
+    {
+    	return $this->hasMany('App\Asiento');
     }
-
 }

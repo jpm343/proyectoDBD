@@ -8,10 +8,15 @@ class Aerolinea extends Model
 {
     protected $primaryKey = 'nombre_aerolinea';
 
-    public function vuelos()
+    //una aerolinea imparte muchos vuelos
+    public function vuelo()
     {
+<<<<<<< HEAD
 
     	return $this->hasMany(Vuelo::class, 'nombre_aerolinea');
+=======
+    	return $this->hasMany('App\Vuelo');
+>>>>>>> ea670d12f5d397d9e57402920a7de44b2561876e
 
     }
 }
