@@ -24,6 +24,10 @@ class AddNonSerialPrimaryKeys extends Migration
         Schema::table('compania_auto', function (Blueprint $table) {
             $table->primary('nombre_compania');
         });
+
+        Schema::table('fondos', function (Blueprint $table) {
+            $table->primary('cuenta_origen');
+        });
     }
 
     public function down()
@@ -39,5 +43,9 @@ class AddNonSerialPrimaryKeys extends Migration
         Schema::table('compania_auto', function (Blueprint $table) {
             $table->dropPrimary('nombre_compania');
         });
+
+        Schema::table('fondos', function (Blueprint $table) {
+            $table->dropPrimary('cuenta_origen');
+        }); 
     }
 }

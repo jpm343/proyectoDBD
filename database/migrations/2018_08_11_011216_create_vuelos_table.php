@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +14,7 @@ class CreateVuelosTable extends Migration
     public function up()
     {
         Schema::create('vuelos', function (Blueprint $table) {
-            $table->increments('id_vuelo');
+            $table->increments('vuelo_id');
             $table->datetime('fecha_salida');
             $table->datetime('fecha_llegada');
             $table->string('ciudad_origen');
@@ -23,6 +23,10 @@ class CreateVuelosTable extends Migration
             $table->string('aeropuerto_destino');
             $table->string('pais_origen');
             $table->timestamps();
+
+            //Llave Foránea
+            $table->string('nombre_aerolinea');
+            $table->foreign('nombre_aerolinea')->references('nombre_aerolinea')->on('aerolineas')->onDelete('cascade');
         });
     }
 

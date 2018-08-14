@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Actividad extends Model
 {
     //una actividad corresponde a muchas reservas
-    public function reserva()
+    public function reservas()
     {
     	return $this->hasMany('App\Reserva');
     }

@@ -4,6 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+<<<<<<< HEAD
+class Reserva extends Model{
+	
+=======
 class Reserva extends Model
 {
     //protected $primaryKey = 'id_reserva';
@@ -21,7 +25,7 @@ class Reserva extends Model
     }
 
     //una reserva corresponde a una o muchas habitacionesS
-    public function habitacion()
+    public function habitacions()
     {
     	return $this->hasMany('App\Habitacion');
     }
@@ -33,14 +37,15 @@ class Reserva extends Model
     }
 
     //muchas reservas tienen muchos autos
-    public function auto()
+    public function autos()
     {
     	return $this->belongsToMany('App\Auto');
     }
 
     //una reserva tiene uno o muchos asientos
-    public function asiento()
+    public function asientos()
     {
     	return $this->hasMany('App\Asiento');
     }
+>>>>>>> ea670d12f5d397d9e57402920a7de44b2561876e
 }
