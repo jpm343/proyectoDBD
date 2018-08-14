@@ -9,7 +9,7 @@ class Aerolinea extends Model
     protected $primaryKey = 'nombre_aerolinea';
 
     //una aerolinea imparte muchos vuelos
-    public function vuelo()
+    public function vuelos()
     {
 <<<<<<< HEAD
 
