@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Vuelo extends Model
-{   
+{
+
     //muchos vuelos son impartidos por una aerolinea
     public function aerolinea()
     {
-    	return $this->belongsTo(Aerolinea::class, 'nombre_aerolinea');
+    	return $this->belongsTo('App\Aerolinea');
     }
 
     //un vuelo tiene muchos asientos
@@ -17,4 +18,6 @@ class Vuelo extends Model
     {
     	return $this->hasMany('App\Asiento');
     }
+
+
 }
