@@ -12,9 +12,6 @@ class HabitacionTableSeeder extends Seeder
      */
     public function run()
     {
-    	/*
-    	Se crearán un total de 80 registros con datos falsos.
-    	*/
         factory(Habitacion::class, 80)->create();
     }
 }

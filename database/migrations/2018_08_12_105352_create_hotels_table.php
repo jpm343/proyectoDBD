@@ -15,7 +15,7 @@ class CreateHotelsTable extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             // Lave primaria
-            $table->increments('hotel_id');
+            $table->increments('id');
 
             // Artibutos
             $table->float('puntuacion_hotel', 1, 2);
