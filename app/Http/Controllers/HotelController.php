@@ -14,7 +14,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        return "Index de Hotel Controller";
     }
 
     /**

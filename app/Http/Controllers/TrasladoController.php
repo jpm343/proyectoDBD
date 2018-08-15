@@ -14,7 +14,7 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        //
+        return "Index de Traslado Controller";
     }
 
     /**

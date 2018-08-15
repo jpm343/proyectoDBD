@@ -14,7 +14,7 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        //
+        return "index de Habitacion Controller";
     }
 
     /**

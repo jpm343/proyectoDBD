@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('Habitacion','HabitacionController');
+Route::resource('Hotel','HotelController');
+Route::resource('Traslado','TrasladoController');
