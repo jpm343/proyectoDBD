@@ -15,7 +15,7 @@ class CreateTrasladosTable extends Migration
     {
         Schema::create('traslados', function (Blueprint $table) {
             // Llave Primaria
-            $table->increments('id');
+            $table->increments('traslado_id');
 
             // Atributos
             $table->datetime('fecha_traslado');

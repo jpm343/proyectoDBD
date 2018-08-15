@@ -46,6 +46,6 @@ class AddNonSerialPrimaryKeys extends Migration
 
         Schema::table('fondos', function (Blueprint $table) {
             $table->dropPrimary('cuenta_origen');
-        }); 
+        });
     }
 }

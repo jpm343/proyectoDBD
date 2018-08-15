@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hotel extends Model
 {
+	protected $primaryKey = 'hotel_id';
 	// Atributos de la clase
 	protected $fillable = [
 		'puntuacion_hotel',

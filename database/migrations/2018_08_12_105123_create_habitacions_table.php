@@ -15,7 +15,7 @@ class CreateHabitacionsTable extends Migration
     {
         Schema::create('habitacions', function (Blueprint $table) {
             // Llave primaria 
-            $table->increments('id');
+            $table->increments('habitacion_id');
             
             // Atributos de la tabla
             $table->integer('numero_habitacion');

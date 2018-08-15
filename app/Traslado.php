@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Traslado extends Model
 {
+    protected $primaryKey = 'traslado_id';
 	protected $fillable = [
         'fecha_traslado', 
         'descripcion_traslado', 
