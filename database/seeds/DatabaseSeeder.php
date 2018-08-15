@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Habitacion;
+use App\Hotel;
+use App\Traslado;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,5 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+    	$this->call(HabitacionTableSeeder::class);
+        $this->call(HotelTableSeeder::class);
+        $this->call(TrasladoTableSeeder::class);
     }
 }

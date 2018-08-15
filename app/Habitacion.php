@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Habitacion extends Model
 {
+    protected $fillable = [
+        'numero_habitacion', 
+        'capacidad_habitacion',
+        'precio_noche_habitacion',
+        'tipo_habitacion',
+    ];
+    
     /*
     //muchas habitaciones corresponden a muchas reservas
     public function reservas()
