@@ -14,7 +14,7 @@ class CreateAutosTable extends Migration
     public function up()
     {
         Schema::create('autos', function (Blueprint $table) {
-            $table->string('patente_auto')->unique();
+            $table->string('patente_auto')->primary();
             $table->string('modelo_auto');
             $table->integer('capacidad_auto');
             $table->integer('precioDiario');
