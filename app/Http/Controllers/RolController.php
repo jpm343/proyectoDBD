@@ -26,7 +26,8 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        
+        
     }
 
     /**
@@ -66,7 +67,8 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+
     }
 
     /**
