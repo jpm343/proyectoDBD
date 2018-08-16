@@ -79,6 +79,9 @@ class AerolineaController extends Controller
         $aerolineaEncontrada = Aerolinea::find($aerolinea->nombre_aerolinea);
         $aerolineaEncontrada->puntuacion_aerolinea = $request->puntuacion_aerolinea;
         $aerolineaEncontrada->tipo_aerolinea = $request->tipo_aerolinea;
+        $aerolineaEncontrada->save();
+        $todas = Aerolinea::all();
+        return $todas;
     }
 
     /**
@@ -92,6 +95,7 @@ class AerolineaController extends Controller
         $aerolineaADestruir = Aerolinea::find($aerolinea->nombre_aerolinea);
         $aerolineaADestruir->delete();
         //Con la aerolinea destruida, se procede a retornar todas las aerolineas guardadas.
-        return Aerolinea::all();
+        $todas = Aerolinea::all();
+        return $todas;
     }
 }
