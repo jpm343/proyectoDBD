@@ -14,7 +14,7 @@ class CreateVuelosTable extends Migration
     public function up()
     {
         Schema::create('vuelos', function (Blueprint $table) {
-            $table->increments('vuelo_id');
+            $table->increments('id_vuelo');
             $table->datetime('fecha_salida');
             $table->datetime('fecha_llegada');
             $table->string('ciudad_origen');

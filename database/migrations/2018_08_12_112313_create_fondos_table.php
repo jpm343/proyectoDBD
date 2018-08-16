@@ -14,10 +14,15 @@ class CreateFondosTable extends Migration
     public function up()
     {
         Schema::create('fondos', function (Blueprint $table) {
-            $table->string('cuenta_origen')->primary();
+            $table->increments('id_fondos');
+            $table->string('cuenta_origen');
             $table->integer('monto_actual');
             $table->string('banco_origen');
             $table->timestamps();
+
+            //debe llevar la clave foranea de usuario
+            $table->integer('id_usuario');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
         });
     }
 

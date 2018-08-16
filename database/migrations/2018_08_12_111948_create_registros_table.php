@@ -14,11 +14,16 @@ class CreateRegistrosTable extends Migration
     public function up()
     {
         Schema::create('registros', function (Blueprint $table) {
-            $table->increments('registro_id');
-            $table->datetime('fecha_registro');
+            $table->increments('id_registro');
+            //obs: se cambia de dateTime a timestamp
+            $table->timestamp('fecha_registro');
             $table->string('tipo_transaccion');
             $table->integer('subtotal_registro');
             $table->timestamps();
+
+            //debe llevar la clave foranea de usuario
+            $table->integer('id_usuario');
+            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
         });
     }
 
