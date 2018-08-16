@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\rol;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Rol;
 
 class RolController extends Controller
 {
@@ -15,7 +15,8 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rol = Rol::all();
+        return $rol;
     }
 
     /**
@@ -36,27 +37,34 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rol = new Rol();
+        $rol->id_rol = $request->id_rol;
+        $rol->nombre_rol = $request->nombre_rol;
+        $rol->descripcion = $request->descripcion;
+        $rol->save();
+        $all = Rol::all();
+        return $all;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\rol  $rol
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(rol $rol)
+    public function show($id)
     {
-        //
+        $rol = Rol::find($id);
+        return $rol;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\rol  $rol
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(rol $rol)
+    public function edit($id)
     {
         //
     }
@@ -65,22 +73,29 @@ class RolController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\rol  $rol
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, rol $rol)
+    public function update(Request $request, $id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->id_rol = $request->id_rol;
+        $rol->nombre_rol = $request->nombre_rol;
+        $rol->descripcion = $request->descripcion;
+        $rol->save();
+        return $rol;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\rol  $rol
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(rol $rol)
+    public function destroy($id)
     {
-        //
+        $rol = Rol::find($id);
+        $rol->delete();
+        return Rol::all();
     }
 }

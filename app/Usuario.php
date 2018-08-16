@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Usuario extends Model
 {
  
+    protected $primaryKey = 'id_usuario'; 
+
+    protected $fillable = ['nombre_usuario','correo_usuario','password',];
+
+    protected $hidden = ['password',];
+
     //un usuario tiene uno o muchos fondos
     public function fondos()
     {
     	return $this->hasMany('App\Fondo');
     }
 
-    //muchos usuarios tienen muchos roles
-    public function rols()
+    
+    public function rol()
     {
-        return $this->belongsToMany('App\Rol');
+        return $this->belongsTo('App\Rol');
     }
 
     //un usuario tiene muchos registros de consulta

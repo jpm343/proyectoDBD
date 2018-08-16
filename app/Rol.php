@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    //muchos roles pertenecen a muchos usuarios
+	protected $primaryKey   = 'id_rol';
+
+	protected $fillable = ['nombre_rol','descripcion'];
+
+    
     public function usuarios()
     {
-    	return $this->belongsToMany('App\Usuarios');
+    	return $this->hasMany('App\Usuarios');
     }
+
 }

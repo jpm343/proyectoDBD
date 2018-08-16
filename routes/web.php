@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('Usuarios', 'UsuarioController');
+Route::resource('Rols','RolController');
+Route::resource('RegistroConsultas','Registro_consultaController');
