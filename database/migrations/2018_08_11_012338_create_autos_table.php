@@ -6,29 +6,19 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateAutosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('autos', function (Blueprint $table) {
             $table->string('patente_auto')->primary();
             $table->string('modelo_auto');
             $table->integer('capacidad_auto');
-            $table->integer('precioDiario');
+            $table->integer('precio_dia_auto');
             $table->text('descripcion_auto');
-            $table->string('transmision_auto');
+            $table->enum('transmision_auto', ['A', 'M']);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('autos');
