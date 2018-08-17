@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Asiento;
 use Illuminate\Http\Request;
+use DB;
 
 class AsientoController extends Controller
 {
+
+    public function disponibilidad($id1, $id2){
+        $disponible = DB::select('SELECT disponibilidad(?, ?)', [$id1, $id2]);
+        return $disponible;
+    }
+
     /**
      * Display a listing of the resource.
      *

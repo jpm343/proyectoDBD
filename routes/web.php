@@ -38,3 +38,7 @@ Route::resource('asiento', 'AsientoController');
 Route::get('/asientos', 'AsientoController@createOrEdit');
 
 Route::post('/asiento_post', 'AsientoController@storeOrUpdate')->name('formulario_asiento');
+
+////************Stored Procedure******//
+
+Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
