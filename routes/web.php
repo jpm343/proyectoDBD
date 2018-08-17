@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Route::resource('vuelo', 'VueloController');
 
-Route::get('/vuelos', 'VueloController@create');
+Route::get('/vuelos', 'VueloController@createOrEdit');
 
-Route::post('/vuelos_post', 'VueloController@store')->name('formulario_vuelo');
+Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
 
 //*********Rutas para Aerolinea*******//
 
@@ -35,6 +35,6 @@ Route::post('/aerolineas_post', 'AerolineaController@storeOrUpdate')->name('form
 
 Route::resource('asiento', 'AsientoController');
 
-Route::get('/asientos', 'AsientoController@create');
+Route::get('/asientos', 'AsientoController@createOrEdit');
 
-Route::post('/asiento_post', 'AsientoController@store')->name('formulario_asiento');
+Route::post('/asiento_post', 'AsientoController@storeOrUpdate')->name('formulario_asiento');

@@ -23,7 +23,7 @@ class AsientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
         return view('asientos');
     }
@@ -34,15 +34,31 @@ class AsientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
-        $asiento = new Asiento();
-        $asiento->rut_pasajero = $request->rut_pasajero;
-        $asiento->clase_asiento = $request->clase_asiento;
-        $asiento->numero_asiento = $request->numero_asiento;
-        $asiento->nombre_pasajero = $request->nombre_pasajero;
-        $asiento->id_vuelo = $request->id_vuelo;
-        $asiento->save();
+        $aux = Asiento::find($request->id_asiento);
+        if($aux == null){
+            $asiento = new Asiento();
+            $asiento->updateOrCreate([
+                'rut_pasajero' => $request->rut_pasajero,
+                'clase_asiento' => $request->clase_asiento,
+                'numero_asiento' => $request->numero_asiento,
+                'nombre_pasajero' => $request->nombre_pasajero,
+                'id_vuelo' => $request->id_vuelo
+            ],[]);
+        }
+        else{
+            $asiento = new Asiento();
+            $asiento->updateOrCreate([
+                'id_asiento' => $request->id_asiento,
+            ], 
+                ['rut_pasajero' => $request->rut_pasajero,
+                'clase_asiento' => $request->clase_asiento,
+                'numero_asiento' => $request->numero_asiento,
+                'nombre_pasajero' => $request->nombre_pasajero,
+                'id_vuelo' => $request->id_vuelo
+            ]);   
+        }
         $todos = Asiento::all();
         return $todos;
     }
@@ -57,37 +73,6 @@ class AsientoController extends Controller
     {
         $asientoEncontrado = Asiento::find($asiento->asiento_id);
         return $asientoEncontrado;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Asiento  $asiento
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Asiento $asiento)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Asiento  $asiento
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Asiento $asiento)
-    {
-        $asientoEncontrado = Asiento::find($asiento->asiento_id);
-        $asientoEncontrado->asiento_id = $request->asiento_id;
-        $asientoEncontrado->rut_pasajero = $request->asiento_id;
-        $asientoEncontrado->clase_asiento = $request->clase_asiento;
-        $asientoEncontrado->numero_asiento = $request->numero_asiento;
-        $asientoEncontrado->nombre_pasajero = $request->nombre_pasajero;
-        $asientoEncontrado->save();
-        $todos = Asiento::all();
-        return $todos;
     }
 
     /**

@@ -8,6 +8,9 @@
 
 <form action="/vuelos_post" method="POST">
   @csrf
+  ID Vuelo:<br>
+  <input type="text" name="id_vuelo" value="ID Vuelo">
+  <br>
   Fecha de Salida:<br>
   <input type="text" name="fecha_salida" value="1971-10-06 11:06:06">
   <br>

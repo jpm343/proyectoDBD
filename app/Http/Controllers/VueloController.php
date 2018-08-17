@@ -23,7 +23,7 @@ class VueloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
         return view('vuelos');
     }
@@ -34,20 +34,41 @@ class VueloController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
-        $vuelo = new Vuelo();
-        $vuelo->fecha_salida = $request->fecha_salida;
-        $vuelo->fecha_llegada = $request->fecha_llegada;
-        $vuelo->ciudad_origen = $request->ciudad_origen;
-        $vuelo->ciudad_destino = $request->ciudad_destino;
-        $vuelo->aeropuerto_origen = $request->aeropuerto_origen;
-        $vuelo->aeropuerto_destino = $request->aeropuerto_destino;
-        $vuelo->pais_origen = $request->pais_origen;
-        $vuelo->pais_destino = $request->pais_destino;
-        $vuelo->nombre_aerolinea = $request->nombre_aerolinea;
-        $vuelo->save();
-        return view('welcome');
+        $aux = Vuelo::find($request->id_vuelo);
+        if($aux == null){
+            $vuelo = new Vuelo();
+            $vuelo->updateOrCreate([
+                'fecha_salida' => $request->fecha_salida,
+                'fecha_llegada' => $request->fecha_llegada,
+                'ciudad_origen' => $request->ciudad_origen,
+                'ciudad_destino' => $request->ciudad_destino,
+                'aeropuerto_origen' => $request->aeropuerto_origen,
+                'aeropuerto_destino' => $request->aeropuerto_destino,
+                'pais_origen' => $request->pais_origen,
+                'pais_destino' => $request->pais_destino,
+                'nombre_aerolinea' => $request->nombre_aerolinea
+            ], []);
+        }
+        else{
+            $vuelo = new Vuelo();
+            $vuelo->updateOrCreate([
+                'id_vuelo' => $request->id_vuelo,
+            ], [
+                'fecha_salida' => $request->fecha_salida,
+                'fecha_llegada' => $request->fecha_llegada,
+                'ciudad_origen' => $request->ciudad_origen,
+                'ciudad_destino' => $request->ciudad_destino,
+                'aeropuerto_origen' => $request->aeropuerto_origen,
+                'aeropuerto_destino' => $request->aeropuerto_destino,
+                'pais_origen' => $request->pais_origen,
+                'pais_destino' => $request->pais_destino,
+                'nombre_aerolinea' => $request->nombre_aerolinea
+            ]);
+        }
+        $todos = Vuelo::all();
+        return $todos;
     }
 
     /**
@@ -60,41 +81,6 @@ class VueloController extends Controller
     {
         $vueloSolicitado = Vuelo::find($vuelo->vuelo_id);
         return $vueloSolicitado;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Vuelo  $vuelo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Vuelo $vuelo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vuelo  $vuelo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Vuelo $vuelo)
-    {
-        $vueloEncontrado = Vuelo::find($vuelo->vuelo_id);
-        $vueloEncontrado->vuelo_id = $request->vuelo_id;
-        $vueloEncontrado->fecha_salida = $request->fecha_salida;
-        $vueloEncontrado->fecha_llegada = $request->fecha_llegada;
-        $vueloEncontrado->ciudad_origen = $request->ciudad_origen;
-        $vueloEncontrado->ciudad_destino = $request->ciudad_destino;
-        $vueloEncontrado->aeropuerto_origen = $request->aeropuerto_origen;
-        $vueloEncontrado->aeropuerto_destino = $request->aeropuerto_destino;
-        $vueloEncontrado->pais_origen = $request->pais_origen;
-        $vueloEncontrado->pais_destino = $request->pais_destino;
-        $vueloEncontrado->save();
-        $todos = Vuelo::all();
-        return $todos;
     }
 
     /**

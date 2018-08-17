@@ -8,6 +8,9 @@
 
 <form action="/asiento_post" method="POST">
   @csrf
+  ID Asiento:<br>
+  <input type="text" name="id_asiento" value="ID Asiento">
+  <br>
   Rut Pasajero:<br>
   <input type="text" name="rut_pasajero" value="Rut Pasajero">
   <br>
