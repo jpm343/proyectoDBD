@@ -24,10 +24,8 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
-        
+   public function createOrEdit(){
+        return view('usuarios');
     }
 
     /**
@@ -36,16 +34,24 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $usuario = new Usuario();
-        $usuario->id_rol =  $request->id_rol;
-        $usuario->nombre_usuario = $request->nombre_usuario;
-        $usuario->correo_usuario = $request->correo_usuario;
-        $usuario->password_usuario = $request->password_usuario;
-        $usuario->save();
-        return $usuario;
+    public function storeOrUpdate(Request $request)
+    {   
+        $aux = Usuario::find($request->id_usuario);
+        if($aux == null){
+            $usuario = new Usuario();
+            $usuario->updateOrCreate(['id_rol' =>  $request->id_rol,'nombre_usuario' => $request->nombre_usuario,
+            'correo_usuario' => $request->correo_usuario,
+            'password_usuario' => $request->password_usuario],[]);
+            return Usuario::all();
+        }
+        else{
+            $usuario = new Usuario();
+            $usuario->updateOrCreate(['nombre_usuario' => $request->nombre_usuario,'correo_usuario' => $request->correo_usuario,],
+                ['id_rol' =>  $request->id_rol,'password_usuario' => $request->password_usuario]);
+        }
+        return Usuario::all();
     }
+
 
     /**
      * Display the specified resource.
@@ -57,37 +63,6 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::find($id);
         return $usuario;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $usuario = Usuario::find($id);
-        $usuario->id_rol =  $request->id_rol;
-        $usuario->nombre_usuario = $request->nombre_usuario;
-        $usuario->correo_usuario = $request->correo_usuario;
-        $usuario->password_usuario = $request->password_usuario;
-        $usuario->save();
-        return $usuario;
-
     }
 
     /**

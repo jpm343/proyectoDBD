@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistroConsulta extends Model
 {
-	protected $primaryKey   = 'id_auditoria';
+	protected $primaryKey   = 'id_registroConsulta';
 
-	protected $fillable = ['cantidad_personas_consultada','tipo_consulta','fecha_partida_consultada','ciudad_origen_consultada','fecha_regreso_consultada','ciudad_destino_consultada',];
+	protected $fillable = ['tipo_consulta','tabla_modificada','estado_anterior','estado_actual','id_modificado',];
 
     //el nombre de la tabla no cumple convencion, por lo tanto es necesario especificar el nombre de la tabla
     protected $table = 'registro_consultas';

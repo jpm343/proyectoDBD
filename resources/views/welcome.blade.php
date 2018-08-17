@@ -14,5 +14,10 @@
         </div> 
       </div>
     </form>
+  Crear/Editar:
+  <input type="button" onclick=" location.href='/usuarios' " value="Usuarios" name="btn1" />
+  <input type="button" onclick=" location.href='/rols' " value="Rols" name="btn2" /> 
+  <input type="button" onclick=" location.href='/registroConsultas' " value="Registro Consultas" name="btn3" /> 
+  <br>
 </body>
 </html>

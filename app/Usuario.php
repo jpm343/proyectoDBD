@@ -9,9 +9,9 @@ class Usuario extends Model
  
     protected $primaryKey = 'id_usuario'; 
 
-    protected $fillable = ['nombre_usuario','correo_usuario','password',];
+    protected $fillable = ['nombre_usuario','correo_usuario','password_usuario','id_rol'];
 
-    protected $hidden = ['password',];
+    protected $hidden = ['password_usuario',];
 
     //un usuario tiene uno o muchos fondos
     public function fondos()

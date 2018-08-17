@@ -24,9 +24,9 @@ class Registro_consultaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
-       
+       return view('registroConsulta');
        
     }
 
@@ -36,21 +36,15 @@ class Registro_consultaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+  public function storeOrUpdate(Request $request)
     {
-        $rConsulta = RegistroConsulta::find($id);
-        $rConsulta->cantidad_personas_consultada = $request->cantidad_personas_consultada;
-        $rConsulta->tipo_consulta = $request->tipo_consulta;
-        $rConsulta->fecha_partida_consultada = $request->fecha_partida_consultada;
-        $rConsulta->ciudad_origen_consultada = $request->ciudad_origen_consultada;
-        $rConsulta->fecha_regreso_consultada = $request->fecha_regreso_consultada;
-        $rConsulta->ciudad_destino_consultada = $request->ciudad_destino_consultada;
-        $rConsulta->id_usuario = $request->id_usuario;
-        $rConsulta->save();
-
+        $rConsulta = new RegistroConsulta();
+        $rConsulta->updateOrCreate(['tipo_consulta' =>  $request->tipo_consulta,],['tabla_modificada' => $request->tabla_modificada,
+        'estado_anterior' => $request->estado_anterior,'estado_actual' => $request->estado_actual,'id_modificado' => $request->id_modificado,
+        'id_usuario' => $request->id_usuario]);
         return RegistroConsulta::all();
     }
-
+        
     /**
      * Display the specified resource.
      *
@@ -61,39 +55,6 @@ class Registro_consultaController extends Controller
     {
         $rConsulta = RegistroConsulta::find($id);
         return $rConsulta;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $rConsulta = RegistroConsulta::find($id);
-        $rConsulta->cantidad_personas_consultada = $request->cantidad_personas_consultada;
-        $rConsulta->tipo_consulta = $request->tipo_consulta;
-        $rConsulta->fecha_partida_consultada = $request->fecha_partida_consultada;
-        $rConsulta->ciudad_origen_consultada = $request->ciudad_origen_consultada;
-        $rConsulta->fecha_regreso_consultada = $request->fecha_regreso_consultada;
-        $rConsulta->ciudad_destino_consultada = $request->ciudad_destino_consultada;
-        $rConsulta->id_usuario = $request->id_usuario;
-        $rConsulta->save();
-        return $rConsuta;
     }
 
     /**

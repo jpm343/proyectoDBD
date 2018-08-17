@@ -24,9 +24,9 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
-        
+        return view('rols');
         
     }
 
@@ -36,15 +36,12 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
         $rol = new Rol();
-        $rol->id_rol = $request->id_rol;
-        $rol->nombre_rol = $request->nombre_rol;
-        $rol->descripcion = $request->descripcion;
-        $rol->save();
-        $all = Rol::all();
-        return $all;
+        $rol->updateOrCreate(['id_rol' => $request->id_rol,],['nombre_rol' => $request->nombre_rol,
+        'descripcion' => $request->descripcion]);
+        return Rol::all();
     }
 
     /**
@@ -59,17 +56,7 @@ class RolController extends Controller
         return $rol;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
 
-    }
 
     /**
      * Update the specified resource in storage.
