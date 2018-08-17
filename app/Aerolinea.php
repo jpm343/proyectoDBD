@@ -11,6 +11,8 @@ class Aerolinea extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = ['nombre_aerolinea', 'puntuacion_aerolinea' , 'tipo_aerolinea'];
+
     //una aerolinea imparte muchos vuelos
     public function vuelos()
     {

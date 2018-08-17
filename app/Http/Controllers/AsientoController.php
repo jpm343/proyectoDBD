@@ -25,7 +25,7 @@ class AsientoController extends Controller
      */
     public function create()
     {
-        //
+        return view('asientos');
     }
 
     /**
@@ -37,11 +37,11 @@ class AsientoController extends Controller
     public function store(Request $request)
     {
         $asiento = new Asiento();
-        $asiento->asiento_id = $request->asiento_id;
-        $asiento->rut_pasajero = $request->asiento_id;
+        $asiento->rut_pasajero = $request->rut_pasajero;
         $asiento->clase_asiento = $request->clase_asiento;
         $asiento->numero_asiento = $request->numero_asiento;
         $asiento->nombre_pasajero = $request->nombre_pasajero;
+        $asiento->id_vuelo = $request->id_vuelo;
         $asiento->save();
         $todos = Asiento::all();
         return $todos;

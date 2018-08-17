@@ -25,7 +25,7 @@ class VueloController extends Controller
      */
     public function create()
     {
-        //
+        return view('vuelos');
     }
 
     /**
@@ -37,7 +37,6 @@ class VueloController extends Controller
     public function store(Request $request)
     {
         $vuelo = new Vuelo();
-        $vuelo->vuelo_id = $request->vuelo_id;
         $vuelo->fecha_salida = $request->fecha_salida;
         $vuelo->fecha_llegada = $request->fecha_llegada;
         $vuelo->ciudad_origen = $request->ciudad_origen;
@@ -46,9 +45,9 @@ class VueloController extends Controller
         $vuelo->aeropuerto_destino = $request->aeropuerto_destino;
         $vuelo->pais_origen = $request->pais_origen;
         $vuelo->pais_destino = $request->pais_destino;
+        $vuelo->nombre_aerolinea = $request->nombre_aerolinea;
         $vuelo->save();
-        $todos = Vuelo::all();
-        return $todos;
+        return view('welcome');
     }
 
     /**

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Asiento extends Model
 {
-	//es necesario agregar esto??
-    //protected $primaryKey = 'id_asiento';
+    protected $primaryKey = 'id_asiento';
+    protected $keyType = 'integer';
 
     //muchos asientos corresponden a un vuelo
     public function vuelo()

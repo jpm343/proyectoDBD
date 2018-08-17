@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vuelo extends Model
 {
-
+    protected $primaryKey = 'id_vuelo';
+    protected $keyType = 'integer';
     //muchos vuelos son impartidos por una aerolinea
     public function aerolinea()
     {
