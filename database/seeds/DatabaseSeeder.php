@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Habitacion;
+use App\Hotel;
+use App\Traslado;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
         //corre los seeder de las tablas
         $this->call(RolsTableSeeder::class);
         $this->call(UsuariosTableSeeder::class);
@@ -19,5 +23,10 @@ class DatabaseSeeder extends Seeder
         //los siguientes dependen de usuarios
     	$this->call(FondosTableSeeder::class);
     	$this->call(RegistrosTableSeeder::class);    
+=======
+    	$this->call(HabitacionTableSeeder::class);
+        $this->call(HotelTableSeeder::class);
+        $this->call(TrasladoTableSeeder::class);
+>>>>>>> gaboBranch
     }
 }
