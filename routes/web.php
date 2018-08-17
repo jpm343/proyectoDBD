@@ -10,7 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
+
+//fondos
+Route::resource('fondo', 'FondoController');
+Route::resource('actividad', 'ActividadController');
+
+
+/*
+//actividads
+Route::get();
+Route::get();
+Route::post();
+Route::post();
+Route::get();
+
+//registros
+Route::get();
+Route::get();
+Route::post();
+Route::post();
+Route::get();
+*/

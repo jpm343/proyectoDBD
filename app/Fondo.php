@@ -10,6 +10,7 @@ class Fondo extends Model
 	protected $primaryKey = 'id_fondos';
 
     //atributos que pueden ser escritos en masa
+    
     protected $fillable = [
         'cuenta_origen', 'monto_actual', 'banco_origen',
     ];
