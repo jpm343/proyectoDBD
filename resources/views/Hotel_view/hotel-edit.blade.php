@@ -9,8 +9,8 @@
 			Editar un hotel
 			<a href="{{route('Hotel.index')}}" class="btn btn-primary pull-right"> Listado de hoteles </a>
 		</h2>
-		
-		{!! Form::model($hotel, ['route' => ['Hotel.update', $hotel -> hotel_id, 'method' => 'PUT']]) !!}
+		@include('Hotel_view.Hotel_fragment.Hotel-error')		
+		{!! Form::model($hotel, ['route' => ['Hotel.update', $hotel -> hotel_id], 'method' => 'PUT']) !!}
 
 		 	@include('Hotel_view.Hotel_fragment.Hotel-form')
 

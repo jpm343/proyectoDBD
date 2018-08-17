@@ -1,26 +1,26 @@
 <div class = "form-group">
-	{!! Form::label('name', 'Nombre del hotel ') !!}
-	{!! Form::text('name', null, ['class' => 'form-control']) !!}
+	{!! Form::label('nombre_hotel', 'Nombre del hotel ') !!}
+	{!! Form::text('nombre_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('name', 'Puntuacion del hotel') !!}
-	{!! Form::text('name', null, ['class' => 'form-control']) !!}
+	{!! Form::label('puntuacion_hotel', 'Puntuacion del hotel') !!}
+	{!! Form::text('puntuacion_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('body', 'Descripción del hotel') !!}
-	{!! Form::textarea('body', null, ['class' => 'form-control']) !!}
+	{!! Form::label('descripcion_hotel', 'Descripción del hotel') !!}
+	{!! Form::textarea('descripcion_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('short', 'Dirección del hotel') !!}
-	{!! Form::text('short', null, ['class' => 'form-control']) !!}
+	{!! Form::label('direccion_hotel', 'Dirección del hotel') !!}
+	{!! Form::text('direccion_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('short', 'ciudad del hotel') !!}
-	{!! Form::text('short', null, ['class' => 'form-control']) !!}
+	{!! Form::label('ciudad_hotel', 'ciudad del hotel') !!}
+	{!! Form::text('ciudad_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">

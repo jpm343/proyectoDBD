@@ -1,26 +1,26 @@
 <div class = "form-group">
-	{!! Form::label('title', 'Fecha del traslado ') !!}
-	{!! Form::date('name', \Carbon\Carbon::now()) !!}
+	{!! Form::label('fecha_traslado', 'Fecha del traslado ') !!}
+	{!! Form::date('fecha_traslado', \Carbon\Carbon::now()) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('body', 'Descripción del traslado') !!}
-	{!! Form::textarea('body', $value=null, $attributes=['class' => 'form-control']) !!}
+	{!! Form::label('descripcion_traslado', 'Descripción del traslado') !!}
+	{!! Form::textarea('descripcion_traslado', $value=null, $attributes=['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('short', 'Lugar de origen') !!}
-	{!! Form::text('short', $value=null, $attributes=['class' => 'form-control']) !!}
+	{!! Form::label('origen_traslado', 'Lugar de origen') !!}
+	{!! Form::text('origen_traslado', $value=null, $attributes=['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('short', 'Lugar de destino') !!}
-	{!! Form::text('short', $value=null, $attributes=['class' => 'form-control'])!!}
+	{!! Form::label('destino_traslado', 'Lugar de destino') !!}
+	{!! Form::text('destino_traslado', $value=null, $attributes=['class' => 'form-control'])!!}
 </div>
 
 <div class = "form-group">
-	{!! Form::label('short', 'Precio del viaje') !!}
-	{!! Form::number('name', $value=null, $attributes=['class' => 'form-control']); !!}
+	{!! Form::label('precio_traslado', 'Precio del viaje') !!}
+	{!! Form::number('precio_traslado', $value=null, $attributes=['class' => 'form-control']); !!}
 </div>
 
 <div class = "form-group">

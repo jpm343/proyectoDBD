@@ -7,7 +7,7 @@
 			<a href="{{route('Hotel.index')}}" class="btn btn-primary pull-right"> Listado de hoteles </a>
 		</h2>
 		@include('Hotel_view.Hotel_fragment.Hotel-error')
-		{!! Form::open(['route' => 'Hotel.store']) !!}
+		{!! Form::open(array('action'=> 'HotelController@store')) !!}
 
 		 	@include('Hotel_view.Hotel_fragment.Hotel-form')
 
