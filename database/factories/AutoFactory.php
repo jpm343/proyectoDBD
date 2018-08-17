@@ -10,5 +10,6 @@ $factory->define(App\Auto::class, function (Faker $faker) {
         'precio_dia_auto' => $faker->randomNumber(),
         'descripcion_auto' => $faker->text(),
         'transmision_auto' => $faker->randomElement($array = array('A', 'M')),
+        'nombre_compania' => App\CompaniaAuto::inRandomOrder()->first()->nombre_compania,
     ];
 });
