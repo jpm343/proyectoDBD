@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/autos/create', 'AutoController@create');
+Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');

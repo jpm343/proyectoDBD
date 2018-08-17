@@ -13,7 +13,7 @@ class CompaniaAutoController extends Controller
     }
 
     public function create() {
-        // return view('crear_compania_auto');
+        return view('crear_compania_auto');
     }
 
     public function store(Request $request) {
@@ -32,7 +32,8 @@ class CompaniaAutoController extends Controller
     }
 
     public function edit($nombre_compania) {
-        // return view('editar_compania_auto');
+        $compania_auto = CompaniaAuto::find($nombre_compania);
+        return view('editar_compania_auto')->with('compania_auto', $compania_auto);
     }
 
     public function update(Request $request, $nombre_compania) {

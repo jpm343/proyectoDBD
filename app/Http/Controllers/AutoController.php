@@ -13,7 +13,7 @@ class AutoController extends Controller
     }
 
     public function create() {
-        // return view('crear_auto');
+        return view('crear_auto');
     }
 
     public function store(Request $request) {
@@ -36,7 +36,8 @@ class AutoController extends Controller
     }
 
     public function edit($patente_auto) {
-        // return view('editar_auto');
+        $auto = Auto::find($patente_auto);
+        return view('editar_auto')->with('auto', $auto);
     }
 
     public function update(Request $request, $patente_auto) {
