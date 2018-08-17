@@ -6,7 +6,12 @@
 			Nuevo traslado
 			<a href="{{route('Traslado.index')}}" class="btn btn-primary pull-right"> Listado de traslados </a>
 		</h2>
-		Formulario
+		@include('Traslado_view.Traslado_fragment.Traslado-error')
+		{!! Form::open(['route' => 'Traslado.store']) !!}
+
+		 	@include('Traslado_view.Traslado_fragment.Traslado-form')
+
+		{!! Form::close() !!}
 	</div>
 	<div class="col">
 		@include('Traslado_view.Traslado_fragment.Traslado-aside')

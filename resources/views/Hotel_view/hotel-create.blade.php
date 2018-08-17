@@ -6,8 +6,12 @@
 			Nuevo hotel
 			<a href="{{route('Hotel.index')}}" class="btn btn-primary pull-right"> Listado de hoteles </a>
 		</h2>
-		
-		Formulario
+		@include('Hotel_view.Hotel_fragment.Hotel-error')
+		{!! Form::open(['route' => 'Hotel.store']) !!}
+
+		 	@include('Hotel_view.Hotel_fragment.Hotel-form')
+
+		{!! Form::close() !!}
 	</div>
 	<div class="col">
 		@include('Hotel_view.Hotel_fragment.Hotel-aside')

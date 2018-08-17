@@ -10,7 +10,6 @@ class Traslado extends Model
 	protected $fillable = [
         'fecha_traslado', 
         'descripcion_traslado', 
-        'body',
         'origen_traslado',
         'destino_traslado',
         'precio_traslado',

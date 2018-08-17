@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Http\Requests\HabitacionRequest;
 use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
@@ -34,9 +35,9 @@ class HabitacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HabitacionRequest $habitacion_request)
     {
-        //
+        return "habitacion guardada";
     }
 
     /**
@@ -70,9 +71,16 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Habitacion $habitacion)
+    public function update(HabitacionRequest $habitacion_request,$habitacion_id)
     {
-        //
+        
+        $habitacion = Habitacion::find($habitacion_id);
+        $habitacion->numero_habitacion          = $habitacion_request->numero_habitacion;
+        $habitacion->capacidad_habitacion       = $habitacion_request->capacidad_habitacion;
+        $habitacion->precio_noche_habitacion    = $habitacion_request->precio_noche_habitacion;
+        $habitacion->tipo_habitacion            = $habitacion_request->tipo_habitacion;
+        $habitacion->save();
+        return redirect()->route("Habitacion_view.habitacion-index")->with('info','la habitación fue actualizada');
     }
 
     /**

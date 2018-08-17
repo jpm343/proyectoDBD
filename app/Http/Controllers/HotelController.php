@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Hotel;
+use App\Http\Requests\HotelRequest;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -34,9 +35,9 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HotelRequest $hotel_request)
     {
-        //
+        return "hotel guardado";
     }
 
     /**
@@ -70,9 +71,15 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hotel $hotel)
+    public function update(HotelRequest $hotel_request, $hotel_id)
     {
-        //
+        $hotel                      = Hotel::find($hotel_id);
+        $hotel->nombre_hotel        = $hotel_request->nombre_hotel;
+        $hotel->puntuacion_hotel    = $hotel_request->puntuacion_hotel;
+        $hotel->descripcion_hotel   = $hotel_request->descripcion_hotel;
+        $hotel->ciudad_hotel        = $hotel_request->ciudad_hotel;
+        $hotel->save(); 
+        return redirect()->route("Hotel_view.hotel-index")->with('info','El hotel fue actualizado');
     }
 
     /**
