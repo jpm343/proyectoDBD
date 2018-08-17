@@ -14,6 +14,15 @@ class CompaniaAuto extends Model
     //el nombre de la tabla no cumple convencion, por lo tanto es necesario especificar el nombre de la tabla
     protected $table = 'compania_auto';
 
+    // para crear/actualizar por medio de CompaniaAuto::create
+    //     y CompaniaAuto::update
+    // ver controlador (app/Http/Controllers/CompaniaAutoController.php)
+    protected $fillable = [
+        'nombre_compania',
+        'paises_de_atencion',
+        'ciudades_de_atencion',
+    ];
+
     // paises_de_atencion y ciudades_de_atencion son atributos multivaluados.
     // este atributo $casts informa a Eloquent que debe deserializar el valor
     //     json almacenado en estos atributos a arreglos.
