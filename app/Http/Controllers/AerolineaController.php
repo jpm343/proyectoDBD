@@ -23,8 +23,8 @@ class AerolineaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){
-        //
+    public function createOrEdit(){
+        return view('aerolineas');
     }
 
     /**
@@ -33,13 +33,15 @@ class AerolineaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function storeOrUpdate(Request $request)
+    {   
         $aerolinea = new Aerolinea();
-        $aerolinea->nombre_aerolinea = $request->nombre_aerolinea;
-        $aerolinea->puntuacion_aerolinea = $request->puntuacion_aerolinea;
-        $aerolinea->tipo_aerolinea = $request->tipo_aerolinea;
-        $aerolinea->save();
+        $aerolinea->updateOrCreate([
+            'nombre_aerolinea' => $request->nombre_aerolinea,
+        ],[
+            'puntuacion_aerolinea' => $request->puntuacion_aerolinea,
+            'tipo_aerolinea' => $request->tipo_aerolinea
+        ]);
         //Con la nueva aerolinea guardada, se procede a mostrar todas las aerolinas
         $todas = Aerolinea::all();
         return $todas;
@@ -58,30 +60,6 @@ class AerolineaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Aerolinea $aerolinea){
-        
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Aerolinea $aerolinea)
-    {
-        $aerolineaEncontrada = Aerolinea::find($aerolinea->nombre_aerolinea);
-        $aerolineaEncontrada->puntuacion_aerolinea = $request->puntuacion_aerolinea;
-        $aerolineaEncontrada->tipo_aerolinea = $request->tipo_aerolinea;
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Aerolinea  $aerolinea
@@ -92,6 +70,7 @@ class AerolineaController extends Controller
         $aerolineaADestruir = Aerolinea::find($aerolinea->nombre_aerolinea);
         $aerolineaADestruir->delete();
         //Con la aerolinea destruida, se procede a retornar todas las aerolineas guardadas.
-        return Aerolinea::all();
+        $todas = Aerolinea::all();
+        return $todas;
     }
 }
