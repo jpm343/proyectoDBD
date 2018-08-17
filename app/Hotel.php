@@ -9,7 +9,7 @@ class Hotel extends Model
 	protected $primaryKey = 'hotel_id';
 	// Atributos de la clase
 	protected $fillable = [
-		'puntuacion_hotel',
+		'nombre_hotel',
 		'puntuacion_hotel',
 		'descripcion_hotel',
 		'direccion_hotel',

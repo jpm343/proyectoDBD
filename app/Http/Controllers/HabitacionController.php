@@ -14,7 +14,8 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        return "index de Habitacion Controller";
+        $habitaciones = Habitacion::orderBy('habitacion_id', 'DESC')->paginate();
+        return view("Habitacion_view.habitacion-index", compact('habitaciones'));
     }
 
     /**
@@ -24,7 +25,7 @@ class HabitacionController extends Controller
      */
     public function create()
     {
-        //
+        return view('Habitacion_view.habitacion-create');
     }
 
     /**
@@ -44,9 +45,10 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Habitacion $habitacion)
+    public function show($habitacion_id)
     {
-        //
+        $habitacion = Habitacion::find($habitacion_id);
+        return view('Habitacion_view.habitacion-show',compact('habitacion')); 
     }
 
     /**
@@ -55,9 +57,10 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Habitacion $habitacion)
+    public function edit($habitacion_id)
     {
-        //
+        $habitacion = Habitacion::find($habitacion_id);
+        return view('Habitacion_view.habitacion-edit',compact('habitacion'));
     }
 
     /**
@@ -78,8 +81,10 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Habitacion $habitacion)
+    public function destroy($habitacion_id)
     {
-        //
+        $habitacion = Habitacion::find($habitacion_id);
+        $habitacion->delete();
+        return back()->with('info','La habitacion ha sido eliminada');
     }
 }

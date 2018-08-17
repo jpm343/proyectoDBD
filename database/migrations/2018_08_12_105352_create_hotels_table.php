@@ -18,6 +18,7 @@ class CreateHotelsTable extends Migration
             $table->increments('hotel_id');
 
             // Artibutos
+            $table->text('nombre_hotel');
             $table->float('puntuacion_hotel', 1, 2);
             $table->text('descripcion_hotel');
             $table->string('direccion_hotel');

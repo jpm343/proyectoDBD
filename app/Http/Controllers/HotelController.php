@@ -14,7 +14,8 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return "Index de Hotel Controller";
+        $hoteles = Hotel::orderBy('hotel_id', 'DESC')->paginate();
+        return view("Hotel_view.hotel-index", compact('hoteles'));
     }
 
     /**
@@ -24,7 +25,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('Hotel_view.hotel-create',compact('hotel')); 
     }
 
     /**
@@ -44,9 +45,10 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function show(Hotel $hotel)
+    public function show($hotel_id)
     {
-        //
+        $hotel = Hotel::find($hotel_id);
+        return view('Hotel_view.hotel-show',compact('hotel')); 
     }
 
     /**
@@ -55,9 +57,10 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hotel $hotel)
+    public function edit($hotel_id)
     {
-        //
+        $hotel = Hotel::find($hotel_id);
+        return view('Hotel_view.hotel-edit',compact('hotel'));
     }
 
     /**
@@ -78,8 +81,10 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Hotel $hotel)
+    public function destroy($hotel_id)
     {
-        //
+        $hotel = Hotel::find($hotel_id);
+        $hotel->delete();
+        return back()->with('info','El hotel ha sido eliminado');
     }
 }

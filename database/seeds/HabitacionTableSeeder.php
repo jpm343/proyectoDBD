@@ -12,6 +12,6 @@ class HabitacionTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Habitacion::class, 80)->create();
+        factory(Habitacion::class, 20)->create();
     }
 }

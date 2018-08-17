@@ -14,7 +14,8 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        return "Index de Traslado Controller";
+        $traslados = Traslado::orderBy('traslado_id', 'DESC')->paginate();
+        return view("Traslado_view.traslado-index", compact('traslados'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TrasladoController extends Controller
      */
     public function create()
     {
-        //
+        return view("Traslado_view.traslado-create");
     }
 
     /**
@@ -44,9 +45,10 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function show(Traslado $traslado)
+    public function show($traslado_id)
     {
-        //
+        $traslado = Traslado::find($traslado_id);
+        return view('Traslado_view.traslado-show',compact('traslado')); 
     }
 
     /**
@@ -55,9 +57,10 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Traslado $traslado)
+    public function edit($traslado_id)
     {
-        //
+        $traslado = Traslado::find($traslado_id);
+        return view('Traslado_view.traslado-edit',compact('traslado')); 
     }
 
     /**
@@ -78,8 +81,10 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Traslado $traslado)
+    public function destroy($traslado_id)
     {
-        //
+        $traslado = Traslado::find($traslado_id);
+        $traslado->delete();
+        return back()->with('info','El traslado ha sido eliminado');
     }
 }
