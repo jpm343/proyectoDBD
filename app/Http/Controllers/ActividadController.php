@@ -23,9 +23,9 @@ class ActividadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
-
+        return view('actividads');
     }
 
     /**
@@ -34,15 +34,35 @@ class ActividadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
-    	$actividad = new Actividad();
-    	$actividad->puntuacion_actividad= $request->puntuacion_actividad;
-    	$actividad->descripcion_actividad = $request->descripcion_actividad;
-    	$actividad->ciudad_actividad= $request->ciudad_actividad;
-    	$actividad->pais_actividad= $request->pais_actividad;
-    	$actividad->fechas_disponibles= $request->fechas_disponibles;
-    	$actividad->save();
+        $aux = Actividad::find($request->id_actividad);
+        if($aux == null)
+        {
+            $actividad = new Actividad();
+            $actividad->updateOrCreate([
+                'puntuacion_actividad' => $request->puntuacion_actividad,
+                'nombre_actividad' => $request->nombre_actividad,
+                'descripcion_actividad' => $request->descripcion_actividad,
+                'ciudad_actividad' => $request->ciudad_actividad,
+                'pais_actividad' => $request->pais_actividad,
+                'fechas_disponibles' => json_decode($request->fechas_disponibles)
+            ],[]);
+        }
+        else
+        {
+            $actividad = new Actividad();
+            $actividad->updateOrCreate([
+                'id_actividad' => $request->id_actividad,
+            ], [
+                'puntuacion_actividad' => $request->puntuacion_actividad,
+                'nombre_actividad' => $request->nombre_actividad,
+                'descripcion_actividad' => $request->descripcion_actividad,
+                'ciudad_actividad' => $request->ciudad_actividad,
+                'pais_actividad' => $request->pais_actividad,
+                'fechas_disponibles' => json_decode($request->fechas_disponibles)
+            ]);
+        }
 
     	$todos = Actividad::All();
     	return $todos;
@@ -57,37 +77,6 @@ class ActividadController extends Controller
     public function show($id)
     {
     	$actividad = Actividad::find($id);
-    	return $actividad;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    	//
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-    	$actividad = Actividad::find($id);
-    	$actividad->puntuacion_actividad= $request->puntuacion_actividad;
-    	$actividad->descripcion_actividad = $request->descripcion_actividad;
-    	$actividad->ciudad_actividad= $request->ciudad_actividad;
-    	$actividad->pais_actividad= $request->pais_actividad;
-    	$actividad->fechas_disponibles= $request->fechas_disponibles;
-    	$actividad->save();
-
     	return $actividad;
     }
 

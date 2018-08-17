@@ -10,6 +10,6 @@ $factory->define(App\Fondo::class, function (Faker $faker) {
         'banco_origen' => $faker->company,
 
         //mientras tanto la llave foranea queda nullable (hasta que el alvaro mande su parte)
-        //'id_usuario' => rand(1,20),
+        'id_usuario' => rand(1,20),
     ];
 });

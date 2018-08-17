@@ -11,7 +11,7 @@ class Registro extends Model
 
 	//atributos que pueden ser escritos en masa
     protected $fillable = [
-        'fecha_registro', 'tipo_transaccion', 'subtotal_registro',
+        'fecha_registro', 'tipo_transaccion', 'subtotal_registro', 'id_usuario',
     ];
 
     //muchos registros pertenecen a un usuario

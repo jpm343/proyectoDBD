@@ -12,7 +12,7 @@ class Fondo extends Model
     //atributos que pueden ser escritos en masa
     
     protected $fillable = [
-        'cuenta_origen', 'monto_actual', 'banco_origen',
+        'cuenta_origen', 'monto_actual', 'banco_origen', 'id_usuario',
     ];
 
     //muchos fondos pertenecen a un usuario

@@ -23,9 +23,10 @@ class FondoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
     	//
+        return view('fondos');
     }
 
     /**
@@ -34,17 +35,34 @@ class FondoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
-    	$fondo = new Fondo();
-    	$fondo->cuenta_origen = $request->cuenta_origen;
-    	$fondo->monto_actual = $request->monto_actual;
-    	$fondo->banco_origen = $request->banco_origen;
-    	$fondo->id_usuario = $request->id_usuario;
-    	$fondo->save();
+        $aux = Fondo::find($request->id_fondos);
+        if($aux == null)
+        {
+            $fondo = new Fondo();
+            $fondo->updateOrCreate([
+                'cuenta_origen' => $request->cuenta_origen,
+                'monto_actual' => $request->monto_actual,
+                'banco_origen' => $request->banco_origen,
+                'id_usuario' => $request->id_usuario,
+            ],[]);
+        }
+        else
+        {
+            $fondo = new Fondo();
+            $fondo->updateOrCreate([
+                'id_fondos' => $request->id_fondos,
+            ], [
+                'cuenta_origen' => $request->cuenta_origen,
+                'monto_actual' => $request->monto_actual,
+                'banco_origen' => $request->banco_origen,
+                'id_usuario' => $request->id_usuario,
+            ]);
+        }
 
-    	$todos = Fondo::All();
-    	return $todos;
+        $todos = Fondo::All();
+        return $todos;
     }
 
     /**
@@ -56,36 +74,6 @@ class FondoController extends Controller
     public function show($id)
     {
     	$fondo = Fondo::find($id);
-    	return $fondo;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    	//
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-    	$fondo = Fondo::find($id);
-    	$fondo->cuenta_origen = $request->cuenta_origen;
-    	$fondo->monto_actual = $request->monto_actual;
-    	$fondo->banco_origen = $request->banco_origen;
-    	$fondo->id_usuario = $request->id_usuario;
-    	$fondo->save();
-
     	return $fondo;
     }
 

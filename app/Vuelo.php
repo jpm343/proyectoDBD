@@ -9,7 +9,7 @@ class Vuelo extends Model
     protected $primaryKey = 'id_vuelo';
     protected $keyType = 'integer';
 
-    protected $fillable = ['id_vuelo', 'fecha_salida', 'fecha_llegada', 'ciudad_origen', 'ciudad_destino', 'aeropuerto_origen', 'aeropuerto_destino', 'pais_origen', 'pais_destino'];
+    protected $fillable = ['id_vuelo', 'fecha_salida', 'fecha_llegada', 'ciudad_origen', 'ciudad_destino', 'aeropuerto_origen', 'aeropuerto_destino', 'pais_origen', 'pais_destino', 'nombre_aerolinea',];
 
     //muchos vuelos son impartidos por una aerolinea
     public function aerolinea()

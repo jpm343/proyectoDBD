@@ -23,9 +23,10 @@ class RegistroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createOrEdit()
     {
     	//
+        return view('registros');
     }
 
     /**
@@ -34,17 +35,33 @@ class RegistroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeOrUpdate(Request $request)
     {
-    	$registro = new Registro();
-    	$registro->fecha_registro = $request->fecha_registro;
-    	$registro->tipo_transaccion = $request->tipo_transaccion;
-    	$registro->subtotal_registro = $request->subtotal_registro;
-    	$registro->id_usuario = $request->id_usuario
-    	$registro->save();
-
-    	$todos = Registro::All();
-    	return $todos;
+        $aux = Registro::find($request->id_registro);
+        if($aux == null)
+        {
+            $registro = new Registro();
+            $registro->updateOrCreate([
+                'fecha_registro' => $request->fecha_registro,
+                'tipo_transaccion' => $request->tipo_transaccion,
+                'subtotal_registro' => $request->subtotal_registro,
+                'id_usuario' => $request->id_usuario,
+            ],[]);
+        }
+        else
+        {
+            $registro = new Fondo();
+            $registro->updateOrCreate([
+                'id_registro' => $request->id_registro,
+            ], [
+                'fecha_registro' => $request->fecha_registro,
+                'tipo_transaccion' => $request->tipo_transaccion,
+                'subtotal_registro' => $request->subtotal_registro,
+                'id_usuario' => $request->id_usuario,
+            ]);
+        }
+        $todos = Registro::All();
+        return $todos;
     }
 
     /**
@@ -56,36 +73,6 @@ class RegistroController extends Controller
     public function show($id)
     {
     	$registro = Registro::find($id);
-    	return $registro;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    	//
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Aerolinea  $aerolinea
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-    	$registro = Registro::find($id);
-    	$registro->fecha_registro = $request->fecha_registro;
-    	$registro->tipo_transaccion = $request->tipo_transaccion;
-    	$registro->subtotal_registro = $request->subtotal_registro;
-    	$registro->id_usuario = $request->id_usuario
-    	$registro->save();
-
     	return $registro;
     }
 
