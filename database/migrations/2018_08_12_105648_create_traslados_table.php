@@ -14,14 +14,10 @@ class CreateTrasladosTable extends Migration
     public function up()
     {
         Schema::create('traslados', function (Blueprint $table) {
-<<<<<<< HEAD
-            $table->increments('id_traslado');
-=======
             // Llave Primaria
             $table->increments('traslado_id');
 
             // Atributos
->>>>>>> gaboBranch
             $table->datetime('fecha_traslado');
             $table->text('descripcion_traslado');
             $table->string('origen_traslado');

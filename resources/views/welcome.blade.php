@@ -5,7 +5,6 @@
     <title>Prueba</title>
 </head>
 <body>
-<<<<<<< HEAD
   Crear:
   <input type="button" onclick=" location.href='/vuelos' " value="Vuelo" name="boton1" />
   <input type="button" onclick=" location.href='/aerolineas' " value="Aerolinea" name="boton2" /> 
@@ -38,7 +37,6 @@
           <a href="{{route('fondo.index')}}"> Lista de Registros</a>
         </div> 
       </div>
-=======
     <form action="/action_page.php">
       
       <div class="form-group">
@@ -66,7 +64,6 @@
       </div>
 
       <button type="submit" class="btn btn-primary text-center">Submit</button>
->>>>>>> gaboBranch
     </form>
   Crear/Editar:
   <input type="button" onclick=" location.href='/actividads' " value="Actividades" name="bton1" />

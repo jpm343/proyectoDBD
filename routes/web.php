@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-<<<<<<< HEAD
-
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
@@ -59,7 +57,7 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
-=======
+
 /*
 Route::get('Habitacion','HabitacionController@index');
 Route::get('Habitacion','HabitacionController@create');
@@ -72,4 +70,4 @@ Route::post('Habitacion/destroy/{id}','HabitacionController@destroy');
 Route::resource('Habitacion','HabitacionController');
 Route::resource('Hotel','HotelController');
 Route::resource('Traslado','TrasladoController');
->>>>>>> gaboBranch
+

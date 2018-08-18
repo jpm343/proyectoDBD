@@ -11,6 +11,7 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
         'aeropuerto_origen' => $faker->word(),
         'aeropuerto_destino' => $faker->word(),
         'pais_origen' => $faker->word(),
-        'pais_destino' => $faker->word()
+        'pais_destino' => $faker->word(),
+        'nombre_aerolinea' => $faker->word()
     ];
 });

@@ -14,14 +14,10 @@ class CreateHabitacionsTable extends Migration
     public function up()
     {
         Schema::create('habitacions', function (Blueprint $table) {
-<<<<<<< HEAD
-            $table->increments('id_habitacion');
-=======
             // Llave primaria 
             $table->increments('habitacion_id');
             
             // Atributos de la tabla
->>>>>>> gaboBranch
             $table->integer('numero_habitacion');
             $table->integer('capacidad_habitacion');
             $table->integer('precio_noche_habitacion');
