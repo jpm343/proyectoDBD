@@ -10,8 +10,9 @@
 			<a href="{{route('Habitacion.index')}}" class="btn btn-primary pull-right"> Listado de habitaciones </a>
 		</h2>
 		@include('Habitacion_view.Habitacion_fragment.Habitacion-error')
-		<form action="{{route('Habitacion.update', $habitacion->habitacion_id)}}" method="PUT">
+		{!! Form::model($habitacion, ['route'=> ['Habitacion.update', $habitacion->habitacion_id], 'method' => 'PUT'])!!}
+
 			@include('Habitacion_view.Habitacion_fragment.Habitacion-form')
-		</form>
+		{!! Form::close() !!}
 	</div>
 @endsection

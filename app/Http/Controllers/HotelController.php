@@ -37,7 +37,14 @@ class HotelController extends Controller
      */
     public function store(HotelRequest $hotel_request)
     {
-        return "hotel guardado";
+        $hotel                      = new Hotel;
+        $hotel->nombre_hotel        = $hotel_request->nombre_hotel;
+        $hotel->puntuacion_hotel    = $hotel_request->puntuacion_hotel;
+        $hotel->descripcion_hotel   = $hotel_request->descripcion_hotel;
+        $hotel->direccion_hotel     = $hotel_request->direccion_hotel;
+        $hotel->ciudad_hotel        = $hotel_request->ciudad_hotel;
+        $hotel->save(); 
+        return redirect()->route("Hotel.index")->with('info','El hotel fue actualizado');
     }
 
     /**
@@ -77,9 +84,10 @@ class HotelController extends Controller
         $hotel->nombre_hotel        = $hotel_request->nombre_hotel;
         $hotel->puntuacion_hotel    = $hotel_request->puntuacion_hotel;
         $hotel->descripcion_hotel   = $hotel_request->descripcion_hotel;
+        $hotel->direccion_hotel     = $hotel_request->direccion_hotel;
         $hotel->ciudad_hotel        = $hotel_request->ciudad_hotel;
         $hotel->save(); 
-        return redirect()->route("Hotel_view.hotel-index")->with('info','El hotel fue actualizado');
+        return redirect()->route("Hotel.index")->with('info','El hotel fue actualizado');
     }
 
     /**

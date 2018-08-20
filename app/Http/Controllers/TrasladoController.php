@@ -37,7 +37,14 @@ class TrasladoController extends Controller
      */
     public function store(TrasladoRequest $traslado_request)
     {
-        return "traslado guardado";
+        $traslado                       = new Traslado;
+        $traslado->fecha_traslado       = $traslado_request->fecha_traslado;
+        $traslado->descripcion_traslado = $traslado_request->descripcion_traslado;
+        $traslado->origen_traslado      = $traslado_request->origen_traslado;
+        $traslado->destino_traslado     = $traslado_request->destino_traslado;
+        $traslado->precio_traslado      = $traslado_request->precio_traslado;
+        $traslado->save();
+        return redirect()->route("Traslado.index")->with('info','El traslado fue creado');
     }
 
     /**
@@ -80,7 +87,7 @@ class TrasladoController extends Controller
         $traslado->destino_traslado     = $traslado_request->destino_traslado;
         $traslado->precio_traslado      = $traslado_request->precio_traslado;
         $traslado->save();
-        return view('Traslado_view.traslado-index',compact('traslado'));
+        return redirect()->route("Traslado.index")->with('info','El traslado fue actualizado');
     }
 
     /**
