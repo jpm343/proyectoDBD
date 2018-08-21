@@ -16,10 +16,11 @@ class CreateActividadsTable extends Migration
         Schema::create('actividads', function (Blueprint $table) {
             $table->increments('id_actividad');
             $table->float('puntuacion_actividad', 1, 2);
+            $table->text('nombre_actividad');
             $table->text('descripcion_actividad');
             $table->string('ciudad_actividad');
             $table->string('pais_actividad');
-            $table->json('fechas_disponibles');
+            $table->json('fechas_disponibles')->nullable();
             $table->timestamps();
         });
     }

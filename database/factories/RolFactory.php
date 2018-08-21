@@ -2,8 +2,9 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\rol::class, function (Faker $faker) {
+$factory->define(App\Rol::class, function (Faker $faker) {
     return [
-        //
+        'nombre_rol' => $faker->unique()->word(),
+        'descripcion' => $faker->unique()->word(),
     ];
 });

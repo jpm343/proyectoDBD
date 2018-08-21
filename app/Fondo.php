@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fondo extends Model
 {
-	//la llave primaria no cumple convencion (no empieza con id ni es numerica) por lo tanto se debe especificar
-    protected $primaryKey = 'cuenta_origen';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    //override para el nombre de la llave primaria de la tabla fondos
+	protected $primaryKey = 'id_fondos';
+
+    //atributos que pueden ser escritos en masa
+    protected $fillable = [
+        'cuenta_origen', 'monto_actual', 'banco_origen', 'id_usuario',
+    ];
 
     //muchos fondos pertenecen a un usuario
     public function usuario()

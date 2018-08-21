@@ -15,10 +15,16 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id_usuario');
-            $table->string('correo_usuario');
-            $table->string('nombre_usuario');
+            $table->string('correo_usuario')->unique();
+            $table->string('nombre_usuario')->unique();
             $table->string('password_usuario');
             $table->timestamps();
+
+            //Llave foranea:
+            $table->integer('id_rol');
+            $table->foreign('id_rol')->references('id_rol')->on('rols')->onDelete('cascade');  
+
+
         });
     }
 

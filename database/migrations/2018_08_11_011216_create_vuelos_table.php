@@ -22,6 +22,7 @@ class CreateVuelosTable extends Migration
             $table->string('aeropuerto_origen');
             $table->string('aeropuerto_destino');
             $table->string('pais_origen');
+            $table->string('pais_destino');
             $table->timestamps();
 
             //Llave Foránea
