@@ -55,6 +55,10 @@ Route::resource('fondo', 'FondoController');
 Route::get('/fondos', 'FondoController@createOrEdit');
 Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_fondo');
 
+// rutas para crear/editar autos
+Route::get('/autos/create', 'AutoController@create');
+Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
+
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
 
