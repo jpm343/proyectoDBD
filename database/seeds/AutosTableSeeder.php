@@ -6,6 +6,6 @@ class AutosTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(App\Autos::class, 20)->create();
+        factory(App\Auto::class, 20)->create();
     }
 }

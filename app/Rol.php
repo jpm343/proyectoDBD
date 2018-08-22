@@ -10,10 +10,11 @@ class Rol extends Model
 
 	protected $fillable = ['nombre_rol','descripcion'];
 
-    
+    //muchos roles pertenecen a muchos usuarios
     public function usuarios()
     {
-    	return $this->hasMany('App\Usuarios');
+    	//segundo argumento corresponde a la tabla intermedia
+    	return $this->belongsToMany('App\Usuarios', 'rol_usuario');
     }
 
 }

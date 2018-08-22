@@ -8,5 +8,6 @@ $factory->define(App\Habitacion::class, function (Faker $faker) {
     	'capacidad_habitacion'		=> rand(0, 20),
     	'precio_noche_habitacion'	=> rand(0, 500),
     	'tipo_habitacion'			=> $faker->text(150),
+    	'id_hotel'                  => rand(1, 20),
     ];
 });

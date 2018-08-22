@@ -19,10 +19,11 @@ class Usuario extends Model
     	return $this->hasMany('App\Fondo');
     }
 
-    
+    //muchos usuarios pueden tener muchos roles
     public function rol()
     {
-        return $this->belongsTo('App\Rol');
+        //segundo argumento corresponde a la tabla intermedia
+        return $this->belongsToMany('App\Rol', 'rol_usuario');
     }
 
     //un usuario tiene muchos registros de consulta
@@ -38,11 +39,10 @@ class Usuario extends Model
     }
 
     //un usuario realiza muchas reservas
-    /*
     public function reservas()
     {
     	return $this->hasMany('App\Reserva');
     }
-    */
+    
 
 }

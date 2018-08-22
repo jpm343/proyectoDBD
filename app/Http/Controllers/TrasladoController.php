@@ -15,7 +15,7 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        $traslados = Traslado::orderBy('traslado_id', 'DESC')->paginate();
+        $traslados = Traslado::orderBy('id_traslado', 'DESC')->paginate();
         return view("Traslado_view.traslado-index", compact('traslados'));
     }
 
@@ -46,9 +46,9 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function show($traslado_id)
+    public function show($id_traslado)
     {
-        $traslado = Traslado::find($traslado_id);
+        $traslado = Traslado::find($id_traslado);
         return view('Traslado_view.traslado-show',compact('traslado')); 
     }
 
@@ -58,9 +58,9 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function edit($traslado_id)
+    public function edit($id_traslado)
     {
-        $traslado = Traslado::find($traslado_id);
+        $traslado = Traslado::find($id_traslado);
         return view('Traslado_view.traslado-edit',compact('traslado')); 
     }
 
@@ -71,9 +71,9 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function update(TrasladoRequest $traslado_request, $traslado_id)
+    public function update(TrasladoRequest $traslado_request, $id_traslado)
     {
-        $traslado                       = Traslado::find($traslado_id);
+        $traslado                       = Traslado::find($id_traslado);
         $traslado->fecha_traslado       = $traslado_request->fecha_traslado;
         $traslado->descripcion_traslado = $traslado_request->descripcion_traslado;
         $traslado->origen_traslado      = $traslado_request->origen_traslado;
@@ -89,9 +89,9 @@ class TrasladoController extends Controller
      * @param  \App\Traslado  $traslado
      * @return \Illuminate\Http\Response
      */
-    public function destroy($traslado_id)
+    public function destroy($id_traslado)
     {
-        $traslado = Traslado::find($traslado_id);
+        $traslado = Traslado::find($id_traslado);
         $traslado->delete();
         return back()->with('info','El traslado ha sido eliminado');
     }
