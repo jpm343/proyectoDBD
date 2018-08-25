@@ -15,7 +15,7 @@ class CreateTrasladosTable extends Migration
     {
         Schema::create('traslados', function (Blueprint $table) {
             // Llave Primaria
-            $table->increments('traslado_id');
+            $table->increments('id_traslado');
 
             // Atributos
             $table->datetime('fecha_traslado');
@@ -26,6 +26,10 @@ class CreateTrasladosTable extends Migration
             
             // Timestamps
             $table->timestamps();
+
+            //llave foranea reserva
+            $table->integer('id_reserva');
+            $table->foreign('id_reserva')->references('id_reserva')->on('reservas')->onDelete('cascade');
         });
     }
 

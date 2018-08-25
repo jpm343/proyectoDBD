@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
-use App\Http\Requests\HabitacionRequest;
 use Illuminate\Http\Request;
 
 class HabitacionController extends Controller
@@ -15,10 +14,9 @@ class HabitacionController extends Controller
      */
     public function index()
     {
-        $habitaciones = Habitacion::orderBy('habitacion_id', 'DESC')->paginate();
+        $habitaciones = Habitacion::orderBy('id_habitacion', 'DESC')->paginate();
         return view("Habitacion_view.habitacion-index", compact('habitaciones'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -36,13 +34,13 @@ class HabitacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HabitacionRequest $habitacion_request)
+    public function store(Request $request)
     {
         $habitacion = new Habitacion;
-        $habitacion->numero_habitacion          = $habitacion_request->numero_habitacion;
-        $habitacion->capacidad_habitacion       = $habitacion_request->capacidad_habitacion;
-        $habitacion->precio_noche_habitacion    = $habitacion_request->precio_noche_habitacion;
-        $habitacion->tipo_habitacion            = $habitacion_request->tipo_habitacion;
+        $habitacion->numero_habitacion          = $request->numero_habitacion;
+        $habitacion->capacidad_habitacion       = $request->capacidad_habitacion;
+        $habitacion->precio_noche_habitacion    = $request->precio_noche_habitacion;
+        $habitacion->tipo_habitacion            = $request->tipo_habitacion;
         $habitacion->save();
         return redirect()->route("Habitacion.index")->with('info','la habitación fue actualizada');
     }
@@ -53,9 +51,9 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function show($habitacion_id)
+    public function show($id_habitacion)
     {
-        $habitacion = Habitacion::find($habitacion_id);
+        $habitacion = Habitacion::find($id_habitacion);
         return view('Habitacion_view.habitacion-show',compact('habitacion')); 
     }
 
@@ -65,9 +63,9 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function edit($habitacion_id)
+    public function edit($id_habitacion)
     {
-        $habitacion = Habitacion::find($habitacion_id);
+        $habitacion = Habitacion::find($id_habitacion);
         return view('Habitacion_view.habitacion-edit',compact('habitacion'));
     }
 
@@ -78,13 +76,13 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function update(HabitacionRequest $habitacion_request,$habitacion_id)
+    public function update(Request $request,$id_habitacion)
     {
         $habitacion = Habitacion::find($habitacion_id);
-        $habitacion->numero_habitacion          = $habitacion_request->numero_habitacion;
-        $habitacion->capacidad_habitacion       = $habitacion_request->capacidad_habitacion;
-        $habitacion->precio_noche_habitacion    = $habitacion_request->precio_noche_habitacion;
-        $habitacion->tipo_habitacion            = $habitacion_request->tipo_habitacion;
+        $habitacion->numero_habitacion          = $request->numero_habitacion;
+        $habitacion->capacidad_habitacion       = $request->capacidad_habitacion;
+        $habitacion->precio_noche_habitacion    = $request->precio_noche_habitacion;
+        $habitacion->tipo_habitacion            = $request->tipo_habitacion;
         $habitacion->save();
         return redirect()->route("Habitacion.index")->with('info','la habitación fue actualizada');
     }
@@ -95,9 +93,9 @@ class HabitacionController extends Controller
      * @param  \App\Habitacion  $habitacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($habitacion_id)
+    public function destroy($id_habitacion)
     {
-        $habitacion = Habitacion::find($habitacion_id);
+        $habitacion = Habitacion::find($id_habitacion);
         $habitacion->delete();
         return back()->with('info','La habitacion ha sido eliminada');
     }

@@ -19,10 +19,9 @@ class Actividad extends Model
 		'fechas_disponibles' => 'array',
 	];
     //una actividad corresponde a muchas reservas
-    /*
     public function reservas()
     {
     	return $this->hasMany('App\Reserva');
     }
-    */
+    
 }

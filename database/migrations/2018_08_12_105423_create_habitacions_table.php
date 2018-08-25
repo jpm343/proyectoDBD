@@ -15,7 +15,7 @@ class CreateHabitacionsTable extends Migration
     {
         Schema::create('habitacions', function (Blueprint $table) {
             // Llave primaria 
-            $table->increments('habitacion_id');
+            $table->increments('id_habitacion');
             
             // Atributos de la tabla
             $table->integer('numero_habitacion');
@@ -25,6 +25,10 @@ class CreateHabitacionsTable extends Migration
             
             // Timestamp
             $table->timestamps();
+
+            //llave foranea hotel
+            $table->integer('id_hotel');
+            $table->foreign('id_hotel')->references('id_hotel')->on('hotels')->onDelete('cascade');
         });
     }
 
