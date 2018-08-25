@@ -6,6 +6,6 @@ class CompaniaAutosTableSeeder extends Seeder
 {
     public function run()
     {
-        factory(App\CompaniaAutos::class, 20)->create();
+        factory(App\CompaniaAuto::class, 20)->create();
     }
 }

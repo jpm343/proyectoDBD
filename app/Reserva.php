@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reserva extends Model
 {
-    //SE DEJA COMENTADO
-    /*
+    //overrido para la clave primaria de la tabla reservas
+    protected $primaryKey = 'id_reserva';
+
+    //atributos que pueden ser escritos en masa
+    protected $fillable = [
+        'cantidad_menores', 'cantidad_mayores', 'ciudad_destino', 'fecha_inicio', 'fecha_fin', 'id_usuario', 'id_actividad',
+    ];
     
     //muchas reservas son realizadas por un usuario
     public function usuario()
@@ -21,10 +26,11 @@ class Reserva extends Model
     	return $this->belongsTo('App\Actividad');
     }
 
-    //una reserva corresponde a una o muchas habitacionesS
+    //muchas reservas tienen muchas habitaciones
     public function habitacions()
     {
-    	return $this->hasMany('App\Habitacion');
+        //segundo argumento corresponde a la tabla intermedia
+    	return $this->belongsToMany('App\Habitacion', 'habitacion_reserva');
     }
 
     //una reserva tiene un traslado
@@ -36,7 +42,8 @@ class Reserva extends Model
     //muchas reservas tienen muchos autos
     public function autos()
     {
-    	return $this->belongsToMany('App\Auto');
+        //segundo argumento corresponde a la tabla intermedia
+    	return $this->belongsToMany('App\Auto', 'auto_reserva');
     }
 
     //una reserva tiene uno o muchos asientos
@@ -44,5 +51,4 @@ class Reserva extends Model
     {
     	return $this->hasMany('App\Asiento');
     }
-    */
 }

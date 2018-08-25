@@ -5,7 +5,7 @@
 
 <div class = "form-group">
 	{!! Form::label('puntuacion_hotel', 'Puntuacion del hotel') !!}
-	{!! Form::text('puntuacion_hotel', null, ['class' => 'form-control']) !!}
+	{!! Form::number('puntuacion_hotel', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class = "form-group">

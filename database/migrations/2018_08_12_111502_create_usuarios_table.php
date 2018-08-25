@@ -23,8 +23,6 @@ class CreateUsuariosTable extends Migration
             //Llave foranea:
             $table->integer('id_rol');
             $table->foreign('id_rol')->references('id_rol')->on('rols')->onDelete('cascade');  
-
-
         });
     }
 
