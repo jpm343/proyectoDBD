@@ -9,7 +9,7 @@ $factory->define(App\Reserva::class, function (Faker $faker) {
 		'ciudad_destino' => $faker->city,
 		'fecha_inicio' => $faker->date,
 		'fecha_fin' => $faker->date,
-		'id_usuario' => rand(1, 20),
-		'id_actividad' => rand(1, 20),
+		'id_usuario' => App\Usuario::inRandomOrder()->first()->id_usuario,
+		'id_actividad' => App\Actividad::inRandomOrder()->first()->id_actividad,
     ];
 });

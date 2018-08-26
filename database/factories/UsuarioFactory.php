@@ -7,6 +7,6 @@ $factory->define(App\Usuario::class, function (Faker $faker) {
         'nombre_usuario' => $faker->name,
         'correo_usuario' => $faker->unique()->safeEmail,
         'password_usuario' => bcrypt('password'),
-        'id_rol' => rand(1, 4),//Se tienen 4 roles
+        'id_rol' => App\Rol::inRandomOrder()->first()->id_rol,//Se tienen 4 roles
     ];
 });
