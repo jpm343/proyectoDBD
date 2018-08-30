@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Hotel;
-use App\Http\Requests\HotelRequest;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -35,9 +34,16 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(HotelRequest $hotel_request)
+    public function store(Request $request)
     {
-        return "hotel guardado";
+        $hotel                      = new Hotel;
+        $hotel->nombre_hotel        = $request->nombre_hotel;
+        $hotel->puntuacion_hotel    = $request->puntuacion_hotel;
+        $hotel->descripcion_hotel   = $request->descripcion_hotel;
+        $hotel->direccion_hotel     = $request->direccion_hotel;
+        $hotel->ciudad_hotel        = $request->ciudad_hotel;
+        $hotel->save(); 
+        return redirect()->route("Hotel.index")->with('info','El hotel fue actualizado');
     }
 
     /**
@@ -71,15 +77,16 @@ class HotelController extends Controller
      * @param  \App\Hotel  $hotel
      * @return \Illuminate\Http\Response
      */
-    public function update(HotelRequest $hotel_request, $id_hotel)
+    public function update(Request $request, $id_hotel)
     {
-        $hotel                      = Hotel::find($id_hotel);
-        $hotel->nombre_hotel        = $hotel_request->nombre_hotel;
-        $hotel->puntuacion_hotel    = $hotel_request->puntuacion_hotel;
-        $hotel->descripcion_hotel   = $hotel_request->descripcion_hotel;
-        $hotel->ciudad_hotel        = $hotel_request->ciudad_hotel;
+        $hotel                      = Hotel::find($hotel_id);
+        $hotel->nombre_hotel        = $request->nombre_hotel;
+        $hotel->puntuacion_hotel    = $request->puntuacion_hotel;
+        $hotel->descripcion_hotel   = $request->descripcion_hotel;
+        $hotel->direccion_hotel     = $request->direccion_hotel;
+        $hotel->ciudad_hotel        = $request->ciudad_hotel;
         $hotel->save(); 
-        return redirect()->route("Hotel_view.hotel-index")->with('info','El hotel fue actualizado');
+        return redirect()->route("Hotel.index")->with('info','El hotel fue actualizado');
     }
 
     /**
