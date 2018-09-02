@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Creacion y Edicion Vuelos</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <link rel="stylesheet" href=./css/bootstrap.min.css>
+    <link rel="stylesheet" href=  ./css/personalizado.css>
+    <title>Launching.com</title>
 </head>
 <body>
-	<h2> Vuelos </h2>
 
-<form action="/vuelos_post" method="POST">
-  @csrf
-  ID Vuelo:<br>
-  <input type="text" name="id_vuelo" value="ID Vuelo">
-  <br>
-  Fecha de Salida:<br>
-  <input type="text" name="fecha_salida" value="1971-10-06 11:06:06">
-  <br>
-  Fecha de Llegada:<br>
-  <input type="text" name="fecha_llegada" value="1971-10-06 11:06:06">
-  <br>
-  Ciudad Origen:<br>
-  <input type="text" name="ciudad_origen" value="Nombre Ciudad">
-  <br>
-  Ciudad Destino:<br>
-  <input type="text" name="ciudad_destino" value="Nombre Ciudad">
-  <br>
-  Aeropuerto Origen:<br>
-  <input type="text" name="aeropuerto_origen" value="Nombre Aeropuerto">
-  <br>
-  Aeropuerto Destino:<br>
-  <input type="text" name="aeropuerto_destino" value="Nombre Aeropuerto">
-  <br>
-  Pais Origen:<br>
-  <input type="text" name="pais_origen" value="Nombre Pais">
-  <br>
-  Pais Destino:<br>
-  <input type="text" name="pais_destino" value="Nombre Pais">
-  <br>
-  Nombre Aerolinea:<br>
-  <input type="text" name="nombre_aerolinea" value="Nombre Aerolinea">
-  <br>
-  <br>
-  <input type="submit" value="Submit">
-</form> 
+   @include('navbar.navbar')
+<div>
+  <div class="dos-columnas" align="left">
+      @include('carousel.carousel')
+  </div>
+  <div class="dos-columnas" align="right">
+    <form>
+      <div>
+        <label for="Ciudad">Ingrese Ciudad</label>
+        <input type="text" name="Ciudad">
+      </div>
+      <div>
+        <label for="name">Apellido</label>
+        <input type="text" name="apellido">
+      </div>
+      <div>
+        <label for="msg">Mensaje</label>
+        <textarea id="msg"></textarea>
+      </div>
+      <div>
+        <label for="submit"></label>
+        <input type="submit">
+      </div>
+    </form>
+  </div>
+</div>
+
 </body>
+
+<script src="./js/jquery-slim.min.js"></script>
+<script src="./js/popper.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
 </html>

@@ -20,7 +20,7 @@
     <img src=./images/hotel.png class="icono"> 
     <a class="nav-item nav-link active" href="#">Alojamientos</a>
     <img src=./images/transporte-aereo.png class="icono">
-    <a class="nav-item nav-link" href="#">Vuelos</a>
+    <a class="nav-item nav-link" href="/vuelos">Vuelos</a>
     <img src=./images/bicicleta.png class="icono">
     <a class="nav-item nav-link" href="#">Actividades</a>
     <img src=./images/taxi.png class="icono"> 

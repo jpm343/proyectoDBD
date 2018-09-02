@@ -35,6 +35,10 @@
 	</div>
 </div>
 
+</div>
+ <input type="button" onclick=" location.href='/crear_auto' " value="Crear auto" name="boton1" />
+</div>
+
 </body>
 
 <script src="./js/jquery-slim.min.js"></script>
