@@ -1,0 +1,28 @@
+.nav-link{
+	padding-bottom: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-top: 5px;
+	margin-left: 5px;
+}
+
+.icono {
+	width: 25px;
+	height: 25px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.carousel-inner img {
+  margin: 50px;
+  width: 700;
+  height: 400;
+}
+
+.carousel-control-next-icon{
+    bottom: 0%;
+    margin-right: 700px;
+}
+
+.dos-columnas{
+	position:}
