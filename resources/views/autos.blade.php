@@ -13,28 +13,28 @@
             <div class="dos-columnas col-8" align="left">
                 @include('carousel.carousel')
             </div>
-            <div class="dos-columnas col-md-4 col-sm-12" style="padding: 20% 0">
-                <form action="/FIXMEFIXMEFIXME" method= "post">
+            <div class="dos-columnas col-md-4 col-sm-12 formulario">
+                <form action="/autos/buscar" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="lugar-inicio">Lugar de entrega</label>
-                        <input type="text" class="form-control" name="lugar-inicio" id="lugar-inicio" required>
+                        <label for="ciudad_inicio">Lugar de entrega</label>
+                        <input type="text" class="form-control" name="ciudad_inicio" id="ciudad_inicio" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="lugar-fin">Lugar de devolución</label>
-                        <input type="text" class="form-control" name="lugar-fin" id="lugar-fin" required>
+                        <label for="ciudad_fin">Lugar de devolución</label>
+                        <input type="text" class="form-control" name="ciudad_fin" id="ciudad_fin" required>
                     </div>
 
                     <div class="row">
                         <div class="form-group col-6">
-                            <label for="fecha-inicio">Fecha de arriendo</label>
-                            <input type="text" class="form-control" name="fecha-inicio" id="fecha-inicio" required>
+                            <label for="fecha_inicio">Fecha de arriendo</label>
+                            <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
                         </div>
 
                         <div class="form-group col-6">
-                            <label for="fecha-fin">Fecha de devolución</label>
-                            <input type="text" class="form-control" name="fecha-fin" id="fecha-fin" required>
+                            <label for="fecha_fin">Fecha de devolución</label>
+                            <input type="text" class="form-control" name="fecha_fin" id="fecha_fin" required>
                         </div>
                     </div>
 
