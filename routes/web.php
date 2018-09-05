@@ -75,3 +75,7 @@ Route::resource('Habitacion','HabitacionController');
 Route::resource('Hotel','HotelController');
 Route::resource('Traslado','TrasladoController');
 
+
+Route::get('/autos', function () {
+    return view('autos');
+});
