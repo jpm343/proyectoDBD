@@ -8,15 +8,19 @@
 </head>
 <body>
 	@include('navbar.navbar')
+	@csrf
 	<br><br>
 	<div class="col-lg-6 xs-12">
-		<form>
-		  <div class="form-row">
-		    <div class="col-md-12 mb-3">
-		      <label for="validationDefault01">Destino </label>
-		      <input type="text" class="form-control" id="validationDefault01" placeholder="city" value="Ingeresa una ciudad" required>
-		    </div>
-		  <button class="btn btn-primary" type="submit">Buscar</button>
+		<form action="/actividades_search" method="get">
+
+			<div class="form-row">
+			    <div class="col-md-12 mb-3">
+				    <label for="ciudadDestino">Destino </label>
+				    <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" placeholder="Ciudad" required>
+				    <br>
+				    <button class="btn btn-primary" type="submit">Buscar</button>
+			    </div>
+			</div>
 		</form>
 	</div>
 </body>

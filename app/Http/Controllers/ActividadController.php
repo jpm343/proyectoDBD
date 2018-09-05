@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Actividad;
+use Illuminate\Support\Facades\DB;
 
 class ActividadController extends Controller
 {
@@ -96,5 +97,20 @@ class ActividadController extends Controller
     	$actividad->delete();
 
     	return Actividad::all();
+    }
+
+    public function buscarActividades(Request $request)
+    {
+        $query = $request->ciudad_destino;
+        //se verifica igual
+        if($query != ""){
+            $actividades = Actividad::where('ciudad_actividad', 'like', "%".$query."%")
+                                        ->orWhere('ciudad_actividad', 'like', "%".ucfirst($query)."%")
+                                        ->get();
+
+            if(count($actividades) > 0)
+                return view('resultados_busqueda_actividades')->withDetails($actividades)->withQuery($query);
+        }
+        return view('resultados_busqueda_actividades')->withMessage("No se encontraron actividades en ".$query);
     }
 }

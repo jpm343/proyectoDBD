@@ -22,7 +22,7 @@
     <img src=./images/transporte-aereo.png class="icono">
     <a class="nav-item nav-link" href="#">Vuelos</a>
     <img src=./images/bicicleta.png class="icono">
-    <a class="nav-item nav-link" href="#">Actividades</a>
+    <a class="nav-item nav-link" href="/actividades">Actividades</a>
     <img src=./images/taxi.png class="icono"> 
     <a class="nav-item nav-link active" href="#">Traslados</a>
     <img src=./images/bolsa-de-la-compra.png class="icono">
