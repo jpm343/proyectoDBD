@@ -63,37 +63,40 @@ class AutoController extends Controller
     }
 
     public function search(Request $request) {
-        // Se buscan compañías que operen en la ciudad donde se
-        //     arrienda el auto y donde se devolverá
         $ciudad_inicio = $request->ciudad_inicio;
         $ciudad_fin = $request->ciudad_fin;
         $fecha_inicio = $request->fecha_inicio;
         $fecha_fin = $request->fecha_fin;
 
-        $companias = CompaniaAuto::select('nombre_compania', 'ciudades_de_atencion')->get();
-        $companias_en_ciudades = array();
-        foreach ($companias as $compania) {
+        // lista de compañías que sirven en ambas ciudades
+        $companias = array();
+        foreach ($CompaniaAuto::all() as $compania) {
             if (in_array($ciudad_inicio, $compania->ciudades_de_atencion) AND
                 in_array($ciudad_fin, $compania->ciudades_de_atencion)) {
                     $companias_en_ciudades[] = $compania->nombre_compania;
             }
         }
 
-        $patentes = Auto::whereIn('nombre_compania', $companias_en_ciudades)
+        // lista de patentes de autos que pertenecen a esas compañías
+        $patentes = Auto::whereIn('nombre_compania', $companias)
             ->pluck('patente_auto');
 
+        // lista de patentes de autos que tienen reservas en el
+        //     intervalo de tiempo consultado
         $reservados = Reserva::join('auto_reserva', 'auto_reserva.id_reserva',
                                                '=', 'reservas.id_reserva')
             ->whereIn('auto_reserva.patente_auto', $patentes)
-            ->where(function ($query) use ($fecha_inicio, $fecha_fin) {
-                $query->where('reservas.fecha_inicio', '<', $fecha_fin)
-                      ->orWhere('reservas.fecha_fin', '>', $fecha_inicio);
-            })->pluck('auto_reserva.patente_auto');
+            ->where('reservas.fecha_inicio', '<', $fecha_fin)
+            ->where('reservas.fecha_fin', '>', $fecha_inicio);
+            ->pluck('auto_reserva.patente_auto');
 
+        // colección final de autos pertenecientes a compañías que sirven
+        //     en ambas ciudades y están libres en el intervalo consultado
         $autos = Auto::whereIn('patente_auto', $patentes)
             ->whereNotIn('patente_auto', $reservados)
             ->get();
 
-        return $autos;
+        // presentar los autos disponibles en una tabla
+        return view('resultados_autos')->with('autos', $autos);
     }
 }

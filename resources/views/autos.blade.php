@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href=./css/bootstrap.min.css>
-    <link rel="stylesheet" href=  ./css/personalizado.css>
+    <link rel="stylesheet" href=/css/bootstrap.min.css>
+    <link rel="stylesheet" href=/css/personalizado.css>
     <title>Launching.com</title>
 </head>
 <body>

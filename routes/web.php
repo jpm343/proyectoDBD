@@ -79,4 +79,7 @@ Route::resource('Traslado','TrasladoController');
 Route::get('/autos', function () {
     return view('autos');
 });
+Route::get('/resultados_autos', function () {
+    return view('resultados_autos');
+});
 Route::post('/autos/buscar', 'AutoController@search');
