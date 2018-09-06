@@ -8,7 +8,6 @@
 
 		<!-- Esta instruccion agrega Bootstrap CCS a la vista -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link href="starter-template.css" rel="stylesheet">
 
 		<!-- CSS -->
@@ -26,9 +25,7 @@
 		</style>
 	</head>
 	<body>
-		<div class="container">
-			@include('navbar.navbar')
-		</div>
+		@include('navbar.navbar')
 		<br/>
 		<br/>
 		<h1 align="center">
