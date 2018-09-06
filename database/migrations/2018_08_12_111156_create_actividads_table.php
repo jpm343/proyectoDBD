@@ -20,7 +20,9 @@ class CreateActividadsTable extends Migration
             $table->text('descripcion_actividad');
             $table->string('ciudad_actividad');
             $table->string('pais_actividad');
-            $table->json('fechas_disponibles')->nullable();
+            $table->json('dias_disponibles');
+            $table->time('hora_inicio');
+            $table->time('hora_fin');
             $table->timestamps();
         });
     }

@@ -34,6 +34,7 @@
 		</form>
 	</div>
 </div>
+
 </body>
 
 <script src="./js/jquery-slim.min.js"></script>

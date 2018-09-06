@@ -11,12 +11,12 @@ class Actividad extends Model
 
     //atributos que pueden ser escritos en masa
     protected $fillable = [
-        'puntuacion_actividad', 'nombre_actividad', 'descripcion_actividad', 'ciudad_actividad', 'pais_actividad', 'fechas_disponibles',
+        'puntuacion_actividad', 'nombre_actividad', 'descripcion_actividad', 'ciudad_actividad', 'pais_actividad', 'dias_disponibles', 'hora_inicio', 'hora_fin',
     ];
 
 	//para el arreglo de fechas:
 	protected $casts = [
-		'fechas_disponibles' => 'array',
+		'dias_disponibles' => 'array',
 	];
     //una actividad corresponde a muchas reservas
     public function reservas()
