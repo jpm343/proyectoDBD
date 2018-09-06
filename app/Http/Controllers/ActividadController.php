@@ -113,4 +113,10 @@ class ActividadController extends Controller
         }
         return view('resultados_busqueda_actividades')->withMessage("No se encontraron actividades en ".$query);
     }
+
+    public function detalleActividades($id)
+    {
+        $actividad = Actividad::find($id);
+        return view('actividades_detail')->withDetails($actividad);
+    }
 }

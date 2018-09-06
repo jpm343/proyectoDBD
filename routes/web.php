@@ -52,6 +52,7 @@ Route::get('/actividads/{id_actividad}/edit', 'ActividadController@edit');
 Route::post('/actividads/{id}','ActividadController@update');
 Route::post('/actividads_post', 'ActividadController@storeOrUpdate')->name('formulario_actividad');
 Route::get('/actividades_search', 'ActividadController@buscarActividades');
+Route::get('/actividades_details/{id}', 'ActividadController@detalleActividades');
 //*********Rutas para Registro*******//
 Route::resource('registro', 'RegistroController');
 Route::get('/registros', 'RegistroController@createOrEdit');
