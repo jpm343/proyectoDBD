@@ -21,11 +21,10 @@ class CreateRegistroConsultasTable extends Migration
             $table->json('estado_actual');
             $table->integer('id_modificado');
             $table->timestamps();//aqui se utiliza el created_at() para ver cuando se realizó la consulta**
-        
 
         //Llave foranea:
             $table->integer('id_usuario');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');   
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
     });
 
 

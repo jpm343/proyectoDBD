@@ -22,7 +22,7 @@ class CreateFondosTable extends Migration
 
             //debe llevar la clave foranea de usuario
             $table->integer('id_usuario');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -5,8 +5,17 @@
 </button>
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav ml-auto">
-    <img src=./images/usuario.png class="icono"> 
-    <a class="nav-item nav-link active" href="#">Iniciar Sesión</a>
+    @guest
+    <img src=./images/usuario.png class="icono">
+    <a class="nav-item nav-link active" href="/login">Iniciar Sesión</a>
+    @else
+    <img src=./images/usuario.png class="icono">
+    <a class="nav-item nav-link active" href="/logout"
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            {{ Auth::user()->name }}
+    </a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+    @endguest
     <img src=./images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link" href="#">Mis Compras</a>
     <img src=./images/info.png class="icono">

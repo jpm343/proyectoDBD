@@ -20,7 +20,7 @@ class RolUsuario extends Migration
 
             //llave foranea usuario
             $table->integer('id_usuario');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios');
+            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

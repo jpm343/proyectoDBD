@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 
         //corre los seeder de las tablas
         $this->call(RolsTableSeeder::class);
-        $this->call(UsuariosTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(RegistroConsultasTableSeeder::class);
     	$this->call(ActividadsTableSeeder::class);
         $this->call(ReservaTableSeeder::class);

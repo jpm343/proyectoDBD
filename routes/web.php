@@ -81,3 +81,4 @@ Route::resource('Habitacion','HabitacionController');
 Route::resource('Hotel','HotelController');
 Route::resource('Traslado','TrasladoController');
 
+Auth::routes();
