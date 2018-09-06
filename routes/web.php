@@ -79,7 +79,6 @@ Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
 Route::resource('Habitacion','HabitacionController');
 Route::resource('Traslado','TrasladoController');
 
-
 Route::get('/autos', function () {
     return view('autos');
 });
@@ -87,3 +86,5 @@ Route::get('/resultados_autos', function () {
     return view('resultados_autos');
 });
 Route::post('/autos/buscar', 'AutoController@search');
+
+Auth::routes();
