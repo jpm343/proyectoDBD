@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+<nav class="navbar navbar-expand-lg navbar-light" id="navbar" float="left">
+
   <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,8 +13,11 @@
       <img src=./images/info.png class="icono">
         <a class="nav-item nav-link" href="#">Ayuda</a>
     </div>
+  </div>
 </nav>
-<nav class="navbar navbar-expand-lg navbar-light">
+
+
+<nav class="navbar navbar-expand-lg navbar-light" float="left">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav mr-auto">
       <img src=./images/hotel.png class="icono"> 
@@ -29,4 +33,5 @@
       <img src=./images/etiqueta.png class="icono">
         <a class="nav-item nav-link" href="#">Promociones</a>
     </div>
+  </div>
 </nav>
