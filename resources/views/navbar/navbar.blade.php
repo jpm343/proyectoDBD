@@ -5,11 +5,11 @@
 </button>
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav ml-auto">
-    <img src=./images/usuario.png class="icono"> 
+    <img src=/images/usuario.png class="icono"> 
     <a class="nav-item nav-link active" href="#">Iniciar Sesión</a>
-    <img src=./images/bolsa-de-la-compra.png class="icono">
+    <img src=/images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link" href="#">Mis Compras</a>
-    <img src=./images/info.png class="icono">
+    <img src=/images/info.png class="icono">
     <a class="nav-item nav-link" href="#">Ayuda</a>
   </div>
 </div>
@@ -17,17 +17,17 @@
 <nav class="navbar navbar-expand-lg navbar-light">
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav mr-auto">
-    <img src=./images/hotel.png class="icono"> 
+    <img src=/images/hotel.png class="icono"> 
     <a class="nav-item nav-link active" href="#">Alojamientos</a>
-    <img src=./images/transporte-aereo.png class="icono">
+    <img src=/images/transporte-aereo.png class="icono">
     <a class="nav-item nav-link" href="#">Vuelos</a>
-    <img src=./images/bicicleta.png class="icono">
+    <img src=/images/bicicleta.png class="icono">
     <a class="nav-item nav-link" href="/actividades">Actividades</a>
-    <img src=./images/taxi.png class="icono"> 
+    <img src=/images/taxi.png class="icono"> 
     <a class="nav-item nav-link active" href="#">Traslados</a>
-    <img src=./images/bolsa-de-la-compra.png class="icono">
+    <img src=/images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link" href="#">Paquetes</a>
-    <img src=./images/etiqueta.png class="icono">
+    <img src=/images/etiqueta.png class="icono">
     <a class="nav-item nav-link" href="#">Promociones</a>
   </div>
 </div>

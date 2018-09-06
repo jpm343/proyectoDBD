@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href=./css/bootstrap.min.css>
-    <link rel="stylesheet" href=  ./css/personalizado.css>
+    <link rel="stylesheet" href=/css/bootstrap.min.css>
+    <link rel="stylesheet" href=  /css/personalizado.css>
     <title>Reserva actividades</title>
 </head>
 <body>
@@ -16,6 +16,7 @@
 			<table class="table table-stripped">
 				<thead>
 					<tr>
+						<th>Ver Detalles</th>
 						<th>Nombre</th>
 						<th>Ciudad</th>
 						<th>Pais</th>
@@ -24,6 +25,7 @@
 				<tbody>
 					@foreach($details as $actividad)
 						<tr>
+							<td><a href="/actividades_details/{{$actividad->id_actividad}}">Detalles</a></td>
 							<td>{{ $actividad->nombre_actividad }}</td>
 							<td>{{ $actividad->ciudad_actividad }}</td>
 							<td>{{ $actividad->pais_actividad }}</td>
