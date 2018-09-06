@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('actividades', function() {
+	return view('actividades');
+});
+
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
@@ -44,8 +48,11 @@ Route::post('/asiento_post', 'AsientoController@storeOrUpdate')->name('formulari
 
 //*********Rutas para Actividad***********//
 Route::resource('actividad', 'ActividadController');
-Route::get('/actividads', 'ActividadController@createOrEdit');
+Route::get('/actividads/{id_actividad}/edit', 'ActividadController@edit');
+Route::post('/actividads/{id}','ActividadController@update');
 Route::post('/actividads_post', 'ActividadController@storeOrUpdate')->name('formulario_actividad');
+Route::get('/actividades_search', 'ActividadController@buscarActividades');
+Route::get('/actividades_details/{id}', 'ActividadController@detalleActividades');
 //*********Rutas para Registro*******//
 Route::resource('registro', 'RegistroController');
 Route::get('/registros', 'RegistroController@createOrEdit');
