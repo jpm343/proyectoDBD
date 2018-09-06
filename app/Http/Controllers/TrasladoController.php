@@ -14,8 +14,7 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        $traslados = Traslado::orderBy('id_traslado', 'DESC')->paginate();
-        return view("Traslado_view.traslado-index", compact('traslados'));
+        return view("Traslado_view.traslado-index");
     }
 
     /**

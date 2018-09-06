@@ -74,4 +74,3 @@ Route::post('Habitacion/destroy/{id}','HabitacionController@destroy');
 Route::resource('Habitacion','HabitacionController');
 Route::resource('Hotel','HotelController');
 Route::resource('Traslado','TrasladoController');
-

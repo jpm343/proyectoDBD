@@ -1,54 +1,92 @@
-@extends('layout')
+<!DOCTYPE html>
+<html lang="es"> 
+	<head>
+		<!-- Requerimientos del metatag-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title> Traslados </title>
 
-@section('content')
-	<div class="col">
-		@include('Traslado_view.Traslado_fragment.Traslado-aside')
-	</div>
-	<div class="col">
-		<h2>
-			listado de traslados
-			<a href="{{route('Traslado.create')}}" class="btn btn-primary pull-right"> Nuevo </a>
-		</h2>
-		@include('Traslado_view.Traslado_fragment.Traslado-info')
-		<table class="table table-hover table-striped">
-			<thead>
-				<th > Traslado_id </th>
-				<th > Fecha </th>
-				<th > Descripción </th>
-				<th > Origen </th>
-				<th > Destino</th>
-				<th > Precio </th>
-				<th colspan="3">&nbsp;</th>
-			</thead>
-			<tbody>
-				@foreach($traslados as $Traslado)
-					<tr>
-						<td>{{ $Traslado-> traslado_id}}</td>
-						<td>{{ $Traslado-> fecha_traslado}}</td>
-						<td>
-							<strong>{{ $Traslado-> descripcion_traslado}}</strong>
-							{{ $Traslado-> short}}
-						</td>
-						<td>{{ $Traslado-> origen_traslado}}</td>
-						<td>{{ $Traslado-> destino_traslado}}</td>
-						<td>{{ $Traslado-> precio_traslado}}</td>
-						<td> 
-							<a href="{{route('Traslado.show', $Traslado->traslado_id)}}" class="btn btn-link"> ver </a> 
-						</td>
-						<td> 
-							<a href="{{route('Traslado.edit', $Traslado->traslado_id)}}" class="btn btn-link"> editar </a>
-						</td>
-						<td>
-							<form action="{{route('Traslado.destroy', $Traslado->traslado_id)}}" method="POST">
-								{{ csrf_field() }}
-								<input type="hidden" name="_method" value="DELETE">
-								<button class="btn btn-link"> borrar </button>
-							</form>
-						</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
-		{!! $traslados -> links('vendor.pagination.bootstrap-4') !!}
-	</div>
-@endsection
+		<!-- Esta instruccion agrega Bootstrap CCS a la vista -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link href="starter-template.css" rel="stylesheet">
+
+		<!-- CSS -->
+		<style type="text/css">
+		  .boton_personalizado{
+		    text-decoration: none;
+		    padding: 10px;
+		    font-weight: 600;
+		    font-size: 20px;
+		    color: #ffffff;
+		    background-color: #1883ba;
+		    border-radius: 6px;
+		    border: 2px solid #0016b0;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			@include('navbar.navbar')
+		</div>
+		<br/>
+		<br/>
+		<h1 align="center">
+			oferta de traslados 
+		</h1>
+		<br/>
+		<br/>
+		<div class="container">
+			<div class= "row">
+				<div class="col-md-6" align="left">
+					<h3 align="center"> Lo más solicitado </h3>
+					<br/>
+					@include('carousel.carousel')
+				</div>
+				<div class="col-md-6" align="right">
+					<h3 align="center"> Cotize su traslado </h3>
+					<br/>
+					<div class="form-group" align="left" > 
+						<label>Fecha traslado</label>
+						<input type="date" class="form-control">
+					</div>
+					<div class="form-group" align="left" >
+						<label >Origen traslado</label>
+						<select class="custom-select custom-select-sm">
+						  <option selected>Seleccione una opción</option>
+						  <option value="1">Aeropuerto</option>
+						  <option value="2">Hotel</option>
+						</select>
+					</div>
+					<div class="form-group" align="left" >
+						<label >Nombre origen traslado</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group" align="left" >
+						<label >Destino traslado</label>
+						<select class="custom-select custom-select-sm">
+						  <option selected>Seleccione una opción</option>
+						  <option value="1">Aeropuerto</option>
+						  <option value="2">Hotel</option>
+						</select>
+					</div>
+					<div class="form-group" align="left" >
+						<label >Nombre destino traslado</label>
+						<input type="text" class="form-control">
+					</div>
+					<div class="form-group" align="left" >
+						<label >Cantidad de pasajeros</label>
+						<input class="form-control" type="number" name="points" min="0" step="1" value="0">
+					</div>
+					<div class="form-group" align="left" >
+						<label >Precio traslado máximo</label>
+						<input class="form-control" type="number" name="points" min="0" step="1" value="0">
+					</div>
+					<div class="form-group">
+						<button class="boton_personalizado" href="{{route('Traslado.create')}}" align="right"> Buscar traslados</button>
+					</div>
+				</div> 
+			</div>
+		</div>
+	</body>
+</html>
