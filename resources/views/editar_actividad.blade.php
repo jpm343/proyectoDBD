@@ -5,7 +5,7 @@
   </head>
   <body>
 	 <h2> Actividades </h2>
-    <form action="/actividads/<?php echo $actividad->id_actividad; ?>" method="POST">
+    <form action="/actividads/<?php echo $actividad->id_actividad; ?>" method="post">
       @csrf
       Nombre de la actividad:<br>
       <input type="text" name="nombre_actividad" value="<?php echo $actividad->nombre_actividad; ?>" required>

@@ -2,22 +2,29 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href=./css/bootstrap.min.css>
-    <link rel="stylesheet" href=  ./css/personalizado.css>
+    <link rel="stylesheet" href=/css/bootstrap.min.css>
+    <link rel="stylesheet" href=  /css/personalizado.css>
     <title>Reserva actividades</title>
 </head>
 <body>
+	@csrf
 	@include('navbar.navbar')
-	<br><br>
-	<div class="col-lg-6 xs-12">
-		<form>
-		  <div class="form-row">
-		    <div class="col-md-12 mb-3">
-		      <label for="validationDefault01">Destino </label>
-		      <input type="text" class="form-control" id="validationDefault01" placeholder="city" value="Ingeresa una ciudad" required>
-		    </div>
-		  <button class="btn btn-primary" type="submit">Buscar</button>
-		</form>
+	<div class="row align-items-center">
+		<div class="col-lg-9 xs-12">
+			@include('carousel.carousel')
+		</div>
+		
+			<form action="/actividades_search" method="get">
+				<div class="form-row">
+				    <div class="col md-12 mb-3">
+					    <label for="ciudadDestino">Destino </label>
+					    <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" placeholder="Ciudad" required>
+					    <br>
+					    <button class="btn btn-primary" type="submit">Buscar</button>
+				    </div>
+				</div>
+			</form>
+
 	</div>
 </body>
 </html>
