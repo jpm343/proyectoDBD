@@ -8,61 +8,63 @@ use App\RegistroConsulta;
 
 class Registro_consultaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+
     public function index()
     {
         $rConsulta = RegistroConsulta::all();
         return $rConsulta;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function createOrEdit()
+    
+
+    public function create()
     {
        return view('registroConsulta');
        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-  public function storeOrUpdate(Request $request)
+    public function store(Request $request) 
     {
-        $rConsulta = new RegistroConsulta();
-        $rConsulta->updateOrCreate(['tipo_consulta' =>  $request->tipo_consulta,],['tabla_modificada' => $request->tabla_modificada,
-        'estado_anterior' => $request->estado_anterior,'estado_actual' => $request->estado_actual,'id_modificado' => $request->id_modificado,
-        'id_usuario' => $request->id_usuario]);
+        RegistroConsulta::create([
+            'id_registroConsulta' => $request->id_registroConsulta,
+            'tipo_consulta' =>  $request->tipo_consulta,
+            'tabla_modificada' => $request->tabla_modificada,
+            'estado_anterior' => json_decode($request->estado_anterior),
+            'estado_actual' => json_decode($request->estado_actual),
+            'id_modificado' => $request->id_modificado,
+            'id_usuario' => $request->id_usuario]);
         return RegistroConsulta::all();
     }
-        
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
         $rConsulta = RegistroConsulta::find($id);
         return $rConsulta;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function edit($id)
+    {
+         $rConsulta = RegistroConsulta::find($id);
+         return view('editar_rConsulta')->with('registroConsulta',$rConsulta);
+
+    }
+
+   
+    public function Update(Request $request, $id)
+    {
+        RegistroConsulta::find($id)->update([
+            'id_registroConsulta' => $request->id_registroConsulta,
+            'tipo_consulta' =>  $request->tipo_consulta,
+            'tabla_modificada' => $request->tabla_modificada,
+            'estado_anterior' => json_decode($request->estado_anterior),
+            'estado_actual' => json_decode($request->estado_actual),
+            'id_modificado' => $request->id_modificado,
+            'id_usuario' => $request->id_usuario]);
+        return RegistroConsulta::all();
+    }
+
     public function destroy($id)
     {
         $rConsulta = RegistroConsulta::find($id);
