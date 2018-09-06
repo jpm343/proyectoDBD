@@ -4,8 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Vuelo::class, function (Faker $faker) {
     return [
-        'fecha_salida' => $faker->dateTime($max = 'now', $timezone = null),
-        'fecha_llegada' => $faker->dateTime($max = 'now', $timezone = null),
+        'fecha_salida' => $faker->date,
+        'fecha_llegada' => $faker->date,
         'ciudad_origen' => $faker->word(),
         'ciudad_destino' => $faker->word(),
         'aeropuerto_origen' => $faker->word(),

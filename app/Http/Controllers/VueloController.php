@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Asiento;
 use App\Vuelo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VueloController extends Controller
 {
@@ -96,4 +98,24 @@ class VueloController extends Controller
         $todos = Vuelo::all();
         return $todos;
     }
+
+    public function buscarVuelos(Request $request){
+
+        $cOrigen = $request->origen;
+        $cDestino = $request->destino;
+        $ida = $request->fechaIda;
+        $vuelta = $request->fechaVuelta;
+        $clase = $request->boleto;
+        $asiento = Asiento::where('clase_asiento','=',$clase)->pluck('id_vuelo');
+       
+        $vuelos = Vuelo::where('ciudad_origen','=',$cOrigen)
+                        ->where('ciudad_destino','=',$cDestino)->where('fecha_salida','=',$ida)->whereIn('id_vuelo',$asiento)->get();
+
+
+        if(count($vuelos) > 0)
+            return view('resultado_busqueda_vuelo')->withDetails($vuelos);
+        return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
+    }
+
+
 }
