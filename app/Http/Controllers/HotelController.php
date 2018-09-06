@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Hotel;
+use App\Habitacion;
+use App\Reserva;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -100,5 +103,53 @@ class HotelController extends Controller
         $hotel = Hotel::find($id_hotel);
         $hotel->delete();
         return back()->with('info','El hotel ha sido eliminado');
+    }
+
+    public function buscarAlojamientos(Request $request){
+        $hoteles = Hotel::where('ciudad_hotel', 'like', "%".$request->destino."%")->pluck('id_hotel');
+        $habitaciones = Habitacion::where('id_hotel', '=', $hoteles[0])->pluck('id_habitacion');
+        for ($i= 1; $i < sizeof($hoteles)  ; $i++) { 
+            $habitaciones = $habitaciones . Habitacion::where('id_hotel', '=', $hoteles[i])->pluck('id_habitacion');
+        }
+        $reservasAsociadas = DB::table('habitacion_reserva')->where('id_habitacion', '=', $habitaciones[0])->pluck('id_reserva')->toArray();
+        for ($i = 1; $i < sizeof($habitaciones); $i++) {
+            $reservasEncontradas = DB::table('habitacion_reserva')->where('id_habitacion', '=', $habitaciones[$i])->pluck('id_reserva')->toArray();
+            foreach ($reservasEncontradas as $reservaEncontrada) {
+                array_push($reservasAsociadas, $reservaEncontrada);
+            }
+        }
+        $habitacionesDisponibles = array();
+        foreach ($reservasAsociadas as $reservaAsociada) {
+            $reservaEncontrada = Reserva::find($reservaAsociada);
+            if($request->fechaVuelta <= $reservaEncontrada->fecha_inicio ||
+               $request->fechaIda >= $reservaEncontrada->fecha_fin){
+                array_push($habitacionesDisponibles, DB::table('habitacion_reserva')->where('id_reserva', '=', $reservaEncontrada->id_reserva)->pluck('id_habitacion')->toArray()[0]);
+            }
+        }
+        $habitacionesPorCapacidad = array();
+        foreach ($habitacionesDisponibles as $habitacionDisponible) {
+            $habitacionEncontrada = Habitacion::find($habitacionDisponible);
+            if(($request->cantidadMayores + $request->cantidadMenores) <= $habitacionEncontrada->capacidad_habitacion){
+                array_push($habitacionesPorCapacidad, $habitacionEncontrada->id_habitacion);
+            }
+        }
+        $hotelesDisponibles = array();
+        foreach ($habitacionesPorCapacidad as $habitacionPorCapacidad) {
+            $hotelEncontrado = Habitacion::find($habitacionPorCapacidad)->id_hotel;;
+            array_push($hotelesDisponibles, $hotelEncontrado);
+        }
+        $hotelesPorHabitaciones = array();
+        $contador = 0;
+        foreach ($hotelesDisponibles as $hotelDisponible) {
+            foreach ($habitacionesPorCapacidad as $habitacionPorCapacidad) {
+                if(Habitacion::find($habitacionPorCapacidad)->where('id_hotel', '=', $hotelDisponible) != NULL){
+                    $contador++;
+                }
+            }
+            if($contador >= $request->cantidadHabitaciones){
+                array_push($hotelesPorHabitaciones, $hotelDisponible);
+            }
+        }
+        return $hotelesPorHabitaciones;
     }
 }
