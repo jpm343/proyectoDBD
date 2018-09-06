@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Auto::class, function (Faker $faker) {
     return [
-        'patente_auto' => $faker->asciify('********'),
+        'patente_auto' => str_random(8),
         'modelo_auto' => $faker->word(),
         'capacidad_auto' => $faker->numberBetween($min = 2, $max = 7),
         'precio_dia_auto' => $faker->randomNumber(),

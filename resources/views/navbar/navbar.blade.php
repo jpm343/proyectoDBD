@@ -21,6 +21,8 @@
     <a class="nav-item nav-link active" href="#">Alojamientos</a>
     <img src=/images/transporte-aereo.png class="icono">
     <a class="nav-item nav-link" href="/vuelos">Vuelos</a>
+    <img src=/images/auto.png class="icono">
+    <a class="nav-item nav-link" href="/autos">Autos</a>
     <img src=/images/bicicleta.png class="icono">
     <a class="nav-item nav-link" href="/actividades">Actividades</a>
     <img src=/images/taxi.png class="icono"> 
