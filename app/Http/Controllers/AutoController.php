@@ -70,10 +70,10 @@ class AutoController extends Controller
 
         // lista de compañías que sirven en ambas ciudades
         $companias = array();
-        foreach ($CompaniaAuto::all() as $compania) {
+        foreach (CompaniaAuto::all() as $compania) {
             if (in_array($ciudad_inicio, $compania->ciudades_de_atencion) AND
                 in_array($ciudad_fin, $compania->ciudades_de_atencion)) {
-                    $companias_en_ciudades[] = $compania->nombre_compania;
+                    $companias[] = $compania->nombre_compania;
             }
         }
 
@@ -87,7 +87,7 @@ class AutoController extends Controller
                                                '=', 'reservas.id_reserva')
             ->whereIn('auto_reserva.patente_auto', $patentes)
             ->where('reservas.fecha_inicio', '<', $fecha_fin)
-            ->where('reservas.fecha_fin', '>', $fecha_inicio);
+            ->where('reservas.fecha_fin', '>', $fecha_inicio)
             ->pluck('auto_reserva.patente_auto');
 
         // colección final de autos pertenecientes a compañías que sirven
