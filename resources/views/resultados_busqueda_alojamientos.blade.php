@@ -26,7 +26,7 @@
 				<tbody>
 					@foreach($details as $alojamiento)
 						<tr>
-							<td><a href="/alojamientos_details/{{$alojamiento->id_hotel}}">Detalles</a></td>
+							<td><a href="/alojamientos_detail/{{$alojamiento->id_hotel}}">Detalles</a></td>
 							<td>{{ $alojamiento->nombre_hotel }}</td>
 							<td>{{ $alojamiento->ciudad_hotel }}</td>
 							<td>{{ $alojamiento->descripcion_hotel }}</td>
