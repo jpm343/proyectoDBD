@@ -96,6 +96,7 @@ Route::get('/resultados_autos', function () {
     return view('resultados_autos');
 });
 Route::post('/autos/buscar', 'AutoController@search');
+Route::get('/profile', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 
 Auth::routes();
 
