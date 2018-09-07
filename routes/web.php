@@ -66,6 +66,9 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 Route::get('/autos/create', 'AutoController@create');
 Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
 
+// rutas para los traslados
+Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
+
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
 
