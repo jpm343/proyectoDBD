@@ -27,7 +27,7 @@
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav mr-auto">
     <img src=/images/hotel.png class="icono"> 
-    <a class="nav-item nav-link active" href="#">Alojamientos</a>
+    <a class="nav-item nav-link active" href="/">Alojamientos</a>
     <img src=/images/transporte-aereo.png class="icono">
     <a class="nav-item nav-link" href="/vuelos">Vuelos</a>
     <img src=/images/auto.png class="icono">
