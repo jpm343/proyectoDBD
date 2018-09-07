@@ -190,7 +190,7 @@ class VueloController extends Controller
             return view('resultados_paquete')->with('vuelos', $vuelos)
                 ->with('autos', $autos);
 
-        } else { // vuelo
+        } else { // hotel
 
             // id de hoteles en la ciudad de destino
             $id_hoteles = Hotel::where('ciudad_hotel', $ciudad_destino)
@@ -202,7 +202,7 @@ class VueloController extends Controller
                 ->where('capacidad_habitacion', '>=', $num_personas)
                 ->pluck('id_habitacion');
 
-            // subconjunto de dichas habitaciones que están disponibles
+            // subconjunto de dichas habitaciones que están reservadas
             $id_habitaciones_reservadas = Reserva::join('habitacion_reserva',
                     'habitacion_reserva.id_reserva', '=', 'reservas.id_reserva')
                 ->whereIn('habitacion_reserva.id_habitacion', $id_habitaciones)
