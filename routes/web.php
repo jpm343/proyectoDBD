@@ -88,3 +88,8 @@ Route::get('/resultados_autos', function () {
 Route::post('/autos/buscar', 'AutoController@search');
 
 Auth::routes();
+
+Route::get('/paquetes', function () {
+    return view('paquetes');
+});
+Route::post('/buscar_paquete', 'VueloController@buscarPaquetes');
