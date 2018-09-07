@@ -60,9 +60,9 @@ function eliminarDestino(id){
           <div id=destinoUnico>
             <div class="form-inline" role="form" class="form-group">
               <label>Ciudad origen: </label>
-              <input type="text" class="form-control" name="origen" placeholder="Ingrese ciudad origen">
+              <input type="text" class="form-control" name="origen" placeholder="Ingrese ciudad origen" required>
               <label>Ciudad destino: </label>
-              <input type="text" class="form-control" name="destino" placeholder="Ingrese Ciudad destino">
+              <input type="text" class="form-control" name="destino" placeholder="Ingrese Ciudad destino" required>
             </div>
             <div class="form-inline" class="form-group">
               <label for="ida">Fecha de ida: </label>
@@ -72,9 +72,48 @@ function eliminarDestino(id){
             </div>
             <!--div class="checkbox">
             <label><input type="checkbox" id="cBoxFecha" onclick="habilitar('cBoxFecha','ida'),habilitar('cBoxFecha','vuelta')"> Aun no decido fechas</label></div-->
+          </div>
+          <!-- DESTINO MULTIPLE-->
+          <div id=multiDestino style="display:none" >
+            <label>Tramo 1</label>
+            <div class="form-inline" role="form" class="form-group">
+              <label for="CiudadOrigen1">Ciudad origen: </label>
+              <input type="text" class="form-control" name="origen" placeholder="Ingrese ciudad origen">
+              <label for="CiudadDestino1">Ciudad destino: </label>
+              <input type="text" class="form-control" name="destino" placeholder="Ingrese Ciudad destino">
+            </div>
+            <div class="form-inline" class="form-group">
+              <label for="ida1">Fecha de ida: </label>
+              <input id="ida1" class="form-control" type="date" name="fechaIda">     
+            </div>
+            <label>Tramo 2</label>
+            <div class="form-inline" role="form" class="form-group">
+              <label for="CiudadOrigen2">Ciudad origen: </label>
+              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
+              <label for="CiudadDestino2">Ciudad destino: </label>
+              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese ciudad destino">
+            </div>
+            <div class="form-inline" class="form-group">
+              <label for="ida2">Fecha de ida: </label>
+              <input id="ida2" class="form-control" type="date" name="fechaIda2">     
+            </div>
+            <div id="Tramo3">
+              <label>Tramo 3</label>
+              <div class="form-inline" role="form" class="form-group">
+              <label for="CiudadOrigen3">Ciudad origen: </label>
+              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
+              <label for="CiudadDestino3">Ciudad destino: </label>
+              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese ciudad destino">
+            </div>
+            <div class="form-inline" class="form-group">
+              <label for="ida3">Fecha de ida: </label>
+              <input id="ida3" class="form-control" type="date" name="fechaIda3">     
+            </div>
+            </div>
+          </div>
             <div class="form-inline">
               <label>Cantidad de adultos</label>
-              <select id="cAdulto" class="form-control">
+              <select id="cAdulto" name="cAdulto" class="form-control">
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -82,7 +121,7 @@ function eliminarDestino(id){
                     <option>5</option>
               </select>
               <label>Cantidad de menores</label>
-              <select id="cMenor" class="form-control">
+              <select id="cMenor" name="cMenor" class="form-control">
                     <option>0</option>
                     <option>1</option>
                     <option>2</option>
@@ -110,55 +149,7 @@ function eliminarDestino(id){
               </label>
               </div>
             </div>
-          </div>
-          <!-- DESTINO MULTIPLE-->
-          <div id=multiDestino style="display:none" >
-            <label>Tramo 1</label>
-            <div class="form-inline" role="form" class="form-group">
-              <label for="CiudadOrigen1">Ciudad origen: </label>
-              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
-              <label for="CiudadDestino1">Ciudad destino: </label>
-              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese Ciudad destino">
-            </div>
-            <div class="form-inline" class="form-group">
-              <label for="ida1">Fecha de ida: </label>
-              <input id="ida1" class="form-control" type="date" name="fechaIda1">     
-            </div>
-            <label>Tramo 2</label>
-            <div class="form-inline" role="form" class="form-group">
-              <label for="CiudadOrigen2">Ciudad origen: </label>
-              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
-              <label for="CiudadDestino2">Ciudad destino: </label>
-              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese ciudad destino">
-            </div>
-            <div class="form-inline" class="form-group">
-              <label for="ida2">Fecha de ida: </label>
-              <input id="ida2" class="form-control" type="date" name="fechaIda2">     
-            </div>
-            <div>
-              
-            </div>
-            <div><label>Clase de boleto </label></div>
-            <div class="form-check form-check-inline">      
-              <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="turista" value="turista" checked>
-                Turista
-              </label>
-              <div class="form-check" >
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="ejecutivo" value="ejecutivo">
-                Ejecutivo
-              </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="primeraClase" value="primeraClase">
-                Primera clase
-              </label>
-              </div>
-            </div>
-          </div>
-          <button class="btn btn-info" type="submit" onclick="check()">Buscar</button>
+          <button class="btn btn-info" type="submit">Buscar</button>
         </form>
       </div>
     </div>

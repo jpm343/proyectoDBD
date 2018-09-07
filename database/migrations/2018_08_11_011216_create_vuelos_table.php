@@ -17,12 +17,14 @@ class CreateVuelosTable extends Migration
             $table->increments('id_vuelo');
             $table->datetime('fecha_salida');
             $table->datetime('fecha_llegada');
+            $table->integer('equipaje');
             $table->string('ciudad_origen');
             $table->string('ciudad_destino');
             $table->string('aeropuerto_origen');
             $table->string('aeropuerto_destino');
             $table->string('pais_origen');
             $table->string('pais_destino');
+            $table->integer('precio');
             $table->timestamps();
 
             //Llave Foránea
