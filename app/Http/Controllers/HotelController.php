@@ -126,12 +126,24 @@ class HotelController extends Controller
                 array_push($habitacionesDisponibles, DB::table('habitacion_reserva')->where('id_reserva', '=', $reservaEncontrada->id_reserva)->pluck('id_habitacion')->toArray()[0]);
             }
         }
+        if($reservasAsociadas == NULL){
+            for ($i=0; $i < sizeof($habitaciones); $i++) { 
+                $habitacionesDisponibles[$i] = $habitaciones[$i];
+            }
+        }
         $habitacionesPorCapacidad = array();
         foreach ($habitacionesDisponibles as $habitacionDisponible) {
             $habitacionEncontrada = Habitacion::find($habitacionDisponible);
             if(($request->cantidadMayores + $request->cantidadMenores) <= $habitacionEncontrada->capacidad_habitacion){
                 array_push($habitacionesPorCapacidad, $habitacionEncontrada->id_habitacion);
             }
+        }
+        $AAAA = Habitacion::whereIn('id_habitacion', $habitacionesPorCapacidad)
+            ->groupBy('id_hotel')
+            ->selectRaw('id_hotel, MIN(precio_noche_habitacion)')->get();
+        $Arreglo = array();
+        foreach ($AAAA as $A) {
+            $Arreglo[$A->id_hotel] = $A->min;
         }
         $hotelesDisponibles = array();
         foreach ($habitacionesPorCapacidad as $habitacionPorCapacidad) {
@@ -147,9 +159,15 @@ class HotelController extends Controller
                 }
             }
             if($contador >= $request->cantidadHabitaciones){
-                array_push($hotelesPorHabitaciones, $hotelDisponible);
+                if(!in_array($hotelDisponible, $hotelesPorHabitaciones)){
+                    array_push($hotelesPorHabitaciones, $hotelDisponible);
+                }
             }
         }
-        return $hotelesPorHabitaciones;
+        $hotelesFinal = array();
+        foreach ($hotelesPorHabitaciones as $hotelPorHabitacion) {
+            array_push($hotelesFinal, Hotel::find($hotelPorHabitacion));
+        }
+        return view('resultados_busqueda_alojamientos', compact('Arreglo'))->withDetails($hotelesFinal);
     }
 }

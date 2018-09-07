@@ -41,7 +41,7 @@ Route::resource('vuelo', 'VueloController');
 Route::get('/vuelos', 'VueloController@createOrEdit');
 Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
 Route::get('/vuelos_buscar','VueloController@buscarVuelos');
-
+Route::get('/vuelo_detalle/{id}/compra', 'VueloController@reserva');
 
 //*********Rutas para Aerolinea*******//
 Route::resource('aerolinea', 'AerolineaController');
@@ -99,3 +99,8 @@ Route::post('/autos/buscar', 'AutoController@search');
 Route::get('/profile', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 
 Auth::routes();
+
+Route::get('/paquetes', function () {
+    return view('paquetes');
+});
+Route::post('/buscar_paquete', 'VueloController@buscarPaquetes');

@@ -15,26 +15,33 @@
 			<table class="table table-stripped">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Fecha salida</th>
+						<th>Maletas por adulto permitidas</th>
 						<th>Pais origen</th>
 						<th>Aeropuerto origen</th>
 						<th>Pais destino</th>
 						<th>Aeropuerto destino</th>
 						<th>Nombre aerolinea</th>
-
+						<th>Precio</th>
 					</tr>
 				</thead>
 				<tbody>
-					@foreach($details as $vuelos)
+					
+					@foreach($ida as $vuelos)
 						<tr>
-							<td>{{$vuelos->fecha_salida}}</td>
-							<td>{{ $vuelos->pais_origen}}</td>
-							<td>{{ $vuelos->aeropuerto_origen}}</td>
-							<td>{{ $vuelos->pais_destino}}</td>
-							<td>{{ $vuelos->aeropuerto_destino}}</td>
-							<td>{{ $vuelos->nombre_aerolinea}}</td>
+							<td>IDA</td>
+							<td>{{$ida->fecha_salida}}</td>
+							<td>{{$ida->equipaje}}</td>
+							<td>{{$ida->pais_origen}}</td>
+							<td>{{$ida->aeropuerto_origen}}</td>
+							<td>{{$ida->pais_destino}}</td>
+							<td>{{$ida->aeropuerto_destino}}</td>
+							<td>{{$ida->nombre_aerolinea}}</td>
+							<td>{{$ida->precio}}</td>
 						</tr>
 					@endforeach
+					
 				</tbody>
 			</table>
 	</div>

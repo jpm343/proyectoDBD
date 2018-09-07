@@ -16,7 +16,7 @@ class CreateAsientosTable extends Migration
         Schema::create('asientos', function (Blueprint $table) {
             $table->increments('id_asiento');
             $table->integer('rut_pasajero');
-            $table->string('clase_asiento');
+            $table->enum('clase_asiento', ['Turista', 'Ejecutivo', 'Primera Clase']);
             $table->integer('numero_asiento');
             $table->string('nombre_pasajero');
             $table->timestamps();
