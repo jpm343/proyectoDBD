@@ -14,6 +14,7 @@
 			<div class="col-lg-6 md-6 xs-12">
 				<h1> {{$details->nombre_actividad}} </h1>
 				<h3> Puntacion: <?php echo $details->puntuacion_actividad; ?> </h3>
+				<h3> Precio: $<?php echo $details->precio_actividad; ?> CLP</h3>
 				<br>
 				<h5> Descripcion: <h5>
 				<p> {{$details->descripcion_actividad}} </p>

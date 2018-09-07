@@ -23,6 +23,7 @@ class CreateActividadsTable extends Migration
             $table->json('dias_disponibles');
             $table->time('hora_inicio');
             $table->time('hora_fin');
+            $table->integer('precio_actividad');
             $table->timestamps();
         });
     }
