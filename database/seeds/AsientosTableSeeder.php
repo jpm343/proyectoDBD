@@ -11,6 +11,6 @@ class AsientosTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Asiento::class, 20)->create();
+        factory(App\Asiento::class, 60)->create();
     }
 }
