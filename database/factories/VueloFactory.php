@@ -15,7 +15,6 @@ $factory->define(App\Vuelo::class, function (Faker $faker) {
         'aeropuerto_destino' => $faker->word(),
         'pais_origen' => $faker->word(),
         'pais_destino' => $faker->word(),
-        'precio' => rand(100,1000),
         'nombre_aerolinea' => App\Aerolinea::inRandomOrder()->first()->nombre_aerolinea
     ];
 });
