@@ -29,14 +29,17 @@ function eliminarDestino(id){
 </script>
    @include('navbar.navbar')
 <div>
+  <br/>
+  <center><h2>Encuentra tu vuelo</h2></center>
   <div class="row">
     <div class="col-5">
       @include('carousel.carousel')
     </div>
     <div>
       <div class="col">
-        <center><h2>Encuentra tu vuelo</h2></center>
         @csrf
+        <br/> 
+        <br/> 
         <form action="/vuelos_buscar" method="get">
           <div class="form-check form-check-inline">
             <label class="form-check-label">
