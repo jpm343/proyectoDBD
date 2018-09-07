@@ -15,10 +15,11 @@ class CreateAsientosTable extends Migration
     {
         Schema::create('asientos', function (Blueprint $table) {
             $table->increments('id_asiento');
-            $table->integer('rut_pasajero');
+            $table->integer('rut_pasajero')->nullable();
             $table->enum('clase_asiento', ['Turista', 'Ejecutivo', 'Primera Clase']);
             $table->integer('numero_asiento');
-            $table->string('nombre_pasajero');
+            $table->string('nombre_pasajero')->nullable();
+            $table->integer('precio');
             $table->timestamps();
 
             //Llave Foránea con Vuelo
@@ -26,7 +27,7 @@ class CreateAsientosTable extends Migration
             $table->foreign('id_vuelo')->references('id_vuelo')->on('vuelos')->onDelete('cascade');
 
             //llave foranea reserva
-            $table->integer('id_reserva');
+            $table->integer('id_reserva')->nullable();
             $table->foreign('id_reserva')->references('id_reserva')->on('reservas')->onDelete('cascade');
         });
     }

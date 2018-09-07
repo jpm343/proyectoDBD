@@ -6,7 +6,7 @@
     <link rel="stylesheet" href=/css/personalizado.css>
     <title>Launching.com - Vuelos</title>
 </head>
-<body style="background-color:#E6E6FA;">
+<body>
 
 
 <script>
@@ -78,20 +78,20 @@ function eliminarDestino(id){
             <label>Tramo 1</label>
             <div class="form-inline" role="form" class="form-group">
               <label for="CiudadOrigen1">Ciudad origen: </label>
-              <input type="text" class="form-control" name="origen" placeholder="Ingrese ciudad origen">
+              <input type="text" class="form-control" name="origen1" placeholder="Ingrese ciudad origen">
               <label for="CiudadDestino1">Ciudad destino: </label>
-              <input type="text" class="form-control" name="destino" placeholder="Ingrese Ciudad destino">
+              <input type="text" class="form-control" name="destino1" placeholder="Ingrese Ciudad destino">
             </div>
             <div class="form-inline" class="form-group">
               <label for="ida1">Fecha de ida: </label>
-              <input id="ida1" class="form-control" type="date" name="fechaIda">     
+              <input id="ida1" class="form-control" type="date" name="fechaIda1">     
             </div>
             <label>Tramo 2</label>
             <div class="form-inline" role="form" class="form-group">
               <label for="CiudadOrigen2">Ciudad origen: </label>
-              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
+              <input type="text" class="form-control" name="CiudadO2" placeholder="Ingrese ciudad origen">
               <label for="CiudadDestino2">Ciudad destino: </label>
-              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese ciudad destino">
+              <input type="text" class="form-control" name="CiudadD2" placeholder="Ingrese ciudad destino">
             </div>
             <div class="form-inline" class="form-group">
               <label for="ida2">Fecha de ida: </label>
@@ -101,9 +101,9 @@ function eliminarDestino(id){
               <label>Tramo 3</label>
               <div class="form-inline" role="form" class="form-group">
               <label for="CiudadOrigen3">Ciudad origen: </label>
-              <input type="text" class="form-control" name="CiudadO" placeholder="Ingrese ciudad origen">
+              <input type="text" class="form-control" name="CiudadO3" placeholder="Ingrese ciudad origen">
               <label for="CiudadDestino3">Ciudad destino: </label>
-              <input type="text" class="form-control" name="CiudadD" placeholder="Ingrese ciudad destino">
+              <input type="text" class="form-control" name="CiudadD3" placeholder="Ingrese ciudad destino">
             </div>
             <div class="form-inline" class="form-group">
               <label for="ida3">Fecha de ida: </label>
@@ -114,7 +114,7 @@ function eliminarDestino(id){
             <div class="form-inline">
               <label>Cantidad de adultos</label>
               <select id="cAdulto" name="cAdulto" class="form-control">
-                    <option>1</option>
+                    <option value="1">1</option>
                     <option>2</option>
                     <option>3</option>
                     <option>4</option>
@@ -122,29 +122,29 @@ function eliminarDestino(id){
               </select>
               <label>Cantidad de menores</label>
               <select id="cMenor" name="cMenor" class="form-control">
-                    <option>0</option>
-                    <option>1</option>
+                    <option >0</option>
+                    <option >1</option>
                     <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                    <option >3</option>
+                    <option >4</option>
+                    <option >5</option>
               </select>
             </div>
             <div><label>Clase de boleto </label></div>
             <div class="form-check form-check-inline">      
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="turista" value="turista" checked>
+                <input class="form-check-input" type="radio" name="boleto" id="Turista" value="Turista" checked>
                 Turista
               </label>
               <div class="form-check" >
                 <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="ejecutivo" value="ejecutivo">
+                <input class="form-check-input" type="radio" name="boleto" id="Ejecutivo" value="Ejecutivo">
                 Ejecutivo
               </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="boleto" id="primeraClase" value="primeraClase">
+                <input class="form-check-input" type="radio" name="boleto" id="Primera Clase" value="Primera Clase">
                 Primera clase
               </label>
               </div>
