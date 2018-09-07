@@ -14,7 +14,7 @@
             Cerrar sesión
     </a>
     <img src=/images/usuario.png class="icono">
-    <a class="nav-item nav-link active" href="{{route('mostrar_perfil')}}">{{ Auth::user()->name }}</a>
+    <a class="nav-item nav-link active" href="{{route('mostrar_perfil'  )}}">{{ Auth::user()->name }}</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
     @endguest
     <img src=/images/bolsa-de-la-compra.png class="icono">
@@ -28,7 +28,7 @@
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav mr-auto">
     <img src=/images/hotel.png class="icono"> 
-    <a class="nav-item nav-link active" href="/">Alojamientos</a>
+    <a class="nav-item nav-link active" href="#">Alojamientos</a>
     <img src=/images/transporte-aereo.png class="icono">
     <a class="nav-item nav-link" href="/vuelos">Vuelos</a>
     <img src=/images/auto.png class="icono">
@@ -38,7 +38,7 @@
     <img src=/images/taxi.png class="icono"> 
     <a class="nav-item nav-link active" href="{{route('Traslado.index', 'TrasladoController')}}">Traslados</a>
     <img src=/images/bolsa-de-la-compra.png class="icono">
-    <a class="nav-item nav-link" href="/paquetes">Paquetes</a>
+    <a class="nav-item nav-link" href="#">Paquetes</a>
     <img src=/images/etiqueta.png class="icono">
     <a class="nav-item nav-link" href="#">Promociones</a>
   </div>
