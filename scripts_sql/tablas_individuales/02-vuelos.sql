@@ -7,5 +7,6 @@ CREATE TABLE vuelos (
     aeropuerto_origen   VARCHAR(255),
     aeropuerto_destino  VARCHAR(255),
     pais_origen         VARCHAR(255),
+    pais_destino        VARCHAR(255),
     nombre_aerolinea    VARCHAR(255) REFERENCES aerolineas
 );

@@ -96,10 +96,9 @@ Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 Route::get('/autos', function () {
     return view('autos');
 });
-Route::get('/resultados_autos', function () {
-    return view('resultados_autos');
-});
-Route::post('/autos/buscar', 'AutoController@search');
+Route::post('/buscar_autos', 'AutoController@search');
+
+Route::get('/profile', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 
 Auth::routes();
 
