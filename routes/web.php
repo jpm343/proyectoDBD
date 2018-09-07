@@ -19,6 +19,10 @@ Route::get('actividades', function() {
 	return view('actividades');
 });
 
+Route::get('carrito', function() {
+	return view('carrito');
+});
+
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
