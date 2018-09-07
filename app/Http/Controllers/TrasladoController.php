@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Traslado;
 use Illuminate\Http\Request;
+use DateTime;
 
 class TrasladoController extends Controller
 {
@@ -14,8 +15,8 @@ class TrasladoController extends Controller
      */
     public function index()
     {
-        $traslados = Traslado::orderBy('id_traslado', 'DESC')->paginate();
-        return view("Traslado_view.traslado-index", compact('traslados'));
+        $traslado = new Traslado();
+        return view("Traslado_view.traslado-index", compact('traslado'));
     }
 
     /**
@@ -37,10 +38,11 @@ class TrasladoController extends Controller
     public function store(Request $request)
     {
         $traslado                       = new Traslado;
-        $traslado->fecha_traslado       = $traslado_request->fecha_traslado;
-        $traslado->descripcion_traslado = $traslado_request->descripcion_traslado;
-        $traslado->origen_traslado      = $traslado_request->origen_traslado;
-        $traslado->destino_traslado     = $traslado_request->destino_traslado;
+        $traslado->fecha_traslado       = $request->fecha_traslado;
+        $traslado->descripcion_traslado = $request->descripcion_traslado;
+        $traslado->origen_traslado      = $request->origen_traslado;
+        $traslado->destino_traslado     = $request->destino_traslado;
+        $traslado->cantidad_pasajeros   = $request->cantidad_pasajeros;
         $traslado->precio_traslado      = $traslado_request->precio_traslado;
         $traslado->save();
         return redirect()->route("Traslado.index")->with('info','El traslado fue creado');
@@ -100,5 +102,29 @@ class TrasladoController extends Controller
         $traslado = Traslado::find($id_traslado);
         $traslado->delete();
         return back()->with('info','El traslado ha sido eliminado');
+    }
+
+    public function TrasladoIndexQuery(Request $request)
+    {
+        if($request->sentido_traslado == "De aeropuerto a hotel") // aeroperto a hotel
+        {
+            $traslados = Traslado::orderBy('precio_traslado')->paginate()
+                               ->where('fecha_traslado', '>=', $request->fecha_traslado.' '.$request->hora_traslado.':00')
+                               ->where('origen_traslado', $request->aeropuerto_traslado)
+                               ->where('destino_traslado', $request->hotel_traslado)
+                               ->where('cantidad_pasajeros', '>=', intval($request->cantidad_pasajeros))
+                               ->where('precio_traslado','<=', intval($request->precio_traslado));
+            return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+        }   
+        else
+        {
+            $traslados = Traslado::orderBy('precio_traslado')->paginate()
+                               ->where('fecha_traslado', '>=', $request->fecha_traslado.' '.$request->hora_traslado.':00')
+                               ->where('origen_traslado', $request->hotel_traslado)
+                               ->where('destino_traslado', $request->aeropuerto_traslado)
+                               ->where('cantidad_pasajeros', '>=', intval($request->cantidad_pasajeros))
+                               ->where('precio_traslado','<=', intval($request->precio_traslado));
+            return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+        }
     }
 }

@@ -41,7 +41,7 @@ Route::resource('vuelo', 'VueloController');
 Route::get('/vuelos', 'VueloController@createOrEdit');
 Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
 Route::get('/vuelos_buscar','VueloController@buscarVuelos');
-
+Route::get('/vuelo_detalle/{id}/compra', 'VueloController@reserva');
 
 //*********Rutas para Aerolinea*******//
 Route::resource('aerolinea', 'AerolineaController');
@@ -74,11 +74,16 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 Route::get('/autos/create', 'AutoController@create');
 Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
 
+// rutas para los traslados
+Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
+
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
 
 //********* Rutas para Hotel
 Route::resource('Hotel','HotelController');
+
+Route::resource('Traslado','TrasladoController');
 Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
 
 Route::resource('Habitacion','HabitacionController');
@@ -93,3 +98,8 @@ Route::get('/resultados_autos', function () {
 Route::post('/autos/buscar', 'AutoController@search');
 
 Auth::routes();
+
+Route::get('/paquetes', function () {
+    return view('paquetes');
+});
+Route::post('/buscar_paquete', 'VueloController@buscarPaquetes');
