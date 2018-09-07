@@ -10,13 +10,13 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="./images/prueba1.jpg" width="700" height="400">
+      <img src="/images/prueba1.jpg" width="700" height="400">
     </div>
     <div class="carousel-item">
-      <img src="./images/prueba2.jpg" width="700" height="400">
+      <img src="/images/prueba2.jpg" width="700" height="400">
     </div>
     <div class="carousel-item">
-      <img src="./images/prueba3.jpg" width="700" height="400">
+      <img src="/images/prueba3.jpg" width="700" height="400">
     </div>
   </div>
   
