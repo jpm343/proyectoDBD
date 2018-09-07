@@ -17,7 +17,7 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
     @endguest
     <img src=/images/bolsa-de-la-compra.png class="icono">
-    <a class="nav-item nav-link" href="#">Mis Compras</a>
+    <a class="nav-item nav-link" href="/carrito">Mis Compras</a>
     <img src=/images/info.png class="icono">
     <a class="nav-item nav-link" href="#">Ayuda</a>
   </div>

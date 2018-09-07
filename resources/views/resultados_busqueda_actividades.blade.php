@@ -20,6 +20,7 @@
 						<th>Nombre</th>
 						<th>Ciudad</th>
 						<th>Pais</th>
+						<th>Precio</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -29,6 +30,7 @@
 							<td>{{ $actividad->nombre_actividad }}</td>
 							<td>{{ $actividad->ciudad_actividad }}</td>
 							<td>{{ $actividad->pais_actividad }}</td>
+							<td>${{ $actividad->precio_actividad }} CLP</td>
 						</tr>
 					@endforeach
 				</tbody>

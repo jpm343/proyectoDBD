@@ -34,6 +34,9 @@
       Hora de fin:<br>
       <input type="text" name="hora_fin" value="<?php echo $actividad->hora_fin; ?>" required>
       <br>
+      Precio actividad:<br>
+      <input type="text" name="precio_actividad" value="<?php echo $actividad->precio_actividad; ?>" required>
+      <br>
       <input type="submit" value="Submit">
     </form> 
   </body>
