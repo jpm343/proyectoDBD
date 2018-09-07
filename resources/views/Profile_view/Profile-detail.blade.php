@@ -19,7 +19,7 @@
 	<br/>
 	<h1 align="center"> Detalle de la reserva </h1>
 	<br/>
-	<form>
+	<form action="{{route('mostrar_perfil')}}" method="get">
 		<div class="form-group">
 			<label><strong>ciudad de destino: </strong> Santiago </label>
 		</div>
@@ -34,6 +34,9 @@
 		</div>
 		<div class="form-group">
 			<label><strong>cantidad máxima de pasajeros menores: </strong> 10 </label>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary">Volver</button>
 		</div>
 	</form>
 </div>
