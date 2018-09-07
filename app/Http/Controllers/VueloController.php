@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Asiento;
 use App\Vuelo;
 use Illuminate\Http\Request;
@@ -104,16 +105,43 @@ class VueloController extends Controller
         $cOrigen = $request->origen;
         $cDestino = $request->destino;
         $ida = $request->fechaIda;
+        $cVuelo = $request->viajes;
         $vuelta = $request->fechaVuelta;
         $clase = $request->boleto;
-        $asiento = Asiento::where('clase_asiento','=',$clase)->pluck('id_vuelo');
-       
-        $vuelos = Vuelo::where('ciudad_origen','=',$cOrigen)
-                        ->where('ciudad_destino','=',$cDestino)->where('fecha_salida','=',$ida)->whereIn('id_vuelo',$asiento)->get();
+        $adultos = $request->cAdultos;
+        $menor = $request->cMenor;
+        $tPersonas = $adultos + $menor;
+        
+        //Vuelos entre los destinos en el dia indicado
+        $vuelosIda = Vuelo::where('ciudad_origen','=',$cOrigen)
+                        ->where('ciudad_destino','=',$cDestino)->whereDate('fecha_salida',$ida)->pluck('id_vuelo');
 
 
-        if(count($vuelos) > 0)
-            return view('resultado_busqueda_vuelo')->withDetails($vuelos);
+        $vuelosIdaDisponibles = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosIda)
+                                        ->where('clase_asiento','=',$clase)->groupBy('id_vuelo')
+                                        ->havingRaw('count(*) >= ?', [$tPersonas])
+                                        ->pluck('id_vuelo');
+
+        $vuelosI = vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles)->get();
+
+        
+        if ($ida === "idaVuelta" || $ida === "multidestino" ) {
+            //Vuelos entre los destinos en el dia indicado
+            $vuelosVuelta = Vuelo::where('ciudad_origen','=',$cDestino)
+                            ->where('ciudad_destino','=',$cOrigen)->whereDate('fecha_salida',$vuelta)
+                            ->pluck('id_vuelo');
+
+            $vuelosIdaDisponibles = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosVuelta)
+                                            ->where('clase_asiento','=',$clase)->groupBy('id_vuelo')
+                                            ->havingRaw('count(*) >= ?', [$tPersonas])->pluck('id_vuelo');
+
+            if(count($vuelosIdaDisponibles) > 0 && count($vuelosVueltaDisponibles) > 0)
+                return view('resultado_busqueda_vuelo')->withIda($vuelosI)->withVuelta($vuelosV);
+            return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
+        }
+
+        if(count($vuelosIdaDisponibles) > 0)
+            return view('resultado_busqueda_vuelo')->withIda($vuelosI);
         return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
     }
 
