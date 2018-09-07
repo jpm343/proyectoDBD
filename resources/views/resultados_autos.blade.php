@@ -2,14 +2,13 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href=/css/bootstrap.min.css>
-    <link rel="stylesheet" href=/css/personalizado.css>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/personalizado.css">
     <title>Launching.com</title>
 </head>
 <body>
     @include('navbar.navbar')
     <div class="container">
-        @if (sizeof($autos) > 0)
         <h2 style="margin: 50px 0">Resultados de la consulta</h2>
         <table class="table table-stripped">
             <thead>
@@ -41,14 +40,11 @@
                 @endforeach
             </tbody>
         </table>
-        @else
-        <h2>No hubo resultados para la consulta</h2>
-        @endif
     </div>
 </body>
 
-<script src="./js/jquery-slim.min.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script src="/js/jquery-slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </html>
