@@ -8,6 +8,8 @@ use App\Usuario;
 use App\Reserva;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use Auth;
+
 
 class ActividadController extends Controller
 {
@@ -50,6 +52,7 @@ class ActividadController extends Controller
             'dias_disponibles' => json_decode($request->dias_disponibles),
             'hora_inicio' => $request->hora_inicio,
             'hora_fin' => $request->hora_fin,
+            'precio_actividad' => $request->precio_actividad,
         ]);
         return Actividad::all();
     }
@@ -84,6 +87,7 @@ class ActividadController extends Controller
             'dias_disponibles' => json_decode($request->dias_disponibles),
             'hora_inicio' => $request->hora_inicio,
             'hora_fin' => $request->hora_fin,
+            'precio_actividad' => $request->precio_actividad,
         ]);
         return Actividad::all();
     }
@@ -166,7 +170,8 @@ class ActividadController extends Controller
                             ]);
 
         //no es llegar y guardarla, hay que, desde este punto, simular el proceso de compra.
-        //$reserva->save();
+        $reserva->save();
+        //return Auth::user()->name;
         return Reserva::find($reserva->id_reserva);
     }
 }

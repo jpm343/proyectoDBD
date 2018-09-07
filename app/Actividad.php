@@ -11,7 +11,7 @@ class Actividad extends Model
 
     //atributos que pueden ser escritos en masa
     protected $fillable = [
-        'puntuacion_actividad', 'nombre_actividad', 'descripcion_actividad', 'ciudad_actividad', 'pais_actividad', 'dias_disponibles', 'hora_inicio', 'hora_fin',
+        'puntuacion_actividad', 'nombre_actividad', 'descripcion_actividad', 'ciudad_actividad', 'pais_actividad', 'dias_disponibles', 'hora_inicio', 'hora_fin', 'precio_actividad',
     ];
 
 	//para el arreglo de fechas:
