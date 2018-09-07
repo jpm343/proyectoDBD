@@ -12,4 +12,9 @@ class ProfileController extends Controller
 		$usuario = Auth::user()->id;
 		return view('Profile_view.profile-index', compact('usuario'));
 	}
+
+	public function callDetailReserva()
+	{
+		return view('Profile_view.Profile-detail');
+	}
 }
