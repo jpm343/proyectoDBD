@@ -8,8 +8,8 @@
 </head>
 
 <body>
-    @include('navbar.navbar')
     <div class="container">
+        @include('navbar.navbar')
         <div class="row">
             <div class="col-md-6 offset-md-4">
                 <h2>Registrarse</h2>

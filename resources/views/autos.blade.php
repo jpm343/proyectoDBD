@@ -7,13 +7,13 @@
     <title>Launching.com</title>
 </head>
 <body>
-    @include('navbar.navbar')
     <div class="container">
+        @include('navbar.navbar')
         <div class="row align-items-center">
-            <div class="dos-columnas col-8" align="left">
+            <div class="col-8">
                 @include('carousel.carousel')
             </div>
-            <div class="dos-columnas col-md-4 col-sm-12 formulario">
+            <div class="col-4">
                 <form action="/buscar_autos" method="post">
                     @csrf
                     <div class="form-group">
@@ -29,18 +29,16 @@
                     <div class="row">
                         <div class="form-group col-6">
                             <label for="fecha_inicio">Fecha de arriendo</label>
-                            <input type="text" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
+                            <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
                         </div>
 
                         <div class="form-group col-6">
                             <label for="fecha_fin">Fecha de devolución</label>
-                            <input type="text" class="form-control" name="fecha_fin" id="fecha_fin" required>
+                            <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" required>
                         </div>
                     </div>
 
-                    <div style="float:right col-6">
-                        <button type="submit" class="btn btn-default">Buscar</button>
-                    </div>
+                    <button type="submit" class="btn btn-default">Buscar</button>
                 </form>
             </div>
         </div>

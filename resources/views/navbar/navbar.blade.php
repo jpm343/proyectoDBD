@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-<a class="navbar-brand" href="#">Navbar</a>
+<a class="navbar-brand" href="#">Launching.com</a>
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -19,13 +19,11 @@
     @endguest
     <img src=/images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link" href="/carrito">Mis Compras</a>
-    <img src=/images/info.png class="icono">
-    <a class="nav-item nav-link" href="#">Ayuda</a>
   </div>
 </nav>
 
 <nav class="navbar navbar-expand-lg navbar-light">
-<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+<div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="margin-bottom:50px;">
   <div class="navbar-nav mr-auto">
     <img src=/images/hotel.png class="icono"> 
     <a class="nav-item nav-link active" href="/">Alojamientos</a>
@@ -39,8 +37,6 @@
     <a class="nav-item nav-link active" href="{{route('Traslado.index', 'TrasladoController')}}">Traslados</a>
     <img src=/images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link" href="/paquetes">Paquetes</a>
-    <img src=/images/etiqueta.png class="icono">
-    <a class="nav-item nav-link" href="#">Promociones</a>
   </div>
 </div>
 </nav>

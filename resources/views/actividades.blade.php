@@ -7,24 +7,29 @@
     <title>Reserva actividades</title>
 </head>
 <body>
-	@csrf
-	@include('navbar.navbar')
-	<div class="row align-items-center">
-		<div class="col-lg-9 xs-12">
-			@include('carousel.carousel')
-		</div>
-		
-			<form action="/actividades_search" method="get">
-				<div class="form-row">
-				    <div class="col md-12 mb-3">
-					    <label for="ciudadDestino">Destino </label>
-					    <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" placeholder="Ciudad" required>
-					    <br>
-					    <button class="btn btn-primary" type="submit">Buscar</button>
-				    </div>
-				</div>
-			</form>
-
-	</div>
+    <div class="container">
+        @include('navbar.navbar')
+        <div class="row align-items-center">
+            <div class="col-8">
+                @include('carousel.carousel')
+            </div>
+            <div class="col-4">
+                <form action="/actividades_search" method="get">
+                @csrf
+                    <div class="col md-12-3">
+                        <label for="ciudadDestino">Destino </label>
+                        <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" placeholder="Ciudad" required>
+                        <br>
+                        <button class="btn btn-default" type="submit">Buscar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
+
+<script src="/js/jquery-slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 </html>
