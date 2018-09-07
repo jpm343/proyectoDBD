@@ -7,7 +7,6 @@
     <title>Launching.com</title>
 </head>
 <body>
-
    @include('navbar.navbar')
 <div>
 	<div style="float: left;">
@@ -36,11 +35,8 @@
         </form>
 	</div>
 </div>
-
 </body>
-
 <script src="./js/jquery-slim.min.js"></script>
 <script src="./js/popper.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-
 </html>

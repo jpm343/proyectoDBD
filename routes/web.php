@@ -19,6 +19,10 @@ Route::get('actividades', function() {
 	return view('actividades');
 });
 
+Route::get('carrito', function() {
+	return view('carrito');
+});
+
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
@@ -56,6 +60,7 @@ Route::post('/actividads/{id}','ActividadController@update');
 Route::post('/actividads_post', 'ActividadController@storeOrUpdate')->name('formulario_actividad');
 Route::get('/actividades_search', 'ActividadController@buscarActividades');
 Route::get('/actividades_details/{id}', 'ActividadController@detalleActividades');
+Route::get('/actividades_details/{id}/compra', 'ActividadController@agregarReservaActividad');
 //*********Rutas para Registro*******//
 Route::resource('registro', 'RegistroController');
 Route::get('/registros', 'RegistroController@createOrEdit');
@@ -69,11 +74,16 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 Route::get('/autos/create', 'AutoController@create');
 Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
 
+// rutas para los traslados
+Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
+
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
 
 //********* Rutas para Hotel
 Route::resource('Hotel','HotelController');
+
+Route::resource('Traslado','TrasladoController');
 Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
 
 Route::resource('Habitacion','HabitacionController');

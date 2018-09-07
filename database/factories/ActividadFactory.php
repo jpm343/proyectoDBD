@@ -19,5 +19,6 @@ $factory->define(App\Actividad::class, function (Faker $faker) {
         'dias_disponibles' => $a1,
         'hora_inicio' => $faker->time,
         'hora_fin' => $faker->time,
+        'precio_actividad' => $faker->randomNumber(),
     ];
 });
