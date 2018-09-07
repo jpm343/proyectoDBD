@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="stylesheet" href=/css/bootstrap.min.css>
-    <link rel="stylesheet" href=/css/personalizado.css>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/personalizado.css">
     <title>Launching.com</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
                 @include('carousel.carousel')
             </div>
             <div class="dos-columnas col-md-4 col-sm-12 formulario">
-                <form action="/autos/buscar" method="post">
+                <form action="/buscar_autos" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="ciudad_inicio">Lugar de entrega</label>
@@ -47,8 +47,8 @@
     </div>
 </body>
 
-<script src="./js/jquery-slim.min.js"></script>
-<script src="./js/popper.min.js"></script>
-<script src="./js/bootstrap.min.js"></script>
+<script src="/js/jquery-slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </html>
