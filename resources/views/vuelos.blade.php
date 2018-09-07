@@ -29,8 +29,6 @@ function eliminarDestino(id){
 </script>
    @include('navbar.navbar')
 <div>
-  <br/>
-  <center><h2>Encuentra tu vuelo</h2></center>
   <div class="row">
     <div class="col-5">
       @include('carousel.carousel')
@@ -38,9 +36,8 @@ function eliminarDestino(id){
     <div>
       <div class="col">
         @csrf
-        <br/> 
-        <br/> 
         <form action="/vuelos_buscar" method="get">
+          <center><h2>Encuentra tu vuelo</h2></center>
           <div class="form-check form-check-inline">
             <label class="form-check-label">
               <input class="form-check-input" type="radio" name="viajes" id="idaVuelta" value="idaVuelta" onclick="habilitar('soloIda','vuelta'),agregarDestino('destinoUnico'),eliminarDestino('multiDestino')" checked="true"> Ida y vuelta

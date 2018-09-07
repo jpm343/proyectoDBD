@@ -4,5 +4,6 @@ CREATE TABLE traslados (
     descripcion_traslado    TEXT,
     origen_traslado         VARCHAR(255),
     destino_traslado        VARCHAR(255),
-    precio_traslado         INTEGER
+    precio_traslado         INTEGER,
+    id_reserva              INTEGER REFERENCES reservas
 );

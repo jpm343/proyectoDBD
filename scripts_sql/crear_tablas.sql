@@ -1,9 +1,15 @@
+BEGIN;
+
 CREATE TABLE actividades (
     id_actividad            SERIAL PRIMARY KEY,
     puntuacion_actividad    FLOAT(1),
+    nombre_actividad        VARCHAR(255) UNIQUE,
     descripcion_actividad   TEXT,
     ciudad_actividad        VARCHAR(255),
-    pais_actividad          VARCHAR(255)
+    pais_actividad          VARCHAR(255),
+    dias_disponibles        DATE[],
+    hora_inicio             TIME,
+    hora_fin                TIME
 );
 
 CREATE TABLE aerolineas (
@@ -21,6 +27,7 @@ CREATE TABLE vuelos (
     aeropuerto_origen   VARCHAR(255),
     aeropuerto_destino  VARCHAR(255),
     pais_origen         VARCHAR(255),
+    pais_destino        VARCHAR(255),
     nombre_aerolinea    VARCHAR(255) REFERENCES aerolineas
 );
 
@@ -33,12 +40,13 @@ CREATE TABLE companias_autos (
 CREATE TABLE usuarios (
     id_usuario          SERIAL PRIMARY KEY,
     correo_usuario      VARCHAR(255) UNIQUE,
-    nombre_usuario      VARCHAR(255),
+    nombre_usuario      VARCHAR(255) UNIQUE,
     password_usuario    VARCHAR(255)
 );
 
 CREATE TABLE fondos (
-    cuenta_origen   VARCHAR(255) PRIMARY KEY,
+    id_fondos       SERIAL PRIMARY KEY,
+    cuenta_origen   VARCHAR(255),
     monto_actual    INTEGER,
     banco_origen    VARCHAR(255),
     id_usuario      INTEGER REFERENCES usuarios
@@ -46,10 +54,22 @@ CREATE TABLE fondos (
 
 CREATE TABLE hoteles (
     id_hotel            SERIAL PRIMARY KEY,
+    nombre_hotel        VARCHAR(255) UNIQUE,
     puntuacion_hotel    FLOAT(1),
     descripcion_hotel   TEXT,
     direccion_hotel     VARCHAR(255),
     ciudad_hotel        VARCHAR(255)
+);
+
+CREATE TABLE reservas (
+    id_reserva          SERIAL PRIMARY KEY,
+    cantidad_menores    INTEGER,
+    cantidad_mayores    INTEGER,
+    ciudad_destino      VARCHAR(255),
+    fecha_inicio        DATE,
+    fecha_fin           DATE,
+    id_usuario          INTEGER REFERENCES usuarios,
+    id_actividad        INTEGER REFERENCES actividades NULL
 );
 
 CREATE TABLE traslados (
@@ -58,16 +78,8 @@ CREATE TABLE traslados (
     descripcion_traslado    TEXT,
     origen_traslado         VARCHAR(255),
     destino_traslado        VARCHAR(255),
-    precio_traslado         INTEGER
-);
-
-CREATE TABLE reservas (
-    id_reserva          SERIAL PRIMARY KEY,
-    cantidad_menores    INTEGER,
-    cantidad_mayores    INTEGER,
-    id_usuario          INTEGER REFERENCES usuarios,
-    id_actividad        INTEGER REFERENCES actividades,
-    id_traslado         INTEGER REFERENCES traslados
+    precio_traslado         INTEGER,
+    id_reserva              INTEGER REFERENCES reservas
 );
 
 CREATE TABLE habitaciones (
@@ -89,20 +101,21 @@ CREATE TABLE asientos (
     id_reserva          INTEGER REFERENCES reservas NULL
 );
 
+CREATE TYPE transmision AS ENUM ('A', 'M');
 CREATE TABLE autos (
     patente_auto        VARCHAR(255) PRIMARY KEY,
     modelo_auto         VARCHAR(255),
     capacidad_auto      INTEGER,
-    precio_diario       INTEGER,
+    precio_dia_auto     INTEGER,
     descripcion_auto    TEXT,
-    transmision_auto    VARCHAR(255),
+    transmision_auto    transmision,
     nombre_compania     VARCHAR(255) REFERENCES companias_autos
 );
 
 CREATE TABLE roles (
     id_rol      SERIAL PRIMARY KEY,
-    sigla_rol   VARCHAR(255),
-    nombre_rol  VARCHAR(255)
+    nombre_rol  VARCHAR(255) UNIQUE,
+    descripcion VARCHAR(255)
 );
 
 CREATE TABLE usuarios_roles (
@@ -118,15 +131,15 @@ CREATE TABLE registros (
     id_usuario          INTEGER REFERENCES usuarios
 );
 
-CREATE TABLE registro_consultas (
-    id_auditoria                    SERIAL PRIMARY KEY,
-    cantidad_personas_consultada    INTEGER,
-    tipo_consulta                   VARCHAR(255),
-    fecha_partida_consultada        TIMESTAMP,
-    ciudad_origen_consultada        VARCHAR(255),
-    ciudad_destino_consultada       VARCHAR(255),
-    fecha_regreso_consultada        TIMESTAMP,
-    id_usuario                      INTEGER REFERENCES usuarios
+CREATE TYPE accion AS ENUM ('C', 'R', 'U', 'D');
+CREATE TABLE auditoria (
+    id_accion           SERIAL PRIMARY KEY,
+    accion_realizada    accion,
+    tiempo_accion       TIMESTAMP,
+    tabla_modificada    VARCHAR(255),
+    id_modificado       VARCHAR(255),
+    estado_anterior     JSONB,
+    estado_actual       JSONB
 );
 
 CREATE TABLE reservas_autos (
@@ -138,3 +151,5 @@ CREATE TABLE reservas_habitaciones (
     id_reserva      INTEGER REFERENCES reservas,
     id_habitacion   INTEGER REFERENCES habitaciones
 );
+
+COMMIT;
