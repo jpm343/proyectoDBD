@@ -12,10 +12,13 @@ class Traslado extends Model
         'descripcion_traslado', 
         'origen_traslado',
         'destino_traslado',
+        'cantidad_pasajeros',
         'precio_traslado',
         'id_reserva',
     ];
 
+    // variables para el request de index
+    
     //un traslado corresponde a una reserva
     public function reserva()
     {
