@@ -88,6 +88,10 @@ Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
 
 Route::resource('Habitacion','HabitacionController');
 Route::resource('Traslado','TrasladoController');
+Route::get('/alojamientos_detail', function (){
+	return view('alojamientos_detail');
+});
+Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 
 Route::get('/autos', function () {
     return view('autos');

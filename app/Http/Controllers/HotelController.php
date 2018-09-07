@@ -107,9 +107,12 @@ class HotelController extends Controller
 
     public function buscarAlojamientos(Request $request){
         $hoteles = Hotel::where('ciudad_hotel', 'like', "%".$request->destino."%")->pluck('id_hotel');
-        $habitaciones = Habitacion::where('id_hotel', '=', $hoteles[0])->pluck('id_habitacion');
-        for ($i= 1; $i < sizeof($hoteles)  ; $i++) { 
-            $habitaciones = $habitaciones . Habitacion::where('id_hotel', '=', $hoteles[i])->pluck('id_habitacion');
+        $habitaciones = array();
+        for ($i= 0; $i < sizeof($hoteles)  ; $i++) { 
+            $auxiliar = Habitacion::where('id_hotel', '=', $hoteles[$i])->pluck('id_habitacion')->toArray();
+            foreach ($auxiliar as $a) {
+                array_push($habitaciones, $a);
+            }
         }
         $reservasAsociadas = DB::table('habitacion_reserva')->where('id_habitacion', '=', $habitaciones[0])->pluck('id_reserva')->toArray();
         for ($i = 1; $i < sizeof($habitaciones); $i++) {
@@ -169,5 +172,11 @@ class HotelController extends Controller
             array_push($hotelesFinal, Hotel::find($hotelPorHabitacion));
         }
         return view('resultados_busqueda_alojamientos', compact('Arreglo'))->withDetails($hotelesFinal);
+    }
+
+    public function detalleAlojamiento($id){
+        $hotel = Hotel::find($id);
+        $habitaciones = Habitacion::where('id_hotel', '=', $id)->get();
+        return view('alojamientos_detail', compact('hotel'))->withDetails($habitaciones);
     }
 }
