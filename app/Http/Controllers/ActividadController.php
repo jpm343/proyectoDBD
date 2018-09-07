@@ -160,18 +160,27 @@ class ActividadController extends Controller
         }
 
         $actividad = Actividad::find($id);
-        $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
-                                'cantidad_mayores' => $request->cantidad_adultos,
-                                'ciudad_destino'   => $actividad->ciudad_actividad,
-                                'fecha_inicio'     => $request->fecha_reserva,
-                                'fecha_fin'        => $request->fecha_reserva,
-                                'id_usuario'       => 20,//por ahora en bruto, esto deberia llegar del user
-                                'id_actividad'     => $id,
-                            ]);
+
+        if($user = Auth::user())
+        {
+            $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
+                                    'cantidad_mayores' => $request->cantidad_adultos,
+                                    'ciudad_destino'   => $actividad->ciudad_actividad,
+                                    'fecha_inicio'     => $request->fecha_reserva,
+                                    'fecha_fin'        => $request->fecha_reserva,
+                                    'id_usuario'       => Auth::id(),
+                                    'id_actividad'     => $id,
+                                   ]);
+
+            //$fondos_usuario = Auth::user()->fondos;
+            $reserva->save();
+            return Reserva::find($reserva->id_reserva);
+        }
 
         //no es llegar y guardarla, hay que, desde este punto, simular el proceso de compra.
-        $reserva->save();
+        
         //return Auth::user()->name;
-        return Reserva::find($reserva->id_reserva);
+        
+
     }
 }
