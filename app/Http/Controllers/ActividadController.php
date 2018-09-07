@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Actividad;
+use App\Usuario;
+use App\Reserva;
 use Illuminate\Support\Facades\DB;
+use Validator;
 
 class ActividadController extends Controller
 {
@@ -116,7 +119,54 @@ class ActividadController extends Controller
 
     public function detalleActividades($id)
     {
+        $arreglo_dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sábado", "Domingo"];
         $actividad = Actividad::find($id);
-        return view('actividades_detail')->withDetails($actividad);
+        $intervalo_dias = $actividad->dias_disponibles;
+        $dia_desde = $arreglo_dias[$intervalo_dias[0]];
+        $dia_hasta = $arreglo_dias[end($intervalo_dias)];
+
+        if($dia_hasta != $dia_desde)
+        {
+            return view('actividades_detail')->withDetails($actividad)
+                                             ->withDesde($dia_desde)
+                                             ->withHasta($dia_hasta);
+        }
+        else
+        {
+            return view('actividades_detail')->withDetails($actividad)
+                                             ->withUnicodia($dia_desde);
+        }
+        
+    }
+
+    public function agregarReservaActividad(Request $request, $id)
+    {
+        //validacion
+        $validator = Validator::make($request->all(), [
+            'fecha_reserva' => 'required|date|after:today',
+            'cantidad_ninos' => 'digits_between:0,10',
+            'cantidad_adultos' => 'digits_between:1,10',
+        ]);
+
+        if($validator->fails())
+        {
+            return redirect()->back()
+                             ->withErrors($validator)
+                             ->withInput();//falta notificar este error en la vista
+        }
+
+        $actividad = Actividad::find($id);
+        $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
+                                'cantidad_mayores' => $request->cantidad_adultos,
+                                'ciudad_destino'   => $actividad->ciudad_actividad,
+                                'fecha_inicio'     => $request->fecha_reserva,
+                                'fecha_fin'        => $request->fecha_reserva,
+                                'id_usuario'       => 20,//por ahora en bruto, esto deberia llegar del user
+                                'id_actividad'     => $id,
+                            ]);
+
+        //no es llegar y guardarla, hay que, desde este punto, simular el proceso de compra.
+        //$reserva->save();
+        return Reserva::find($reserva->id_reserva);
     }
 }

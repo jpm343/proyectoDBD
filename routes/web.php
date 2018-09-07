@@ -36,6 +36,9 @@ Route::post('/registroConsultas_post', 'Registro_consultaController@storeOrUpdat
 Route::resource('vuelo', 'VueloController');
 Route::get('/vuelos', 'VueloController@createOrEdit');
 Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
+Route::get('/vuelos_buscar','VueloController@buscarVuelos');
+
+
 //*********Rutas para Aerolinea*******//
 Route::resource('aerolinea', 'AerolineaController');
 Route::get('/aerolineas', 'AerolineaController@createOrEdit');
@@ -53,6 +56,7 @@ Route::post('/actividads/{id}','ActividadController@update');
 Route::post('/actividads_post', 'ActividadController@storeOrUpdate')->name('formulario_actividad');
 Route::get('/actividades_search', 'ActividadController@buscarActividades');
 Route::get('/actividades_details/{id}', 'ActividadController@detalleActividades');
+Route::get('/actividades_details/{id}/compra', 'ActividadController@agregarReservaActividad');
 //*********Rutas para Registro*******//
 Route::resource('registro', 'RegistroController');
 Route::get('/registros', 'RegistroController@createOrEdit');
@@ -72,15 +76,21 @@ Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('T
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
 
-/*
-Route::get('Habitacion','HabitacionController@index');
-Route::get('Habitacion','HabitacionController@create');
-Route::post('Habitacion','HabitacionController@store');
-Route::get('Habitacion/{id}','HabitacionController@show');
-Route::get('Habitacion/edit/{id}','HabitacionController@edit');
-Route::post('Habitacion/{id}','HabitacionController@update');
-Route::post('Habitacion/destroy/{id}','HabitacionController@destroy');
-*/
-Route::resource('Habitacion','HabitacionController');
+//********* Rutas para Hotel
 Route::resource('Hotel','HotelController');
+
 Route::resource('Traslado','TrasladoController');
+Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
+
+Route::resource('Habitacion','HabitacionController');
+Route::resource('Traslado','TrasladoController');
+
+Route::get('/autos', function () {
+    return view('autos');
+});
+Route::get('/resultados_autos', function () {
+    return view('resultados_autos');
+});
+Route::post('/autos/buscar', 'AutoController@search');
+
+Auth::routes();

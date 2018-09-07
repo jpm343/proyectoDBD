@@ -24,7 +24,7 @@ class CreateReservasTable extends Migration
 
             //llave foranea usuario
             $table->integer('id_usuario');
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');
 
             //llave foranea actividad
             $table->integer('id_actividad')->nullable();//una reserva puede no tener una actividad asociada

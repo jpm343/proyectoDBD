@@ -13,11 +13,14 @@ class DatabaseSeeder extends Seeder
     {
 
         //corre los seeder de las tablas
+        $this->call(AerolineasTableSeeder::class);
+        $this->call(VuelosTableSeeder::class);
         $this->call(RolsTableSeeder::class);
-        $this->call(UsuariosTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(RegistroConsultasTableSeeder::class);
     	$this->call(ActividadsTableSeeder::class);
         $this->call(ReservaTableSeeder::class);
+        $this->call(AsientosTableSeeder::class);
     	$this->call(CompaniaAutosTableSeeder::class);
     	$this->call(AutosTableSeeder::class);
 
