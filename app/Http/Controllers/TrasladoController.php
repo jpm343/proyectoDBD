@@ -106,15 +106,25 @@ class TrasladoController extends Controller
 
     public function TrasladoIndexQuery(Request $request)
     {
-        $fechaTraslado_str = str_finish($request->fecha_traslado, ' ');
-        $fechaTraslado_str = str_finish($fechaTraslado_str, $request->hora_traslado);
-        $traslados = Traslado::orderBy('precio_traslado')->paginate()
+        if($request->sentido_traslado == "De aeropuerto a hotel") // aeroperto a hotel
+        {
+            $traslados = Traslado::orderBy('precio_traslado')->paginate()
                                ->where('fecha_traslado', '>=', $request->fecha_traslado.' '.$request->hora_traslado.':00')
-                               ->where('origen_traslado', $request->origen_traslado)
-                               ->where('destino_traslado', $request->destino_traslado)
+                               ->where('origen_traslado', $request->aeropuerto_traslado)
+                               ->where('destino_traslado', $request->hotel_traslado)
                                ->where('cantidad_pasajeros', '>=', intval($request->cantidad_pasajeros))
                                ->where('precio_traslado','<=', intval($request->precio_traslado));
-
-        return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+            return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+        }   
+        else
+        {
+            $traslados = Traslado::orderBy('precio_traslado')->paginate()
+                               ->where('fecha_traslado', '>=', $request->fecha_traslado.' '.$request->hora_traslado.':00')
+                               ->where('origen_traslado', $request->hotel_traslado)
+                               ->where('destino_traslado', $request->aeropuerto_traslado)
+                               ->where('cantidad_pasajeros', '>=', intval($request->cantidad_pasajeros))
+                               ->where('precio_traslado','<=', intval($request->precio_traslado));
+            return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+        }
     }
 }

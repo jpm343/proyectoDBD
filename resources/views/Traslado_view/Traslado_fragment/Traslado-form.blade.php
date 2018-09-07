@@ -1,8 +1,7 @@
 <div class = "form-group">
-	{!! Form::label('fecha_traslado', 'Fecha del traslado ') !!}
-	{!! Form::date('fecha_traslado', \Carbon\Carbon::now()) !!}
+	<label>Nombre:</label>
+	<input type="text" class="form-control" name="nombre_persona_traslado">
 </div>
-
 <div class = "form-group">
 	{!! Form::label('descripcion_traslado', 'Descripción del traslado') !!}
 	{!! Form::textarea('descripcion_traslado', $value=null, $attributes=['class' => 'form-control']) !!}
