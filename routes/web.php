@@ -41,7 +41,7 @@ Route::resource('vuelo', 'VueloController');
 Route::get('/vuelos', 'VueloController@createOrEdit');
 Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
 Route::get('/vuelos_buscar','VueloController@buscarVuelos');
-
+Route::get('/vuelo_detalle/{id}/compra', 'VueloController@reserva');
 
 //*********Rutas para Aerolinea*******//
 Route::resource('aerolinea', 'AerolineaController');

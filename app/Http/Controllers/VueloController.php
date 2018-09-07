@@ -122,21 +122,23 @@ class VueloController extends Controller
                                         ->havingRaw('count(*) >= ?', [$tPersonas])
                                         ->pluck('id_vuelo');
 
-        $vuelosI = vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles)->get();
+        $vuelosI = Vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles)->get();
 
         
-        if ($ida === "idaVuelta" || $ida === "multidestino" ) {
+        if ($cVuelo === "idaVuelta" || $cVuelo === "multidestino" ) {
             //Vuelos entre los destinos en el dia indicado
             $vuelosVuelta = Vuelo::where('ciudad_origen','=',$cDestino)
                             ->where('ciudad_destino','=',$cOrigen)->whereDate('fecha_salida',$vuelta)
                             ->pluck('id_vuelo');
 
-            $vuelosIdaDisponibles = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosVuelta)
+            $vuelosVueltaDisponibles = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosVuelta)
                                             ->where('clase_asiento','=',$clase)->groupBy('id_vuelo')
                                             ->havingRaw('count(*) >= ?', [$tPersonas])->pluck('id_vuelo');
 
+            $vuelosV = Vuelo::whereIn('id_vuelo',$vuelosVueltaDisponibles)->get();
+
             if(count($vuelosIdaDisponibles) > 0 && count($vuelosVueltaDisponibles) > 0)
-                return view('resultado_busqueda_vuelo')->withIda($vuelosI)->withVuelta($vuelosV);
+                return view('resultado_busqueda_vuelo')->withIda($vuelosI)->withVuelta($vuelosV)->withDestino($Vuelo);
             return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
         }
 
@@ -145,5 +147,8 @@ class VueloController extends Controller
         return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
     }
 
+    public function reserva(Request  $request){
+        
+    }
 
 }
