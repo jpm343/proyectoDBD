@@ -3,8 +3,7 @@
 @section('titulo', 'Perfil de usuario')
 
 @section('contenido')
-    <img src=/images/usuario.png alt="VALE POR UN USUARIO." width="200" height="200" align="center">
-    <br/>
+    <img src=/images/usuario.png alt="VALE POR UN USUARIO." width="100" height="100" align="center">
     <br/>
     <div align="center">
         <label align="center"><strong>Nombre: </strong>{{ Auth::user()->name }}</label>
@@ -25,7 +24,7 @@
                 <td align="center">{{ Auth::user()-> email}}</td>
                 <td align="center">{{ Auth::user()-> name}}</td>
                 <td align="center">
-                    <a href="{{route('Traslado.index', 'TrasadoController')}}" class="btn btn-link" > ver detalles</a> 
+                    <a href="{{route('detalle_reserva')}}" class="btn btn-link" > Detalles</a> 
                 </td>
             </tr>
         </tbody>
