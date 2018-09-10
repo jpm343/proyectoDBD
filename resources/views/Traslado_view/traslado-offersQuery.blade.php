@@ -5,6 +5,8 @@
 @section('contenido')
     <table class="table table-hover table-striped">
         <thead align="center">
+            <br/>
+            <br/>
             <th > Fecha y hora </th>
             <th > Origen </th>
             <th > Destino </th>
