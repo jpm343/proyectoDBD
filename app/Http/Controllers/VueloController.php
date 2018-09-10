@@ -306,5 +306,5 @@ class VueloController extends Controller
             return view('resultados_paquete')->with('vuelos', $vuelos)
                 ->with('hoteles', $hoteles);
         }
-
+    }
 }
