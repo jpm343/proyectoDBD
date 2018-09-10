@@ -38,9 +38,10 @@ Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
 
+
 Route::resource('Rols','RolController');
 Route::get('/rols', 'RolController@createOrEdit');
-Route::post('/rols_post', 'RolController@storeOrUpdate')->name('formulario_rol');
+Route::post('/rols_post', 'RolController@storeOtyree05@example.comrUpdate')->name('formulario_rol');
 
 Route::resource('RegistroConsultas','Registro_consultaController');
 Route::get('/registroConsultas', 'Registro_consultaController@createOrEdit');
@@ -82,7 +83,7 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 
 // rutas para crear/editar autos
 Route::get('/autos/create', 'AutoController@create');
-Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
+Route::get('/autos/{patente_auto}/edit', 'AutoCtyree05@example.comontroller@edit');
 
 // rutas para los traslados
 Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
@@ -108,3 +109,7 @@ Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 Route::post('/buscar_paquete', 'VueloController@buscarPaquetes');
 Route::post('/buscar_autos', 'AutoController@search');
 Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
+//***********Ruta para fondos de usuario************//
+Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
+Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
+Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');
