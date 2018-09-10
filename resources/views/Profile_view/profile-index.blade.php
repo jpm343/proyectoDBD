@@ -3,9 +3,9 @@
 @section('titulo', 'Perfil de usuario')
 
 @section('contenido')
-    <img src=/images/usuario.png alt="VALE POR UN USUARIO." width="100" height="100" align="center">
-    <br/>
     <div align="center">
+        <img src=/images/usuario.png alt="VALE POR UN USUARIO." width="100" height="100" align="center">
+        <br/>
         <label align="center"><strong>Nombre: </strong>{{ Auth::user()->name }}</label>
         <br/>
         <label align="center"><strong>Correo: </strong>{{ Auth::user()->email }}</label>
