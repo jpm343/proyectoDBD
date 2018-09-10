@@ -5,11 +5,10 @@
 @section('formulario')
     <form action="/actividades_search" method="get">
     @csrf
-        <div class="col md-12-3">
-            <label for="ciudadDestino">Destino </label>
-            <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" placeholder="Ciudad" required>
-            <br>
-            <button class="btn btn-default" type="submit">Buscar</button>
+        <div class="form-group">
+            <label for="ciudadDestino">Ciudad de destino</label>
+            <input type="text" name="ciudad_destino" class="form-control" id="ciudadDestino" required>
         </div>
+        <button class="btn btn-default" type="submit">Buscar</button>
     </form>
 @endsection

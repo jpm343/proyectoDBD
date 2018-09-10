@@ -6,12 +6,12 @@
     <form action="/buscar_autos" method="post">
         @csrf
         <div class="form-group">
-            <label for="ciudad_inicio">Lugar de entrega</label>
+            <label for="ciudad_inicio">Ciudad de arriendo</label>
             <input type="text" class="form-control" name="ciudad_inicio" id="ciudad_inicio" required>
         </div>
 
         <div class="form-group">
-            <label for="ciudad_fin">Lugar de devolución</label>
+            <label for="ciudad_fin">Ciudad de devolución</label>
             <input type="text" class="form-control" name="ciudad_fin" id="ciudad_fin" required>
         </div>
 
