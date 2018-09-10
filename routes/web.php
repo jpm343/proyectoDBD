@@ -11,17 +11,28 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/alojamientos');
 });
 
-Route::get('actividades', function() {
-	return view('actividades');
-});
+function return_view($view) {
+    return function () use ($view) {
+        return view($view);
+    };
+}
 
-Route::get('carrito', function() {
-	return view('carrito');
-});
+Route::get('/carrito', return_view('carrito'));
+Route::get('/alojamientos', return_view('welcome'));
+Route::get('/actividades', return_view('actividades'));
+Route::get('/autos', return_view('autos'));
+Route::get('/traslados', return_view('Traslado_view.traslado-index'));
+Route::get('/paquetes', return_view('paquetes'));
+
+
+
+
 
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
@@ -30,7 +41,6 @@ Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formular
 Route::resource('Rols','RolController');
 Route::get('/rols', 'RolController@createOrEdit');
 Route::post('/rols_post', 'RolController@storeOrUpdate')->name('formulario_rol');
-
 
 Route::resource('RegistroConsultas','Registro_consultaController');
 Route::get('/registroConsultas', 'Registro_consultaController@createOrEdit');
@@ -95,11 +105,6 @@ Route::get('/alojamientos_detail', function (){
 });
 Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 
-Route::get('/autos', function () {
-    return view('autos');
-});
+Route::post('/buscar_paquete', 'VueloController@buscarPaquetes');
 Route::post('/buscar_autos', 'AutoController@search');
-
-Route::get('/profile', 'ProfileController@showUserProfile')->name('mostrar_perfil');
-
-Auth::routes();
+Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
