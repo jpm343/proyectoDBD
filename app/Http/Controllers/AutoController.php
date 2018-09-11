@@ -71,9 +71,19 @@ class AutoController extends Controller
         // lista de compañías que sirven en ambas ciudades
         $companias = array();
         foreach (CompaniaAuto::all() as $compania) {
-            if (in_array($ciudad_inicio, $compania->ciudades_de_atencion) AND
-                in_array($ciudad_fin, $compania->ciudades_de_atencion)) {
+            $en_ciudad_inicio = false;
+            $en_ciudad_fin = false;
+            foreach ($compania->ciudades_de_atencion as $ciudad_atencion) {
+                if (strpos($ciudad_atencion, $ciudad_inicio) !== false) {
+                    $en_ciudad_inicio = true;
+                }
+                if (strpos($ciudad_atencion, $ciudad_fin) !== false) {
+                    $en_ciudad_fin = true;
+                }
+                if ($en_ciudad_inicio AND $en_ciudad_fin) {
                     $companias[] = $compania->nombre_compania;
+                    break;
+                }
             }
         }
 
@@ -97,6 +107,8 @@ class AutoController extends Controller
             ->get();
 
         // presentar los autos disponibles en una tabla
-        return view('resultados_autos')->with('autos', $autos);
+        return view('resultados_autos')
+            ->with('autos', $autos)
+            ->with('request', $request);
     }
 }

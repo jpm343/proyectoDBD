@@ -3,7 +3,7 @@
 @section('titulo', 'Paquetes')
 
 @section('formulario')
-    <form action="/buscar_paquete" method="post">
+    <form action="/buscar_paquetes" method="post">
         @csrf
         <div class="form-group row">
             <label class="col-6" style="text-align:right">
