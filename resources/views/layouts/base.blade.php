@@ -16,7 +16,7 @@
             }
 
             body {
-                background-color: #faf3dd;
+                background-color: #fffbef;
             }
 
             .container input[type=submit], .container button {
