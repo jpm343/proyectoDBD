@@ -30,6 +30,17 @@
             .content {
                 padding-bottom: 25vh;
             }
+
+            .formulario {
+                padding: 15px;
+                border: 1px solid #ced4da;
+                border-radius: .375rem;
+            }
+
+            .formulario .form-control:focus {
+                border-color: #74b4af;
+                box-shadow: 0 0 0 .2rem #04998d4d;
+            }
         </style>
     </head>
     <body>

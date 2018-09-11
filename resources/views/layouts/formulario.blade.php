@@ -5,7 +5,7 @@
         <div class="col-8">
             @include('carousel.carousel')
         </div>
-        <div class="col-4">
+        <div class="col-4 formulario">
             @yield('formulario')
         </div>
     </div>
