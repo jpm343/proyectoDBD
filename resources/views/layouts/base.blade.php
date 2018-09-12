@@ -16,7 +16,7 @@
             }
 
             body {
-                background-color: #fffbef;
+                background-image: radial-gradient(#fff, #fffbef, #fff8e2);
             }
 
             .container input[type=submit], .container button {
