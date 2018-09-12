@@ -4,6 +4,7 @@
 
 @section('contenido')
     <h3>Vuelos</h3>
+    @if (sizeof($vuelos) > 0)
     <table class="table table-stripped">
         <thead>
             <tr>
@@ -33,11 +34,19 @@
                         <input type="hidden" name="fecha_fin" value="{{ $request->fecha_fin }}">
                         <input type="hidden" name="num_personas" value="{{ $request->personas }}">
                         <input type="hidden" name="num_habitaciones" value="{{ $num_habitaciones }}">
-                        <button type="submit" class="btn btn-default">Reservar</button>
+                        <button type="submit" class="btn btn-default"
+                        @guest
+                        disabled>Inicie sesión<br/>para reservar</button>
+                        @else
+                        >Reservar</button>
+                        @endguest
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    @else
+    <h2>No se encontraron resultados para su búsqueda.</h2>
+    @endif
 @endsection

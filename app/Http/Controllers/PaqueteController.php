@@ -9,16 +9,30 @@ use App\Auto;
 use App\Hotel;
 use App\Habitacion;
 use App\Reserva;
+use Auth;
+use Validator;
 use Illuminate\Http\Request;
 
 class PaqueteController extends Controller
 {
     public function buscarPaquetesPaso1(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'fecha_ida' => 'required|date|after:today',
+            'fecha_vuelta' => 'required|date|after:fecha_ida',
+            'personas' => 'required|digits_between:1,10',
+            'habitaciones' => 'digits_between:1,10',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+
         $tipo_paquete = $request->tipo_paquete;
         $ciudad_origen = $request->ciudad_origen;
         $ciudad_destino = $request->ciudad_destino;
-        $fecha_inicio = $request->fecha_inicio;
-        $fecha_fin = $request->fecha_fin;
+        $fecha_inicio = $request->fecha_ida;
+        $fecha_fin = $request->fecha_vuelta;
         $num_personas = $request->personas;
 
         if ($tipo_paquete == 'auto') {
@@ -58,12 +72,29 @@ class PaqueteController extends Controller
     }
 
     public function buscarPaquetesPaso2(Request $request) {
+        $id_vuelo = $request->id_vuelo;
         $tipo_paquete = $request->tipo_paquete;
         $ciudad_destino = $request->ciudad_destino;
         $fecha_inicio = $request->fecha_inicio;
         $fecha_fin = $request->fecha_fin;
         $num_personas = $request->num_personas;
         $num_habitaciones = $request->num_habitaciones;
+
+        // realizar reserva del vuelo
+        $reserva = new Reserva([
+            'ciudad_destino' => $ciudad_destino,
+            'cantidad_mayores' => $num_personas,
+            'cantidad_menores' => 0,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_fin' => $fecha_fin,
+            'id_usuario' => Auth::id(),
+        ]);
+        $reserva->save();
+        $asiento = Asiento::where('id_vuelo', $id_vuelo)
+            ->whereNull('id_reserva')
+            ->first()->update([
+                'id_reserva' => $reserva->id_reserva,
+            ]);
 
         if ($tipo_paquete == 'auto') {
             // nombres de compañías que ofrecen arriendo de autos
@@ -99,8 +130,7 @@ class PaqueteController extends Controller
                 ->get();
 
             // preparar datos como se recibirán en la vista
-            $request->ciudad_inicio = $ciudad_destino;
-            $request->ciudad_fin = $ciudad_destino;
+            $request->ciudad = $ciudad_destino;
             return view('resultados_autos')
                 ->with('autos', $autos)
                 ->with('request', $request);

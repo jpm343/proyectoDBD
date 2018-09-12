@@ -109,6 +109,8 @@ Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 Route::post('/buscar_paquetes', 'PaqueteController@buscarPaquetesPaso1');
 Route::post('/buscar_paquetes/paso_2', 'PaqueteController@buscarPaquetesPaso2');
 Route::post('/buscar_autos', 'AutoController@search');
+Route::post('/reservar_autos', 'AutoController@reservar');
+
 Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 //***********Ruta para fondos de usuario************//
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');

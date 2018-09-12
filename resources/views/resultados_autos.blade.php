@@ -7,6 +7,7 @@
 @endif
 
 @section('contenido')
+    @if (sizeof($autos) > 0)
     <table class="table table-stripped">
         <thead>
             <tr>
@@ -37,18 +38,26 @@
                 <td>${{ $auto->precio_dia_auto }} CLP</td>
                 <td>{{ $auto->descripcion_auto }}</td>
                 <td>
-                    <form action="/autos/reservar" method="post">
+                    <form action="/reservar_autos" method="post">
                         @csrf
+                        <input type="hidden" name="personas" value="{{ $request->num_personas }}">
                         <input type="hidden" name="patente" value="{{ $auto->patente_auto }}">
-                        <input type="hidden" name="ciudad_arriendo" value="{{ $request->ciudad_inicio }}">
-                        <input type="hidden" name="ciudad_devolucion" value="{{ $request->ciudad_fin }}">
+                        <input type="hidden" name="ciudad" value="{{ $request->ciudad }}">
                         <input type="hidden" name="fecha_inicio" value="{{ $request->fecha_inicio }}">
                         <input type="hidden" name="fecha_fin" value="{{ $request->fecha_fin }}">
-                        <button type="submit" class="btn btn-default">Reservar</button>
+                        <button type="submit" class="btn btn-default"
+                        @guest
+                        disabled>Inicie sesión<br/>para reservar</button>
+                        @else
+                        >Reservar</button>
+                        @endguest
                     </form>
                 </td>
             </tr>
             @endforeach
         </tbody>
     </table>
+    @else
+    <h2>No se encontraron resultados para su búsqueda.</h2>
+    @endif
 @endsection

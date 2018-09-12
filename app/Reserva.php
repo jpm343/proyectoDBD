@@ -43,7 +43,7 @@ class Reserva extends Model
     public function autos()
     {
         //segundo argumento corresponde a la tabla intermedia
-    	return $this->belongsToMany('App\Auto', 'auto_reserva');
+    	return $this->belongsToMany('App\Auto', 'auto_reserva', 'id_reserva', 'patente_auto');
     }
 
     //una reserva tiene uno o muchos asientos
