@@ -17,7 +17,7 @@ class Reserva extends Model
     //muchas reservas son realizadas por un usuario
     public function usuario()
     {
-    	return $this->belongsTo('App\Usuario');
+    	return $this->belongsTo('App\User');
     }
 
     //muchas reservas tienen una actividad

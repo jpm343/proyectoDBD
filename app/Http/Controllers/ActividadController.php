@@ -139,9 +139,9 @@ class ActividadController extends Controller
         {
             return view('actividades_detail')->withDetails($actividad)
                                              ->withUnicodia($dia_desde);
-        }
-        
+        } 
     }
+
 
     public function agregarReservaActividad(Request $request, $id)
     {
@@ -180,7 +180,5 @@ class ActividadController extends Controller
         //no es llegar y guardarla, hay que, desde este punto, simular el proceso de compra.
         
         //return Auth::user()->name;
-        
-
     }
 }

@@ -90,4 +90,17 @@ class FondoController extends Controller
 
     	return Fondo::all();
     }
+
+    public function agregarFondos(Request $request, $id)
+    {
+        $fondo = Fondo::find($id);
+        $monto_a_agregar = $request->monto;
+        $monto_actual = Fondo::where('id_fondos', $id)->pluck('monto_actual');
+
+        if($monto_a_agregar > 0)
+        {
+            $fondo->monto_actual = $monto_actual[0] + $monto_a_agregar;
+            $fondo->save();
+        }
+    }
 }

@@ -11,26 +11,41 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/alojamientos');
 });
 
-Route::get('actividades', function() {
-	return view('actividades');
-});
+function return_view($view) {
+    return function () use ($view) {
+        return view($view);
+    };
+}
 
-Route::get('carrito', function() {
-	return view('carrito');
-});
+/********Rutas para el Carrito*******/
+
+Route::get('/add-to-cart/{id}', [
+	'uses' => 'HabitacionController@getAddToCart',
+	'as' => 'alojamiento.addToCart'
+]);
+
+
+Route::get('/carrito', return_view('carrito'));
+Route::get('/alojamientos', return_view('welcome'));
+Route::get('/actividades', return_view('actividades'));
+Route::get('/autos', return_view('autos'));
+Route::get('/traslados', return_view('Traslado_view.traslado-index'));
+Route::get('/paquetes', return_view('paquetes'));
 
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
 
+
 Route::resource('Rols','RolController');
 Route::get('/rols', 'RolController@createOrEdit');
-Route::post('/rols_post', 'RolController@storeOrUpdate')->name('formulario_rol');
-
+Route::post('/rols_post', 'RolController@storeOtyree05@example.comrUpdate')->name('formulario_rol');
 
 Route::resource('RegistroConsultas','Registro_consultaController');
 Route::get('/registroConsultas', 'Registro_consultaController@createOrEdit');
@@ -72,7 +87,7 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 
 // rutas para crear/editar autos
 Route::get('/autos/create', 'AutoController@create');
-Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
+Route::get('/autos/{patente_auto}/edit', 'AutoCtyree05@example.comontroller@edit');
 
 // rutas para los traslados
 Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
@@ -86,7 +101,7 @@ Route::resource('Hotel','HotelController');
 //********* Rutas para reservas
 Route::get('/detalleReserva','ProfileController@callDetailReserva')->name('detalle_reserva');
 Route::resource('Traslado','TrasladoController');
-Route::get('/alojamientos_search', 'HotelController@buscarAlojamientos');
+Route::post('/alojamientos_search', 'HotelController@buscarAlojamientos');
 
 Route::resource('Habitacion','HabitacionController');
 Route::resource('Traslado','TrasladoController');
@@ -95,11 +110,12 @@ Route::get('/alojamientos_detail', function (){
 });
 Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 
-Route::get('/autos', function () {
-    return view('autos');
-});
+Route::post('/buscar_paquetes', 'PaqueteController@buscarPaquetesPaso1');
+Route::post('/buscar_paquetes/paso_2', 'PaqueteController@buscarPaquetesPaso2');
 Route::post('/buscar_autos', 'AutoController@search');
+Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 
-Route::get('/profile', 'ProfileController@showUserProfile')->name('mostrar_perfil');
-
-Auth::routes();
+//***********Ruta para fondos de usuario************//
+Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
+Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
+Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');

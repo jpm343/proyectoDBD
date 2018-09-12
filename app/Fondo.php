@@ -17,6 +17,12 @@ class Fondo extends Model
     //muchos fondos pertenecen a un usuario
     public function usuario()
     {
-    	return $this->belongsTo('App/Usuario');
+    	return $this->belongsTo('App/User');
+    }
+
+    //mutador para actualizar un monto
+    public function setMontoActualAttribute($value)
+    {
+        $this->attributes['monto_actual'] = $value;
     }
 }

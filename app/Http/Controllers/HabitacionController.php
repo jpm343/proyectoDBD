@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Carro;
 use Illuminate\Http\Request;
+use Session;
 
 class HabitacionController extends Controller
 {
@@ -98,5 +100,14 @@ class HabitacionController extends Controller
         $habitacion = Habitacion::find($id_habitacion);
         $habitacion->delete();
         return back()->with('info','La habitacion ha sido eliminada');
+    }
+
+    public function getAddToCart(Request $request, $id){
+        $habitacion = Habitacion::find($id);
+        $carroAntiguo = Session::has('carro') ? Session::get('carro') : null;
+        $carro = new Carro($carroAntiguo);  
+        $carro->add($habitacion, $habitacion->id_habitacion);
+        $request->session()->put('carro', $carro);
+        return redirect('/alojamientos');
     }
 }

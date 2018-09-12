@@ -14,7 +14,7 @@ class Rol extends Model
     public function usuarios()
     {
     	//segundo argumento corresponde a la tabla intermedia
-    	return $this->belongsToMany('App\Usuarios', 'rol_usuario');
+    	return $this->belongsToMany('App\User', 'rol_usuario');
     }
 
 }
