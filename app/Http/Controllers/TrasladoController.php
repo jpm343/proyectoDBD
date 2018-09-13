@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Traslado;
+use App\Reserva;
 use Illuminate\Http\Request;
 use DateTime;
 use Validator;
@@ -134,13 +135,23 @@ class TrasladoController extends Controller
     {
         // Buscamos el traslado
         $reservaTraslado = Traslado::find($id);
+        $reserva = new Reserva(['cantidad_menores' => 0,//por mientras
+                                'cantidad_mayores' => $reservaTraslado->cantidad_pasajeros,
+                                'ciudad_destino'   => $reservaTraslado->destino_traslado,
+                                'fecha_inicio'     => $reservaTraslado->fecha_traslado,
+                                'fecha_fin'        => $reservaTraslado->fecha_traslado,
+                                'id_usuario'       => Auth::id(),
+                                'id_actividad'     => null,
+                               ]);
+
+        $reserva->save();
 
         //si la sesion esta iniciada, se agregan los productos al carro
         if($user = Auth::user())
         {
             $reservaTraslado->disponibilidad = false;
             $reservaTraslado->save();
-            return view('prueba_compra')->withReservaTraslado($reservaTraslado);
+            return view('prueba_compra')->withReservaTraslado($reserva);
         }
     }
 }

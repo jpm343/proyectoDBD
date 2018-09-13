@@ -82,12 +82,25 @@ class CarroController extends Controller
             $autos = DB::table('auto_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('patente_auto')
                                                                                                      ->toArray();
 
-            $habitaciones = DB::table('habitacion_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('id_habitacion')
-                                                                                                                  ->toArray();
+            $habitaciones = DB::table('habitacion_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('id_habitacion')->toArray();
 
             $asientos = Asiento::where('id_reserva', '=', $reserva_actual->id_reserva)->get();
 
             $traslado = Traslado::where('id_reserva', '=', $reserva_actual->id_reserva)->get()->toArray();
+
+            //para cada asiento de la reserva
+            $sumador_precio_asientos = 0;
+            if(!empty($asientos))
+            {
+                foreach($asientos as $asiento)
+                {
+                    $sumador_precio_asientos += $asiento->precio;
+                }
+                //se multiplica por cantidad de pasajeros
+                $sumador_precio_asientos *= ($reserva_actual->cantidad_mayores + $reserva_actual->cantidad_menores);
+
+                $tipo = 'vuelo';
+            }
 
             //para cada auto de la reserva (si es que hay)
             $sumador_precio_autos = 0;
@@ -116,19 +129,6 @@ class CarroController extends Controller
                 $tipo = 'alojamiento';
             }
 
-            //para cada asiento de la reserva
-            $sumador_precio_asientos = 0;
-            if(!empty($asientos))
-            {
-                foreach($asientos as $asiento)
-                {
-                    $sumador_precio_asientos += $asiento->precio;
-                }
-                //se multiplica por cantidad de pasajeros
-                $sumador_precio_asientos *= ($reserva_actual->cantidad_mayores + $reserva_actual->cantidad_menores);
-
-                $tipo = 'vuelo';
-            }
 
             //el traslado y la actividad son 1 solo
             $sumador_precio_traslado = 0;
