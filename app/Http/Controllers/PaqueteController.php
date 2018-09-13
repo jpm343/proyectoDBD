@@ -65,10 +65,10 @@ class PaqueteController extends Controller
         // colección final de vuelos
         $vuelos = Vuelo::whereIn('id_vuelo', $id_vuelos_disponibles)->get();
 
+        $request->num_habitaciones = $num_habitaciones;
         return view('resultados_paquete_vuelos')
             ->with('vuelos', $vuelos)
-            ->with('request', $request)
-            ->with('num_habitaciones', $num_habitaciones);
+            ->with('request', $request);
     }
 
     public function buscarPaquetesPaso2(Request $request) {
@@ -131,6 +131,8 @@ class PaqueteController extends Controller
 
             // preparar datos como se recibirán en la vista
             $request->ciudad = $ciudad_destino;
+            $request->fecha_arriendo = $fecha_inicio;
+            $request->fecha_devolucion = $fecha_fin;
             return view('resultados_autos')
                 ->with('autos', $autos)
                 ->with('request', $request);
