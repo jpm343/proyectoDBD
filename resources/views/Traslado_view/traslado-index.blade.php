@@ -3,7 +3,7 @@
 @section('titulo', 'Traslados')
 
 @section('formulario')
-    <div class="container" style = "background: #e9f871">
+    <div class="container">
         <form action="{{route('Traslado_opciones')}}" method="GET">
             <div class="form-group row">
                 <div class="col-6">
