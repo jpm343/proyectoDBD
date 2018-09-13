@@ -13,22 +13,30 @@
         <a class="btn btn-default" href="/perfil_fondos" role="button">Mis métodos de pago</a>
     </div>
     <br/>
-    <table class="table table-hover table-striped">
+    @if($errors->any())
+        <br/>
+        <div align="center">
+            <h2>{{$errors->first()}}</h2>
+        </div>
+    @else
+        <table class="table table-hover table-striped">
         <thead align="center">
-            <th > N° de reserva </th>
-            <th > Fecha inscrita </th>
-            <th > Descripción </th>
-            <th colspan="1">&nbsp;</th>
+            <th > Tipo de compra </th>
+            <th > Nro de cuenta </th>
+            <th > Monto pagado </th>
+            <th > Fecha de transacción</th>
         </thead>
         <tbody>
+            @foreach($registros as $registro)
             <tr>
-                <td align="center">{{ Auth::user()-> name}}</td>
-                <td align="center">{{ Auth::user()-> email}}</td>
-                <td align="center">{{ Auth::user()-> name}}</td>
-                <td align="center">
-                    <a href="{{route('detalle_reserva')}}" class="btn btn-link" > Detalles</a> 
-                </td>
+                <td align="center"> Reserva</td>
+                <td align="center">{{ $registro->tipo_transaccion }}</td>
+                <td align="center">${{ $registro->subtotal_registro }}CLP</td>
+                <td align="center">{{ $registro->fecha_registro }}</td>
             </tr>
+            @endforeach
         </tbody>
-    </table>
+        </table>
+    @endif         
+    
 @endsection

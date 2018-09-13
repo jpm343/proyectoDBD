@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Fondo;
+use App\Registro;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -11,7 +12,16 @@ class ProfileController extends Controller
     public function showUserProfile()
 	{
 		$usuario = Auth::user()->id;
-		return view('Profile_view.profile-index', compact('usuario'));
+
+		//se consultan los registros de usuario
+		$id = Auth::id();
+		$registros_usuario = Registro::where('id_usuario', '=', $id)->get();
+
+		if(empty($registros_usuario))
+			return view('Profile_view.profile-index')->withErrors(['Aun no registras compras!']);
+		
+		else
+			return view('Profile_view.profile-index')->withRegistros($registros_usuario);
 	}
 
 	public function callDetailReserva()
