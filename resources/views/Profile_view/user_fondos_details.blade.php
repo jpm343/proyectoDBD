@@ -25,5 +25,8 @@
         	<input type="text" name="monto" class="form-control" id="Monto_nuevo" value="0" required>
         </div>
         <button class="btn btn-default" type="submit">Agregar Fondos</button>
+        @if($errors->any())
+            <small>{{$errors->first()}}</small>
+        @endif 
     </form>
 @endsection

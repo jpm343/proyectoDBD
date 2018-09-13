@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Auto;
 use App\CompaniaAuto;
 use App\Reserva;
+use Auth;
+use Validator;
 
 class AutoController extends Controller
 {
@@ -63,17 +65,29 @@ class AutoController extends Controller
     }
 
     public function search(Request $request) {
-        $ciudad_inicio = $request->ciudad_inicio;
-        $ciudad_fin = $request->ciudad_fin;
-        $fecha_inicio = $request->fecha_inicio;
-        $fecha_fin = $request->fecha_fin;
+        $validator = Validator::make($request->all(), [
+            'fecha_arriendo' => 'required|date|after:today',
+            'fecha_devolucion' => 'required|date|after:fecha_arriendo',
+        ]);
 
-        // lista de compañías que sirven en ambas ciudades
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator);
+        }
+
+        $ciudad = $request->ciudad;
+        $fecha_inicio = $request->fecha_arriendo;
+        $fecha_fin = $request->fecha_devolucion;
+        $request->num_personas = 1;
+
+        // lista de compañías que sirven en la ciudad
         $companias = array();
         foreach (CompaniaAuto::all() as $compania) {
-            if (in_array($ciudad_inicio, $compania->ciudades_de_atencion) AND
-                in_array($ciudad_fin, $compania->ciudades_de_atencion)) {
+            foreach ($compania->ciudades_de_atencion as $ciudad_atencion) {
+                if (strpos($ciudad_atencion, $ciudad) !== false) {
                     $companias[] = $compania->nombre_compania;
+                    break;
+                }
             }
         }
 
@@ -91,12 +105,28 @@ class AutoController extends Controller
             ->pluck('auto_reserva.patente_auto');
 
         // colección final de autos pertenecientes a compañías que sirven
-        //     en ambas ciudades y están libres en el intervalo consultado
+        //     en dicha ciudad y están libres en el intervalo consultado
         $autos = Auto::whereIn('patente_auto', $patentes)
             ->whereNotIn('patente_auto', $reservados)
             ->get();
 
         // presentar los autos disponibles en una tabla
-        return view('resultados_autos')->with('autos', $autos);
+        return view('resultados_autos')
+            ->with('autos', $autos)
+            ->with('request', $request);
+    }
+
+    public function reservar(Request $request) {
+        $reserva = new Reserva([
+            'ciudad_destino' => $request->ciudad,
+            'cantidad_mayores' => $request->personas,
+            'cantidad_menores' => 0,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_fin' => $request->fecha_fin,
+            'id_usuario' => Auth::id(),
+        ]);
+        $reserva->save();
+        $reserva->autos()->attach($request->patente);
+        return redirect('/carrito');
     }
 }

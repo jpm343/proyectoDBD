@@ -143,12 +143,12 @@ class HotelController extends Controller
                 array_push($habitacionesPorCapacidad, $habitacionEncontrada->id_habitacion);
             }
         }
-        $AAAA = Habitacion::whereIn('id_habitacion', $habitacionesPorCapacidad)
+        $arreglo = Habitacion::whereIn('id_habitacion', $habitacionesPorCapacidad)
             ->groupBy('id_hotel')
             ->selectRaw('id_hotel, MIN(precio_noche_habitacion)')->get();
-        $Arreglo = array();
-        foreach ($AAAA as $A) {
-            $Arreglo[$A->id_hotel] = $A->min;
+        $precios_minimos = array();
+        foreach ($arreglo as $a) {
+            $precios_minimos[$a->id_hotel] = $a->min;
         }
         $hotelesDisponibles = array();
         foreach ($habitacionesPorCapacidad as $habitacionPorCapacidad) {
@@ -173,7 +173,7 @@ class HotelController extends Controller
         foreach ($hotelesPorHabitaciones as $hotelPorHabitacion) {
             array_push($hotelesFinal, Hotel::find($hotelPorHabitacion));
         }
-        return view('resultados_busqueda_alojamientos', compact('Arreglo'))->withDetails($hotelesFinal);
+        return view('resultados_busqueda_alojamientos', compact('precios_minimos'))->withDetails($hotelesFinal);
     }
 
     public function detalleAlojamiento($id){

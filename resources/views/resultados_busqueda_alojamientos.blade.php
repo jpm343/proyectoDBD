@@ -1,6 +1,10 @@
 @extends('layouts.base')
 
-@section('titulo', 'Alojamientos')
+@if (isset($paquete))
+    @section('titulo', 'Paquetes')
+@else
+    @section('titulo', 'Alojamientos')
+@endif
 
 @section('contenido')
     @if(isset($details))
@@ -22,7 +26,7 @@
                     <td>{{ $alojamiento->nombre_hotel }}</td>
                     <td>{{ $alojamiento->ciudad_hotel }}</td>
                     <td>{{ $alojamiento->descripcion_hotel }}</td>
-                    <td>${{ $Arreglo[$alojamiento->id_hotel] }} CLP</td>
+                    <td>${{ $precios_minimos[$alojamiento->id_hotel] }} CLP</td>
                 </tr>
             @endforeach
         </tbody>

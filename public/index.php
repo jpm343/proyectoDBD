@@ -7,6 +7,11 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+session_start();
+if( !isset($_SESSION['carro']) ) {
+	$_SESSION['carro']=array();
+}
+
 define('LARAVEL_START', microtime(true));
 
 /*

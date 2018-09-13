@@ -3,7 +3,7 @@
 @section('titulo', 'Paquetes')
 
 @section('formulario')
-    <form action="/buscar_paquete" method="post">
+    <form action="/buscar_paquetes" method="post">
         @csrf
         <div class="form-group row">
             <label class="col-6" style="text-align:right">
@@ -26,12 +26,12 @@
 
         <div class="form-group row">
             <div class="col-6">
-                <label for="fecha_inicio">Fecha ida</label>
-                <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
+                <label for="fecha_ida">Fecha ida</label>
+                <input type="date" class="form-control" name="fecha_ida" id="fecha_ida" required>
             </div>
             <div class="col-6">
-                <label for="fecha_fin">Fecha vuelta</label>
-                <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" required>
+                <label for="fecha_vuelta">Fecha vuelta</label>
+                <input type="date" class="form-control" name="fecha_vuelta" id="fecha_vuelta" required>
             </div>
         </div>
 

@@ -3,7 +3,8 @@
 @section('titulo', 'Alojamientos')
 
 @section('formulario')
-    <form action="/alojamientos_search" method="get"> 
+    <form action="/alojamientos_search" method="post">
+      @csrf
       <div class="form-group">
         <label for="Destino">Destino </label>
         <input type="text" class="form-control" name="destino" required>
