@@ -20,7 +20,7 @@ class PaqueteController extends Controller
             'fecha_ida' => 'required|date|after:today',
             'fecha_vuelta' => 'required|date|after:fecha_ida',
             'personas' => 'required|digits_between:1,10',
-            'habitaciones' => 'digits_between:1,10',
+            'habitaciones' => 'nullable|digits_between:1,10',
         ]);
 
         if ($validator->fails()) {
