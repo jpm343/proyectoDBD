@@ -6,6 +6,7 @@ use App\Habitacion;
 use App\Carro;
 use Illuminate\Http\Request;
 use Session;
+use Validator;
 
 class HabitacionController extends Controller
 {
@@ -102,12 +103,23 @@ class HabitacionController extends Controller
         return back()->with('info','La habitacion ha sido eliminada');
     }
 
-    public function getAddToCart(Request $request, $id){
+    public function agregarReservaHabitacion(Request $request, $id, $fechaIda, $fechaVuelta)
+    {
+        return $id;
         $habitacion = Habitacion::find($id);
-        $carroAntiguo = Session::has('carro') ? Session::get('carro') : null;
-        $carro = new Carro($carroAntiguo);  
-        $carro->add($habitacion, $habitacion->id_habitacion);
-        $request->session()->put('carro', $carro);
-        return redirect('/alojamientos');
+        $hotel = Hotel::find($habitacion->id_hotel);
+        //si la sesion esta iniciada, se agregan los productos al carro
+        if($user = Auth::user())
+        {
+            $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
+                                    'cantidad_mayores' => $request->cantidad_adultos,
+                                    'ciudad_destino'   => $hotel->ciudad_hotel,
+                                    'fecha_inicio'     => $fechas[0],
+                                    'fecha_fin'        => $fechas[1],
+                                    'id_usuario'       => Auth::id(),
+                                   ]);
+            $reserva->save();
+            return view('prueba_compra')->withReserva($reserva);
+        }
     }
 }

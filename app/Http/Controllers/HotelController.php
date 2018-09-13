@@ -173,12 +173,18 @@ class HotelController extends Controller
         foreach ($hotelesPorHabitaciones as $hotelPorHabitacion) {
             array_push($hotelesFinal, Hotel::find($hotelPorHabitacion));
         }
-        return view('resultados_busqueda_alojamientos', compact('precios_minimos'))->withDetails($hotelesFinal);
+        $fechas = array();
+        array_push($fechas, $request->fechaIda);
+        array_push($fechas, $request->fechaVuelta);
+        return view('resultados_busqueda_alojamientos', compact('precios_minimos'))->withDetails($hotelesFinal)->with('fechas', $fechas);
     }
 
-    public function detalleAlojamiento($id){
+    public function detalleAlojamiento($id, $fechaIda, $fechaVuelta){
         $hotel = Hotel::find($id);
         $habitaciones = Habitacion::where('id_hotel', '=', $id)->get();
-        return view('alojamientos_detail', compact('hotel'))->withDetails($habitaciones);
+        $fechas = array();
+        array_push($fechas, $fechaIda);
+        array_push($fechas, $fechaVuelta);
+        return view('alojamientos_detail', compact('hotel'))->withDetails($habitaciones)->with('fechas', $fechas);
     }
 }

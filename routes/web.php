@@ -25,10 +25,7 @@ function return_view($view) {
 
 /********Rutas para el Carrito*******/
 
-Route::get('/add-to-cart/{id}', [
-	'uses' => 'HabitacionController@getAddToCart',
-	'as' => 'alojamiento.addToCart'
-]);
+Route::get('/add-to-cart/{id}/{fechaIda}/{fechaVuelta}', 'HabitacionController@agregarReservaHabitacion');
 
 
 Route::get('/carrito', return_view('carrito'));
@@ -108,7 +105,7 @@ Route::resource('Traslado','TrasladoController');
 Route::get('/alojamientos_detail', function (){
 	return view('alojamientos_detail');
 });
-Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
+Route::get('/alojamientos_detail/{id}/{fechaIda}/{fechaVuelta}', 'HotelController@detalleAlojamiento');
 
 Route::post('/buscar_paquetes', 'PaqueteController@buscarPaquetesPaso1');
 Route::post('/buscar_paquetes/paso_2', 'PaqueteController@buscarPaquetesPaso2');
