@@ -34,6 +34,7 @@ Route::get('/paquetes', return_view('paquetes'));
 
 
 
+
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
@@ -58,6 +59,7 @@ Route::get('/reserva_vuelo/{id}/{mayores}/{menores}','VueloController@reserva');
 Route::resource('aerolinea', 'AerolineaController');
 Route::get('/aerolineas', 'AerolineaController@createOrEdit');
 Route::post('/aerolineas_post', 'AerolineaController@storeOrUpdate')->name('formulario_aerolinea');
+
 ////*********Rutas para Asiento*******//
 Route::resource('asiento', 'AsientoController');
 Route::get('/asientos', 'AsientoController@createOrEdit');
@@ -72,10 +74,12 @@ Route::post('/actividads_post', 'ActividadController@storeOrUpdate')->name('form
 Route::get('/actividades_search', 'ActividadController@buscarActividades');
 Route::get('/actividades_details/{id}', 'ActividadController@detalleActividades');
 Route::get('/actividades_details/{id}/compra', 'ActividadController@agregarReservaActividad');
+
 //*********Rutas para Registro*******//
 Route::resource('registro', 'RegistroController');
 Route::get('/registros', 'RegistroController@createOrEdit');
 Route::post('/registros_post', 'RegistroController@storeOrUpdate')->name('formulario_registro');
+
 ////*********Rutas para Fondo*******//
 Route::resource('fondo', 'FondoController');
 Route::get('/fondos', 'FondoController@createOrEdit');
@@ -83,10 +87,11 @@ Route::post('/fondos_post', 'FondoController@storeOrUpdate')->name('formulario_f
 
 // rutas para crear/editar autos
 Route::get('/autos/create', 'AutoController@create');
-Route::get('/autos/{patente_auto}/edit', 'AutoCtyree05@example.comontroller@edit');
+Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
 
 // rutas para los traslados
 Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
+Route::get('/Traslado_reserva/{id}', 'TrasladoController@agregarReservaTraslado')->name('Traslado_reserva');
 
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
@@ -116,6 +121,8 @@ Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
 Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
 Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');
+Route::get('/perfil_fondos_form', 'FondoController@metodoDePagoForm');
+Route::post('/perfil_fondos_anadir', 'FondoController@anadirMetodoDePago');
 
 //***********Rutas relacionadas a la compra*********//
 Route::get('/carro_remover/{id}', 'CarroController@eliminarDelCarro');

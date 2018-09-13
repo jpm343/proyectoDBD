@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Traslado;
 use Illuminate\Http\Request;
 use DateTime;
+use Validator;
+use Auth;
 
 class TrasladoController extends Controller
 {
@@ -125,6 +127,20 @@ class TrasladoController extends Controller
                                ->where('cantidad_pasajeros', '>=', intval($request->cantidad_pasajeros))
                                ->where('precio_traslado','<=', intval($request->precio_traslado));
             return view('Traslado_view.traslado-offersQuery', compact('traslados'));
+        }
+    }
+
+    public function agregarReservaTraslado($id)
+    {
+        // Buscamos el traslado
+        $reservaTraslado = Traslado::find($id);
+
+        //si la sesion esta iniciada, se agregan los productos al carro
+        if($user = Auth::user())
+        {
+            $reservaTraslado->disponibilidad = false;
+            $reservaTraslado->save();
+            return view('prueba_compra')->withReservaTraslado($reservaTraslado);
         }
     }
 }

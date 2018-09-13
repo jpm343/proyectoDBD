@@ -5,6 +5,8 @@
 @section('contenido')
     <table class="table table-hover table-striped">
         <thead align="center">
+            <br/>
+            <br/>
             <th > Fecha y hora </th>
             <th > Origen </th>
             <th > Destino </th>
@@ -19,7 +21,7 @@
                 <td align="center">{{ $Traslado-> origen_traslado}}</td>
                 <td align="center">{{ $Traslado-> destino_traslado}}</td>
                 <td align="center">{{ $Traslado-> cantidad_pasajeros}}</td>
-                <td align="center">${{ $Traslado-> precio_traslado}}</td>
+                <td align="center">${{ $Traslado-> precio_traslado}} CLP</td>
                 <td align="center">
                     <a href="{{route('Traslado.show', $Traslado->id_traslado)}}" class="btn btn-link" > ver </a> 
                 </td>

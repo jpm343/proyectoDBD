@@ -68,6 +68,10 @@
               <button class="btn btn-default" disabled>Comprar</button>
               <small>Primero debes iniciar sesión</small>
             @endif
+            @if($errors->any())
+              <br/>
+                <small>{{$errors->first()}}</small>
+            @endif
         </form>
         </div>
     </div>

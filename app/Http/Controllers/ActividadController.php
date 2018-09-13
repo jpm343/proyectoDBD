@@ -9,6 +9,7 @@ use App\Reserva;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
+use Redirect;
 
 
 class ActividadController extends Controller
@@ -154,9 +155,7 @@ class ActividadController extends Controller
 
         if($validator->fails())
         {
-            return redirect()->back()
-                             ->withErrors($validator)
-                             ->withInput();//falta notificar este error en la vista
+            return Redirect::back()->withErrors(['Selecciona una fecha válida!']);
         }
 
         $actividad = Actividad::find($id);

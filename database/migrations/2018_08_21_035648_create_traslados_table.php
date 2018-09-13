@@ -24,6 +24,7 @@ class CreateTrasladosTable extends Migration
             $table->string('destino_traslado');
             $table->integer('cantidad_pasajeros');
             $table->integer('precio_traslado');
+            $table->boolean('disponibilidad');
             
             // Timestamps
             $table->timestamps();

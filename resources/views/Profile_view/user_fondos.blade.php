@@ -9,6 +9,8 @@
         <label align="center"><strong>Nombre: </strong>{{ Auth::user()->name }}</label>
         <br/>
         <label align="center"><strong>Correo: </strong>{{ Auth::user()->email }}</label>
+        <br/>
+        <a class="btn btn-default" href="/perfil_fondos_form" role="button">Añadir un método de pago</a>
     </div>
     <br/>
     <table class="table table-hover table-striped">
