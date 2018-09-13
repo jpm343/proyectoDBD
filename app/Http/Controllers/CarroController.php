@@ -13,6 +13,7 @@ use App\Actividad;
 use App\Fondo;
 use Carbon\Carbon;
 use Auth;
+use Redirect;
 
 class CarroController extends Controller
 {
@@ -39,6 +40,11 @@ class CarroController extends Controller
     public function pagar()
     {
         $_SESSION['carro'] = unserialize(serialize($_SESSION['carro']));
+
+        //si el carro esta vacio, se debe retornar
+        if(count($_SESSION['carro']) < 1)
+            return Redirect::back()->withErrors(['El carro está vacío!']);
+        
         $keys = array_keys($_SESSION['carro']);
 
         //array para mostrar detalles en la vista

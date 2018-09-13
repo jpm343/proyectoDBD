@@ -6,6 +6,10 @@
     <div align="center">
         <br/>
         <a class="btn btn-primary" href="/pagar_orden" role="button">Proceder al pago</a>
+        <br/>
+        @if($errors->any())
+            <small>{{$errors->first()}}</small>
+        @endif 
     </div>
     <br/>
 	<table class="table table-hover table-striped">
