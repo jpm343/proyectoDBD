@@ -6,6 +6,9 @@
             @include('carousel.carousel')
         </div>
         <div class="col-4 formulario">
+            @foreach ($errors->all() as $mensaje)
+            <span class="error">{{ _($mensaje) }}</span><br />
+            @endforeach
             @yield('formulario')
         </div>
     </div>

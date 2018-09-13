@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Fondo;
+use Redirect;
 
 class FondoController extends Controller
 {
@@ -101,6 +102,7 @@ class FondoController extends Controller
         {
             $fondo->monto_actual = $monto_actual[0] + $monto_a_agregar;
             $fondo->save();
+            return Redirect::back()->withErrors(['Fondos agregados!']);
         }
     }
 }

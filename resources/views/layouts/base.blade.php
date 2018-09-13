@@ -16,11 +16,19 @@
             }
 
             body {
-                background-color: #fffbef;
+                background-image: radial-gradient(#fff, #fffbef, #fff8e2);
             }
 
-            .container input[type=submit], .container button {
+            .container input[type=submit], .container button, a.btn {
                 background-color: #8fc0a9;
+            }
+
+            a.btn {
+                color: #212529;
+            }
+
+            a {
+                color: #57a09a;
             }
 
             .carousel img {
@@ -40,6 +48,10 @@
             .formulario .form-control:focus {
                 border-color: #74b4af;
                 box-shadow: 0 0 0 .2rem #04998d4d;
+            }
+
+            .error {
+                color: #d15757;
             }
         </style>
     </head>

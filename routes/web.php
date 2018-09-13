@@ -113,9 +113,16 @@ Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
 Route::post('/buscar_paquetes', 'PaqueteController@buscarPaquetesPaso1');
 Route::post('/buscar_paquetes/paso_2', 'PaqueteController@buscarPaquetesPaso2');
 Route::post('/buscar_autos', 'AutoController@search');
+Route::post('/reservar_autos', 'AutoController@reservar');
+
 Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
 
 //***********Ruta para fondos de usuario************//
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
 Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
 Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');
+
+//***********Rutas relacionadas a la compra*********//
+Route::get('/carro_remover/{id}', 'CarroController@eliminarDelCarro');
+Route::get('/pagar_orden', 'CarroController@pagar');
+Route::get('/verificar_pago/{monto}/cuenta/{id}', 'RegistroController@verificarPago');

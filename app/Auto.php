@@ -27,7 +27,7 @@ class Auto extends Model
     public function reservas()
     {
         //segundo argumento corresponde a la tabla intermedia
-    	return $this->belongsToMany('App\Reserva', 'auto_reserva');
+    	return $this->belongsToMany('App\Reserva', 'auto_reserva', 'patente_auto', 'id_reserva');
     }
 
     //muchos autos corresponden a una companiaAuto

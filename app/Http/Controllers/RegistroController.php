@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Registro;
+use App\Fondo;
+use Redirect;
+use Auth;
 
 class RegistroController extends Controller
 {
@@ -88,5 +91,31 @@ class RegistroController extends Controller
     	$registro->delete();
 
     	return Registro::all();
+    }
+
+    public function verificarPago($monto, $id)
+    {
+        $cuenta = Fondo::find($id);
+        //caso 1: fondos suficientes
+        if($cuenta->monto_actual >= $monto)
+        {
+            $cuenta->monto_actual -= $monto;
+            $cuenta->save();
+
+            //se agrega el registro a la BD
+            $registro = new Registro(['fecha_registro'  => date('Y-m-d H:i:s'),
+                                    'tipo_transaccion' => $cuenta->cuenta_origen,
+                                    'subtotal_registro'=> $monto,
+                                    'id_usuario'       => Auth::id(),
+                                   ]);
+            $registro->save();
+            //se redirige y se borran los elementos del carro
+            return view('compra_exitosa');
+        }
+        //caso 2: fondos insuficientes
+        else
+        {
+            return Redirect::back()->withErrors(['Fondos insuficientes!']);
+        }
     }
 }
