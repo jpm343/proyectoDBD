@@ -23,6 +23,7 @@
         <tbody>
         	<?php $_SESSION['carro'] = unserialize(serialize($_SESSION['carro']));?>
         	<?php foreach($_SESSION['carro'] as $key => $reserva): ?>
+                @if($reserva->id_actividad != null )
 	            <tr>
 	                <td align="center">{{ $reserva->id_reserva}}</td>
 	                <td align="center">{{ $reserva->ciudad_destino}}</td>
@@ -30,6 +31,7 @@
 	                <td align="center">
 	                    <a href="/carro_remover/{{$reserva->id_reserva}}" class="btn btn-link" aling="rigth"> Eliminar</a> 
 	                </td>
+                @endif
 	        <?php endforeach; ?>	        	
         </tbody>
     </table>
@@ -46,19 +48,21 @@
         </thead>
             <?php $_SESSION['carro'] = unserialize(serialize($_SESSION['carro']));?>
             <?php foreach($_SESSION['carro'] as $key => $reservaTraslado): ?>
+                @if($reservaTraslado->id_traslado != null)
                 <tr>
                     <td align="center">{{$reservaTraslado-> fecha_traslado}}</td>
                     <td align="center">{{$reservaTraslado-> origen_traslado}}</td>
                     <td align="center">{{$reservaTraslado-> destino_traslado}}</td>
                     <td align="center">{{$reservaTraslado-> cantidad_pasajeros}}</td>
-                    <td align="center">{{$reservaTraslado-> precio_traslado}}</td>
+                    <td align="center">$ {{$reservaTraslado-> precio_traslado}} CLP</td>
                     <td align="center">
                         <a href="" class="btn btn-link" aling="rigth"> Eliminar</a> 
                     </td>
                 </tr>
+                @endif
             <?php endforeach; ?>
         <tbody>
         </tbody>
     </table>
-    <br/>
+    <br/> 
 @endsection

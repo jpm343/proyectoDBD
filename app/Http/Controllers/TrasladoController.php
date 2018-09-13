@@ -140,8 +140,7 @@ class TrasladoController extends Controller
         {
             $reservaTraslado->disponibilidad = false;
             $reservaTraslado->save();
-            return view('prueba_compra', compact('reservaTraslado'));
+            return view('prueba_compra')->withReservaTraslado($reservaTraslado);
         }
-        return $id;
     }
 }

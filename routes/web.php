@@ -91,7 +91,7 @@ Route::get('/autos/{patente_auto}/edit', 'AutoController@edit');
 
 // rutas para los traslados
 Route::get('/Traslado_search/','TrasladoController@TrasladoIndexQuery')->name('Traslado_opciones');
-Route::get('/Traslado_reserva/{id}/reservarS', 'TrasladoController@agregarReservaTraslado')->name('Traslado_reserva');
+Route::get('/Traslado_reserva/{id}', 'TrasladoController@agregarReservaTraslado')->name('Traslado_reserva');
 
 ////************Stored Procedure******//
 Route::get('/prueba/{id1}/{id2}', 'AsientoController@disponibilidad');
