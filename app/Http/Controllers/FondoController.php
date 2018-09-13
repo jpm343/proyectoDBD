@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Fondo;
 use Redirect;
+use Validator;
+use Auth;
 
 class FondoController extends Controller
 {
@@ -104,5 +106,38 @@ class FondoController extends Controller
             $fondo->save();
             return Redirect::back()->withErrors(['Fondos agregados!']);
         }
+    }
+
+    public function metodoDePagoForm()
+    {
+        return view('metodo_de_pago_form');
+    }
+
+    public function anadirMetodoDePago(Request $request)
+    {
+        //validacion
+        $validator = Validator::make($request->all(), [
+            'cuenta_origen'=> 'digits_between:0,2147483647',
+            'monto_actual' => 'digits_between:0,2147483647',
+            'banco_origen' => 'required',
+        ]);
+
+        if($validator->fails())
+        {
+            return Redirect::back()->withErrors(['Ingresa valores válidos']);
+        }
+
+        $fondo = new Fondo([
+            'cuenta_origen' => $request->cuenta_origen,
+            'monto_actual'  => random_int(0, 1000000),
+            'banco_origen'  => $request->banco_origen,
+            'id_usuario'    => Auth::id(),
+        ]);
+
+        if(count(Fondo::where('cuenta_origen', '=', $request->cuenta_origen)->get()))
+            return Redirect::back()->withErrors(['Error, esa cuenta ya está ingresada para el usuario actual']);
+
+        $fondo->save();
+        return Redirect::back()->withErrors(['Fondos agregados!']);
     }
 }

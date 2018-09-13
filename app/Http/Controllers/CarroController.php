@@ -31,7 +31,10 @@ class CarroController extends Controller
     		//llave relativa a la reserva que se quiere borrar
     		$key = array_search($id, array_column($_SESSION['carro'], 'id_reserva'));
 
-    		//se borra el elemento
+    		//se borra el elemento del array y de la BD
+            $reserva = $_SESSION['carro'][$keys[$key]];
+            $reserva->delete();
+
     		unset($_SESSION['carro'][$keys[$key]]);
     	}
     	return redirect()->back();

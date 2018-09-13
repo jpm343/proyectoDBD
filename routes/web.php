@@ -34,6 +34,7 @@ Route::get('/paquetes', return_view('paquetes'));
 
 
 
+
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
 Route::post('/usuarios_post', 'UsuarioController@storeOrUpdate')->name('formulario_usuario');
@@ -120,6 +121,8 @@ Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
 Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
 Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');
+Route::get('/perfil_fondos_form', 'FondoController@metodoDePagoForm');
+Route::post('/perfil_fondos_anadir', 'FondoController@anadirMetodoDePago');
 
 //***********Rutas relacionadas a la compra*********//
 Route::get('/carro_remover/{id}', 'CarroController@eliminarDelCarro');
