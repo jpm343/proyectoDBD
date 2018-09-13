@@ -22,7 +22,7 @@
         </thead>
         <tbody>
         	<?php $_SESSION['carro'] = unserialize(serialize($_SESSION['carro']));?>
-        	<?php foreach($_SESSION['carro'] as $key => $reservas): ?>
+        	<?php foreach($_SESSION['carro'] as $key => $reserva): ?>
 	            <tr>
 	                <td align="center">{{ $reserva->id_reserva}}</td>
 	                <td align="center">{{ $reserva->ciudad_destino}}</td>
