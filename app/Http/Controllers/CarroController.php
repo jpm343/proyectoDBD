@@ -31,7 +31,10 @@ class CarroController extends Controller
     		//llave relativa a la reserva que se quiere borrar
     		$key = array_search($id, array_column($_SESSION['carro'], 'id_reserva'));
 
-    		//se borra el elemento
+    		//se borra el elemento del array y de la BD
+            $reserva = $_SESSION['carro'][$keys[$key]];
+            $reserva->delete();
+
     		unset($_SESSION['carro'][$keys[$key]]);
     	}
     	return redirect()->back();
@@ -78,9 +81,8 @@ class CarroController extends Controller
             //consultas
             $autos = DB::table('auto_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('patente_auto')
                                                                                                      ->toArray();
-
-            $habitaciones = DB::table('habitacion_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('id_habitacion')
-                                                                                                                  ->toArray();
+                                                                                      
+            $habitaciones = DB::table('habitacion_reserva')->where('id_reserva', '=', $reserva_actual->id_reserva)->pluck('id_habitacion')->toArray();
 
             $asientos = Asiento::where('id_reserva', '=', $reserva_actual->id_reserva)->get();
 
@@ -100,7 +102,7 @@ class CarroController extends Controller
             }
 
             //para cada habitacion de la reserva (si es que hay)
-            $sumador_precio_habitaciones = 0;
+            $sumador_precio_habitaciones = 0;   
             if(!empty($habitaciones))
             {
                 foreach($habitaciones as $id_habitacion)
@@ -161,7 +163,6 @@ class CarroController extends Controller
         }
 
         $fondos_usuario = Fondo::where('id_usuario', '=', Auth::id())->get();
-
         return view('pagar')->withSubtotal(array_sum($precios))
                             ->withDetails($array_detalles)
                             ->withFondos($fondos_usuario);

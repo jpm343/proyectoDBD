@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Hotel;
 use App\Carro;
+use App\Reserva;
+use Auth;
 use Illuminate\Http\Request;
 use Session;
 use Validator;
@@ -105,20 +108,20 @@ class HabitacionController extends Controller
 
     public function agregarReservaHabitacion(Request $request, $id, $fechaIda, $fechaVuelta)
     {
-        return $id;
         $habitacion = Habitacion::find($id);
         $hotel = Hotel::find($habitacion->id_hotel);
         //si la sesion esta iniciada, se agregan los productos al carro
         if($user = Auth::user())
-        {
-            $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
-                                    'cantidad_mayores' => $request->cantidad_adultos,
+        { 
+            $reserva = new Reserva(['cantidad_menores' => 0,
+                                    'cantidad_mayores' => 2,
                                     'ciudad_destino'   => $hotel->ciudad_hotel,
-                                    'fecha_inicio'     => $fechas[0],
-                                    'fecha_fin'        => $fechas[1],
+                                    'fecha_inicio'     => $fechaIda,
+                                    'fecha_fin'        => $fechaVuelta,
                                     'id_usuario'       => Auth::id(),
                                    ]);
             $reserva->save();
+            $habitacion->reservas()->attach($reserva->id_reserva);
             return view('prueba_compra')->withReserva($reserva);
         }
     }

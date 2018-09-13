@@ -27,7 +27,6 @@ function return_view($view) {
 
 Route::get('/add-to-cart/{id}/{fechaIda}/{fechaVuelta}', 'HabitacionController@agregarReservaHabitacion');
 
-
 Route::get('/carrito', return_view('carrito'));
 Route::get('/alojamientos', return_view('welcome'));
 Route::get('/actividades', return_view('actividades'));
@@ -53,7 +52,7 @@ Route::resource('vuelo', 'VueloController');
 Route::get('/vuelos', 'VueloController@createOrEdit');
 Route::post('/vuelos_post', 'VueloController@storeOrUpdate')->name('formulario_vuelo');
 Route::get('/vuelos_buscar','VueloController@buscarVuelos');
-
+Route::get('/reserva_vuelo/{id}/{mayores}/{menores}','VueloController@reserva');
 
 //*********Rutas para Aerolinea*******//
 Route::resource('aerolinea', 'AerolineaController');
@@ -118,6 +117,8 @@ Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
 Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
 Route::post('/perfil_fondos/{id}', 'FondoController@agregarFondos');
+Route::get('/perfil_fondos_form', 'FondoController@metodoDePagoForm');
+Route::post('/perfil_fondos_anadir', 'FondoController@anadirMetodoDePago');
 
 //***********Rutas relacionadas a la compra*********//
 Route::get('/carro_remover/{id}', 'CarroController@eliminarDelCarro');

@@ -20,7 +20,7 @@ class Habitacion extends Model
     public function reservas()
     {
         //segundo argumento corresponde a la tabla intermedia
-    	return $this->belongsToMany('App\Reserva', 'habitacion_reserva');
+    	return $this->belongsToMany('App\Reserva', 'habitacion_reserva', 'id_habitacion', 'id_reserva');
     }
 
     //muchas habitaciones pertenecen a un hotel
