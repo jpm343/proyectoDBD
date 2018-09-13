@@ -20,7 +20,7 @@
         </div>
         <div class="col-lg-6 md-6 xs-12">
         <!--Aqui se supone que se envia el formulario al carrito de compras, deberia tener un controlador encargado de eso-->
-        <form action="<?php echo $details->id_actividad; ?>/compra" method="get">
+        <form action="<?php echo $details->id_actividad; ?>/compra" method="get" name="compra">
             <div class="form-row">
                 <label for="datetimepicker4">Elegir fecha </label>
                 <div class="col-lg-12 md-12 mb-3">
@@ -62,7 +62,12 @@
                     </select>
                 </div>
             </div>
-            <button class="btn btn-default" type="submit">Comprar</button>
+            @if(Auth::user())
+              <button class="btn btn-default" type="submit">Comprar</button>
+            @else
+              <button class="btn btn-default" disabled>Comprar</button>
+              <small>Primero debes iniciar sesión</small>
+            @endif
         </form>
         </div>
     </div>
