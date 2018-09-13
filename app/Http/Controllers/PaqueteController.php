@@ -80,21 +80,10 @@ class PaqueteController extends Controller
         $num_personas = $request->num_personas;
         $num_habitaciones = $request->num_habitaciones;
 
-        // realizar reserva del vuelo
-        $reserva = new Reserva([
-            'ciudad_destino' => $ciudad_destino,
-            'cantidad_mayores' => $num_personas,
-            'cantidad_menores' => 0,
-            'fecha_inicio' => $fecha_inicio,
-            'fecha_fin' => $fecha_fin,
-            'id_usuario' => Auth::id(),
-        ]);
-        $reserva->save();
+        // obtener id de asiento a reservar
         $asiento = Asiento::where('id_vuelo', $id_vuelo)
             ->whereNull('id_reserva')
-            ->first()->update([
-                'id_reserva' => $reserva->id_reserva,
-            ]);
+            ->first()->id_asiento;
 
         if ($tipo_paquete == 'auto') {
             // nombres de compañías que ofrecen arriendo de autos
@@ -135,7 +124,8 @@ class PaqueteController extends Controller
             $request->fecha_devolucion = $fecha_fin;
             return view('resultados_autos')
                 ->with('autos', $autos)
-                ->with('request', $request);
+                ->with('request', $request)
+                ->with('asiento', $asiento);
 
         } else { // hotel
 
@@ -178,7 +168,9 @@ class PaqueteController extends Controller
 
             // preparar datos como se recibirán en la vista
             return view('resultados_busqueda_alojamientos', compact('precios_minimos'))
-                ->withDetails($hoteles)->with('paquete', $request->tipo_paquete);
+                ->withDetails($hoteles)
+                ->with('paquete', $request->tipo_paquete)
+                ->with('asiento', $asiento);
         }
     }
 }
