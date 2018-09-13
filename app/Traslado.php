@@ -14,6 +14,7 @@ class Traslado extends Model
         'destino_traslado',
         'cantidad_pasajeros',
         'precio_traslado',
+        'disponibilidad',
         'id_reserva',
     ];
 

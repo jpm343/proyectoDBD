@@ -45,6 +45,9 @@
                         <input type="hidden" name="ciudad" value="{{ $request->ciudad }}">
                         <input type="hidden" name="fecha_inicio" value="{{ $request->fecha_arriendo }}">
                         <input type="hidden" name="fecha_fin" value="{{ $request->fecha_devolucion }}">
+                        @if (isset($asiento))
+                        <input type="hidden" name="asiento" value="{{ $asiento }}">
+                        @endif
                         <button type="submit" class="btn btn-default"
                         @guest
                         disabled>Inicie sesión<br/>para reservar</button>

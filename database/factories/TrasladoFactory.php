@@ -75,5 +75,6 @@ $factory->define(App\Traslado::class, function (Faker $faker) {
         'cantidad_pasajeros'	=> rand(1, 50),
         'precio_traslado'		=> rand(0, 500000),
         'id_reserva'            => rand(1, 20),
+        'disponibilidad'		=> true
     ];
 });

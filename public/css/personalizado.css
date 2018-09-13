@@ -2,6 +2,10 @@
     margin-left: 5px;
 }
 
+.nav-font-style{
+    color: #fff;
+    font-style: italic;
+}
 .icono {
     width: 25px;
     height: 25px;

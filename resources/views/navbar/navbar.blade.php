@@ -6,25 +6,26 @@
 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
   <div class="navbar-nav ml-auto">
     @guest
-    <img src=/images/usuario.png class="icono">
-    @if (Request::is('*login*'))
-    <a class="nav-item nav-link active" href="/login"><b>Iniciar Sesión</b></a>
-    @else
-    <a class="nav-item nav-link" href="/login">Iniciar Sesión</a>
-    @endif
-    @else
-    <a class="nav-item nav-link" href="/logout"
-        onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-            Cerrar sesión
-    </a>
-    <img src=/images/usuario.png class="icono">
-    @if (Request::is('*perfil*'))
-    <a class="nav-item nav-link active" href="perfil"><b>{{ Auth::user()->name }}</b></a>
-    @else
-    <a class="nav-item nav-link" href="perfil">{{ Auth::user()->name }}</a>
-    @endif
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
+        <img src=/images/usuario.png class="icono">
+        @if (Request::is('*login*'))
+        <a class="nav-item nav-link active" href="/login"><b>Iniciar Sesión</b></a>
+        @else
+        <a class="nav-item nav-link" href="/login">Iniciar Sesión</a>
+        @endif
+        @else
+        <a class="nav-item nav-link" href="/logout"
+            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                Cerrar sesión
+        </a>
+        <img src=/images/usuario.png class="icono">
+        @if (Request::is('*perfil*'))
+        <a class="nav-item nav-link active" href="perfil"><b>{{ Auth::user()->name }}</b></a>
+        @else
+        <a class="nav-item nav-link" href="perfil">{{ Auth::user()->name }}</a>
+        @endif
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
     @endguest
+    
     <img src=/images/bolsa-de-la-compra.png class="icono">
     <a class="nav-item nav-link active" href="/carrito"><b>Mis Compras</b>
         <span class="badge">{{ Session::has('carro') ? Session::get('carro')->cantidadTotal : ''}}</span></a>
