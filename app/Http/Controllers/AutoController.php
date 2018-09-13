@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Auto;
 use App\CompaniaAuto;
 use App\Reserva;
+use App\Asiento;
 use Auth;
 use Validator;
 
@@ -127,6 +128,13 @@ class AutoController extends Controller
         ]);
         $reserva->save();
         $reserva->autos()->attach($request->patente);
-        return redirect('/carrito');
+
+        if (isset($request->asiento)) { // paquete
+            $asiento = Asiento::find($request->asiento)->update([
+                'id_reserva' => $reserva->id_reserva,
+            ]);
+        }
+
+        return view('prueba_compra')->withReserva($reserva);
     }
 }
