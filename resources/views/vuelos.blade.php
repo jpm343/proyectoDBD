@@ -7,11 +7,11 @@
       @csrf
       <div class="form-check form-check-inline">
         <label class="form-check-label">
-          <input class="form-check-input" type="radio" name="viajes" id="idaVuelta" value="idaVuelta" onclick="habilitar('soloIda','vuelta'),agregarDestino('destinoUnico'),eliminarDestino('multiDestino')" checked="true"> Ida y vuelta
+          <input class="form-check-input" type="radio" name="viajes" id="idaVuelta" value="idaVuelta" onclick="habilitar('soloIda','vuelta'),agregarDestino('destinoUnico'),eliminarDestino('multiDestino'),required('ida'),required('vuelta')" checked="true"> Ida y vuelta
         </label>
         <div class="form-check" >
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" name="viajes" id="soloIda" value="soloIda" onclick="habilitar('soloIda','vuelta'),agregarDestino('destinoUnico'),eliminarDestino('multiDestino')"> Solo ida
+            <input class="form-check-input" type="radio" name="viajes" id="soloIda" value="soloIda" onclick="habilitar('soloIda','vuelta'),agregarDestino('destinoUnico'),eliminarDestino('multiDestino'),required('ida'),required('vuelta')"> Solo ida
           </label>
         </div>
         <div class="form-check">
@@ -24,11 +24,11 @@
       <div id="destinoUnico" style="margin-top:10px">
         <div class="form-group">
           <label>Ciudad origen</label>
-          <input type="text" class="form-control" name="origen" required>
+          <input type="text" class="form-control" name="origen">
         </div>
         <div class="form-group">
           <label>Ciudad destino</label>
-          <input type="text" class="form-control" name="destino" required>
+          <input type="text" class="form-control" name="destino" >
         </div>
         <div class="form-group row">
           <div class="col-6">
@@ -67,7 +67,7 @@
           <label for="ida2">Fecha de ida</label>
           <input id="ida2" class="form-control" type="date" name="fechaIda2">
         </div>
-        <div id="Tramo3">
+        <div id="Tramo3" style="display:none">
           <label>Tramo 3</label>
           <div class="form-group">
           <label for="CiudadOrigen3">Ciudad origen</label>
@@ -80,6 +80,7 @@
           <input id="ida3" class="form-control" type="date" name="fechaIda3">
         </div>
         </div>
+        <input type="checkbox" name="t3" id="t3" onclick="habilitar('t3','Tramo3')">Agregar/quitar tramo
       </div>
         <div class="form-group row">
           <div class="col-6">
@@ -133,6 +134,10 @@
             } else {
                document.getElementById(txtFieldId).disabled=false;
             }
+        }
+
+        function required(id){
+          document.getElementById(id).setAttribute("required",true);
         }
 
         function agregarDestino(id){
