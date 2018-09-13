@@ -259,6 +259,17 @@ class VueloController extends Controller
                                         'id_usuario'       => Auth::id()
                                     ]);
             $vueloReserva->save();
+
+            $asientosReserva = Asiento::whereNull('id_reserva')->where('id_vuelo', '=', $id)->pluck('id_asiento');
+            //Agregado el id de la reserva a los asientos ahora usados
+            for($i=0 ; $i<$menores+$mayores;  $i++){
+                $asiento = Asiento::find($asientosReserva[$i]);
+                $asiento->id_reserva = $vueloReserva->id_reserva;
+                $asiento->nombre_pasajero = Auth::user()->name;
+                $asiento->save();
+            }
+
+            
             return view('prueba_compra')->withReserva($vueloReserva);
         }
 
