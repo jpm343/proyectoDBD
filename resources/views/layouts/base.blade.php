@@ -41,6 +41,10 @@
                 border-color: #74b4af;
                 box-shadow: 0 0 0 .2rem #04998d4d;
             }
+
+            .error {
+                color: #d15757;
+            }
         </style>
     </head>
     <body>
