@@ -69,7 +69,6 @@ class Registro_consultaController extends Controller
     {
         $rConsulta = RegistroConsulta::find($id);
         $rConsulta->delete();
-
         return RegistroConsulta::all();
     }
 }

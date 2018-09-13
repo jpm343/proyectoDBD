@@ -15,8 +15,8 @@
     <table class="table table-hover table-striped">
         <thead align="center">
             <th > N° de reserva </th>
-            <th > Ciudad destino </th>
-            <th > Cantidad mayores </th>
+            <th > Fecha de Realización </th>
+            <th > Precio </th>
             <th colspan="1">&nbsp;</th>
         </thead>
         <tbody>

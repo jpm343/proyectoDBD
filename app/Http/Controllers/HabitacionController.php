@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Habitacion;
+use App\Hotel;
+use App\Carro;
+use App\Reserva;
+use Auth;
 use Illuminate\Http\Request;
+use Session;
+use Validator;
 
 class HabitacionController extends Controller
 {
@@ -98,5 +104,25 @@ class HabitacionController extends Controller
         $habitacion = Habitacion::find($id_habitacion);
         $habitacion->delete();
         return back()->with('info','La habitacion ha sido eliminada');
+    }
+
+    public function agregarReservaHabitacion(Request $request, $id, $fechaIda, $fechaVuelta)
+    {
+        $habitacion = Habitacion::find($id);
+        $hotel = Hotel::find($habitacion->id_hotel);
+        //si la sesion esta iniciada, se agregan los productos al carro
+        if($user = Auth::user())
+        { 
+            $reserva = new Reserva(['cantidad_menores' => 0,
+                                    'cantidad_mayores' => 2,
+                                    'ciudad_destino'   => $hotel->ciudad_hotel,
+                                    'fecha_inicio'     => $fechaIda,
+                                    'fecha_fin'        => $fechaVuelta,
+                                    'id_usuario'       => Auth::id(),
+                                   ]);
+            $reserva->save();
+            $habitacion->reservas()->attach($reserva->id_reserva);
+            return view('prueba_compra')->withReserva($reserva);
+        }
     }
 }

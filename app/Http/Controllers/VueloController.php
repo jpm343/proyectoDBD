@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use DateTime;
 use \Auth;
 use \Validator;
@@ -10,7 +8,6 @@ use App\Reserva;
 use App\Vuelo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class VueloController extends Controller
 {
     /**
@@ -23,7 +20,6 @@ class VueloController extends Controller
         $vuelos = Vuelo::all();
         return $vuelos;
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -33,7 +29,6 @@ class VueloController extends Controller
     {
         return view('vuelos');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -76,7 +71,6 @@ class VueloController extends Controller
         $todos = Vuelo::all();
         return $todos;
     }
-
     /**
      * Display the specified resource.
      *
@@ -88,7 +82,6 @@ class VueloController extends Controller
         $vueloSolicitado = Vuelo::find($vuelo->vuelo_id);
         return $vueloSolicitado;
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -102,9 +95,7 @@ class VueloController extends Controller
         $todos = Vuelo::all();
         return $todos;
     }
-
     public function buscarVuelos(Request $request){
-
         $clase = $request->boleto;
         $mayores = intval($request->cAdulto);
         $menores = intval($request->cMenor);
@@ -198,47 +189,34 @@ class VueloController extends Controller
             $cOrigen3 = $request->CiudadO3;
             $cDestino3 = $request->CiudadD3;
             $ida3 = $request->fechaIda3;
-
             $vuelosIda1 = Vuelo::where('ciudad_origen','like',"%".$cOrigen1."%")
                         ->where('ciudad_destino','like',"%".$cDestino1."%")->where('fecha_salida','>',$ida.' 00:00:00')->pluck('id_vuelo');
-
-
             $vuelosIdaDisponibles1 = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosIda1)
                                                 ->groupBy('id_vuelo')
                                                 ->havingRaw('count(*) >= ?', [$tPersonas])
                                                 ->pluck('id_vuelo');
-
             $vuelosI1 = Vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles)->get();
             //Vuelos entre los destinos en el dia indicado
             ///segundo vuelo
             $vuelosIda2 = Vuelo::where('ciudad_origen','like',"%".$cOrigen2)
                         ->where('ciudad_destino','like',"%".$cDestino2)->where('fecha_salida','>',$ida.' 00:00:00')->pluck('id_vuelo');
-
-
             $vuelosIdaDisponibles2 = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosIda2)
                                             ->groupBy('id_vuelo')
                                             ->havingRaw('count(*) >= ?', [$tPersonas])
                                             ->pluck('id_vuelo');
-
             $vuelosI2 = Vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles2)->get();
             //
             $vuelosIda3 = Vuelo::where('ciudad_origen','like',"%".$cOrigen3."%")
                         ->where('ciudad_destino','like',"%".$cDestino3."%")->where('fecha_salida','>',$ida.' 00:00:00')->pluck('id_vuelo');
-
-
             $vuelosIdaDisponibles3 = Asiento::whereNull('id_reserva')->whereIn('id_vuelo', $vuelosIda3)
                                                 ->groupBy('id_vuelo')
                                                 ->havingRaw('count(*) >= ?', [$tPersonas])
                                                 ->pluck('id_vuelo');
-
             $vuelosI3 = Vuelo::whereIn('id_vuelo',$vuelosIdaDisponibles3)->get();
-
-
             if(count($vuelosI1) > 0)
             return view('resultado_busqueda_vuelo', compact('vuelosI1', 'vuelosI2', 'vuelosI3','tPersonas', 'menores', 'mayores'));
         return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
         }
-
         if(count($vuelosI) > 0)
             return view('resultado_busqueda_vuelo', compact('vuelosI', 'cVuelo','tPersonas', 'menores', 'mayores'));
         return view('resultado_busqueda_vuelo')->withMessage("No hay vuelos disponibles para su busqueda");
@@ -267,13 +245,9 @@ class VueloController extends Controller
                 $asiento->id_reserva = $vueloReserva->id_reserva;
                 $asiento->nombre_pasajero = Auth::user()->name;
                 $asiento->save();
-            }
-
-            
+            }   
             return view('prueba_compra')->withReserva($vueloReserva);
         }
-
-
         
     }
 

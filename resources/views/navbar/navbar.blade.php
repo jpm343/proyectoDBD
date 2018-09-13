@@ -27,11 +27,8 @@
     @endguest
     
     <img src=/images/bolsa-de-la-compra.png class="icono">
-    @if (Request::is('*carrito*'))
-    <a class="nav-item nav-link active" href="/carrito"><b>Mis Compras</b></a>
-    @else
-    <a class="nav-item nav-link" href="/carrito">Mis Compras</a>
-    @endif
+    <a class="nav-item nav-link active" href="/carrito"><b>Mis Compras</b>
+        <span class="badge">{{ Session::has('carro') ? Session::get('carro')->cantidadTotal : ''}}</span></a>
   </div>
 </nav>
 

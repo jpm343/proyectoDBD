@@ -29,7 +29,7 @@
                         <td>{{ $detail->capacidad_habitacion }}</td>
                         <td>{{ $detail->tipo_habitacion }}</td>
                         <td>{{ $detail->precio_noche_habitacion }}</td>
-                        <td><button class="btn btn-default" type="submit">Comprar</button></td>
+                        <td><a class="btn btn-default" type="button" href="/add-to-cart/{{$detail->id_habitacion}}/{{$fechas[0]}}/{{$fechas[1]}}">Comprar</a></td>
                     </tr>
                 @endforeach
             </tbody>

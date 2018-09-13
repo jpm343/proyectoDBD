@@ -30,7 +30,7 @@ class Reserva extends Model
     public function habitacions()
     {
         //segundo argumento corresponde a la tabla intermedia
-    	return $this->belongsToMany('App\Habitacion', 'habitacion_reserva');
+    	return $this->belongsToMany('App\Habitacion', 'habitacion_reserva', 'id_reserva', 'id_habitacion');
     }
 
     //una reserva tiene un traslado

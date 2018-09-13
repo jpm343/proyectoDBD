@@ -23,17 +23,16 @@ function return_view($view) {
     };
 }
 
+/********Rutas para el Carrito*******/
+
+Route::get('/add-to-cart/{id}/{fechaIda}/{fechaVuelta}', 'HabitacionController@agregarReservaHabitacion');
+
 Route::get('/carrito', return_view('carrito'));
 Route::get('/alojamientos', return_view('welcome'));
 Route::get('/actividades', return_view('actividades'));
 Route::get('/autos', return_view('autos'));
 Route::get('/traslados', return_view('Traslado_view.traslado-index'));
 Route::get('/paquetes', return_view('paquetes'));
-
-
-
-
-
 
 Route::resource('Usuarios', 'UsuarioController');
 Route::get('/usuarios', 'UsuarioController@createOrEdit');
@@ -109,7 +108,7 @@ Route::resource('Traslado','TrasladoController');
 Route::get('/alojamientos_detail', function (){
 	return view('alojamientos_detail');
 });
-Route::get('/alojamientos_detail/{id}', 'HotelController@detalleAlojamiento');
+Route::get('/alojamientos_detail/{id}/{fechaIda}/{fechaVuelta}', 'HotelController@detalleAlojamiento');
 
 Route::post('/buscar_paquetes', 'PaqueteController@buscarPaquetesPaso1');
 Route::post('/buscar_paquetes/paso_2', 'PaqueteController@buscarPaquetesPaso2');
@@ -117,6 +116,7 @@ Route::post('/buscar_autos', 'AutoController@search');
 Route::post('/reservar_autos', 'AutoController@reservar');
 
 Route::get('/perfil', 'ProfileController@showUserProfile')->name('mostrar_perfil');
+
 //***********Ruta para fondos de usuario************//
 Route::get('/perfil_fondos/', 'ProfileController@showUserFondos');
 Route::get('/perfil_fondos_details/{id}', 'ProfileController@showDetailUserFondo');
