@@ -161,6 +161,7 @@ class ActividadController extends Controller
 
         $actividad = Actividad::find($id);
 
+        //si la sesion esta iniciada, se agregan los productos al carro
         if($user = Auth::user())
         {
             $reserva = new Reserva(['cantidad_menores' => $request->cantidad_ninos,
@@ -171,14 +172,8 @@ class ActividadController extends Controller
                                     'id_usuario'       => Auth::id(),
                                     'id_actividad'     => $id,
                                    ]);
-
-            //$fondos_usuario = Auth::user()->fondos;
             $reserva->save();
-            return Reserva::find($reserva->id_reserva);
+            return view('prueba_compra')->withReserva($reserva);
         }
-
-        //no es llegar y guardarla, hay que, desde este punto, simular el proceso de compra.
-        
-        //return Auth::user()->name;
     }
 }
