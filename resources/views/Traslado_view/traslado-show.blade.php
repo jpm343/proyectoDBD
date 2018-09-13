@@ -21,8 +21,16 @@
         <p>{{ $traslado -> descripcion_traslado}}</p>
     </div>
     <br/>
-    <form action= "{{route('Traslado.index')}}" method="GET">
-        <button class="btn btn-primary" align="right"> Agregar al carrito</button>
-        <button class="btn btn-primary" align="right"> Buscar otro traslado</button>
-    </form>
+    @if(Auth::user())
+        <form action= "{{route('Traslado.index')}}" method="GET">
+            <button class="btn btn-primary" align="right"> Agregar al carrito</button>
+            <button class="btn btn-primary" align="right"> Buscar otro traslado</button>
+        </form>
+    @else
+        <form action= "{{route('Traslado.index')}}" method="GET">
+            @include('Traslado_view.Traslado_fragment.Traslado-abrirSesion')
+            <button class="btn" disabled="disabled" align="right"> Agregar al carrito </button>
+            <button class="btn btn-primary" align="right"> Buscar otro traslado</button>
+        </form>
+    @endif
 @endsection

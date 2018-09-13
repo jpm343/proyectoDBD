@@ -43,8 +43,8 @@
                         <input type="hidden" name="personas" value="{{ $request->num_personas }}">
                         <input type="hidden" name="patente" value="{{ $auto->patente_auto }}">
                         <input type="hidden" name="ciudad" value="{{ $request->ciudad }}">
-                        <input type="hidden" name="fecha_inicio" value="{{ $request->fecha_inicio }}">
-                        <input type="hidden" name="fecha_fin" value="{{ $request->fecha_fin }}">
+                        <input type="hidden" name="fecha_inicio" value="{{ $request->fecha_arriendo }}">
+                        <input type="hidden" name="fecha_fin" value="{{ $request->fecha_devolucion }}">
                         <button type="submit" class="btn btn-default"
                         @guest
                         disabled>Inicie sesión<br/>para reservar</button>
